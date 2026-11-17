@@ -161,4 +161,5 @@ Blockers / decisions needed:
 3. Decide whether the ~181 MB NIDS CSV belongs in the Cloud repo or is explored only locally.  
 4. Human review of `docs/SOURCE_AUDIT.md` and this report.
 
-No push and no Cloud deploy were performed.
+GitHub repository target for this codebase: `https://github.com/rersheed/AMSEC` (dedicated AMSEC repo).  
+Streamlit Community Cloud deploy was **not** performed as part of the initial push.

@@ -1,26 +1,57 @@
 # Python / local env
 .venv/
 venv/
+env/
 __pycache__/
 *.py[cod]
+*$py.class
 .pytest_cache/
 *.egg-info/
 .mypy_cache/
 .ruff_cache/
+.coverage
+htmlcov/
+dist/
+build/
 
 # IDE / OS
 .idea/
 .vscode/
 .DS_Store
 Thumbs.db
+desktop.ini
 
-# Large local datasets (exceed GitHub file limits / keep local)
+# Secrets and local env
+.env
+.env.*
+!.env.example
+.streamlit/secrets.toml
+*.pem
+*.key
+credentials.json
+token.json
+
+# Large local datasets (GitHub file limits / keep local)
 others files that can help/*.csv
 others files that can help/*.CSV
+others files that can help/*.zip
+others files that can help/*.parquet
 
 # Nested clone kept for inspection only
 upstream/
 
-# Local runtime noise
+# Local runtime noise / outputs
 *.log
-.streamlit/secrets.toml
+tmp/
+temp/
+.cache/
+runs/
+outputs/
+
+# Optional leftover Keras/AndroidShield weights (not used by this console)
+Models/
+models/*.h5
+*.h5
+
+# Jupyter checkpoints
+.ipynb_checkpoints/
