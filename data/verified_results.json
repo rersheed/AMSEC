@@ -1,0 +1,92 @@
+{
+  "identity": {
+    "name": "AMSEC",
+    "title": "Explainable Hybrid Android Malware Detection Framework",
+    "repository": "https://github.com/mctelex-lab/HYBRID-ANDROID-MALWARE-DETECTION",
+    "researcher_recorded_in_repository": "Abdullahi Umar Diso",
+    "institution_recorded_in_repository": "Kaduna State University"
+  },
+  "final_ensemble": {
+    "id": "cell4_smoteenn_stack",
+    "role": "final_amsec_ensemble",
+    "notebook": "Final phd-Experiment-android-malware.ipynb",
+    "cell": 4,
+    "config": "SMOTE-ENN_GA_Ensemble_Stacking",
+    "tensorflow": "2.20.0",
+    "what_was_actually_fit": "First 150000 rows of NF-UQ-NIDS-v2 only. The API CSV was not loaded in this executed cell, and phase 8 printed 'API dataset not available'.",
+    "feature_selection": "Variance threshold left 41 numeric features. Mutual information kept all 41. The genetic algorithm then kept 5. The five column names were not printed.",
+    "architecture": "MobileNetV4-style Conv1D (62710 parameters) plus lightweight Conv1D (12294 parameters) plus logistic-regression meta-learner. Reported total 75004 parameters and 150008 FLOPs, where FLOPs were computed as 2 x parameter count.",
+    "metrics": {
+      "accuracy": 0.97789,
+      "precision": 0.97795,
+      "recall": 0.97789,
+      "f1": 0.97789,
+      "balanced_accuracy": 0.97775,
+      "mcc": 0.95582,
+      "roc_auc": 0.99767,
+      "parameters": 75004,
+      "flops": 150008,
+      "training_seconds": 326.63078,
+      "inference_seconds_reported": 7.15040
+    },
+    "split_after_resampling": {"train": 134640, "validation": 18360, "test": 27000},
+    "label_counts_before_resampling": {"normal": 49414, "attack": 100586},
+    "weights_in_package": false
+  },
+  "stacking_ablations_cell4": [
+    {"sampling": "SMOTE-ENN", "accuracy": 0.97789, "precision": 0.97795, "recall": 0.97789, "f1": 0.97789, "balanced_accuracy": 0.97775, "mcc": 0.95582, "roc_auc": 0.99767, "rank": 1},
+    {"sampling": "SMOTE-Tomek", "accuracy": 0.95911, "precision": 0.95957, "recall": 0.95911, "f1": 0.95910, "balanced_accuracy": 0.95912, "mcc": 0.91869, "roc_auc": 0.99434, "rank": 2},
+    {"sampling": "SMOTE", "accuracy": 0.95596, "precision": 0.95632, "recall": 0.95596, "f1": 0.95596, "balanced_accuracy": 0.95598, "mcc": 0.91228, "roc_auc": 0.99405, "rank": 3, "note": "First of two SMOTE runs in the same cell."},
+    {"sampling": "SMOTE-NCR", "accuracy": 0.95452, "precision": 0.95500, "recall": 0.95452, "f1": 0.95451, "balanced_accuracy": 0.95453, "mcc": 0.90952, "roc_auc": 0.99420, "rank": 4},
+    {"sampling": "SMOTE", "accuracy": 0.95422, "precision": 0.95464, "recall": 0.95422, "f1": 0.95421, "balanced_accuracy": 0.95424, "mcc": 0.90887, "roc_auc": 0.99434, "rank": 5, "note": "Duplicate SMOTE configuration, trained separately."},
+    {"sampling": "ADASYN-ENN", "accuracy": 0.94979, "precision": 0.95096, "recall": 0.94979, "f1": 0.94992, "balanced_accuracy": 0.95189, "mcc": 0.89911, "roc_auc": 0.98804, "rank": 6},
+    {"sampling": "ADASYN-Tomek", "accuracy": 0.94381, "precision": 0.94432, "recall": 0.94381, "f1": 0.94380, "balanced_accuracy": 0.94382, "mcc": 0.88814, "roc_auc": 0.98236, "rank": 7},
+    {"sampling": "ADASYN", "accuracy": 0.94274, "precision": 0.94317, "recall": 0.94274, "f1": 0.94272, "balanced_accuracy": 0.94267, "mcc": 0.88590, "roc_auc": 0.98236, "rank": 8},
+    {"sampling": "ADASYN-NCR", "accuracy": 0.94107, "precision": 0.94136, "recall": 0.94107, "f1": 0.94106, "balanced_accuracy": 0.94108, "mcc": 0.88243, "roc_auc": 0.98185, "rank": 9}
+  ],
+  "mobilenet_ablations_cell2": [
+    {"sampling": "SMOTE-ENN", "model": "MobileNetV4+Attention", "accuracy": 0.97059, "precision": 0.97076, "recall": 0.97059, "f1": 0.97058, "balanced_accuracy": 0.97039, "mcc": 0.94132, "roc_auc": 0.99787, "parameters": 87990, "flops": 175980, "training_seconds": 195.86988, "inference_seconds_reported": 3.57949, "rank": 1},
+    {"sampling": "SMOTE-ENN", "model": "MobileNetV4", "accuracy": 0.96900, "precision": 0.96905, "recall": 0.96900, "f1": 0.96900, "balanced_accuracy": 0.96909, "mcc": 0.93803, "roc_auc": 0.99804, "parameters": 62710, "flops": 125420, "training_seconds": 157.41778, "inference_seconds_reported": 2.86387, "rank": 2},
+    {"sampling": "SMOTE", "model": "MobileNetV4+Attention", "accuracy": 0.95974, "precision": 0.96037, "recall": 0.95974, "f1": 0.95973, "balanced_accuracy": 0.95974, "mcc": 0.92012, "roc_auc": 0.99376, "parameters": 87990, "flops": 175980, "rank": 3},
+    {"sampling": "SMOTE-Tomek", "model": "MobileNetV4+Attention", "accuracy": 0.95919, "precision": 0.95957, "recall": 0.95919, "f1": 0.95918, "balanced_accuracy": 0.95918, "mcc": 0.91875, "roc_auc": 0.99430, "parameters": 87990, "flops": 175980, "rank": 4},
+    {"sampling": "SMOTE-Tomek", "model": "MobileNetV4", "accuracy": 0.95774, "precision": 0.95805, "recall": 0.95774, "f1": 0.95773, "balanced_accuracy": 0.95774, "mcc": 0.91579, "roc_auc": 0.99425, "parameters": 62710, "flops": 125420, "rank": 5},
+    {"sampling": "SMOTE-NCR", "model": "MobileNetV4", "accuracy": 0.95744, "precision": 0.95784, "recall": 0.95744, "f1": 0.95744, "balanced_accuracy": 0.95745, "mcc": 0.91529, "roc_auc": 0.99416, "parameters": 62710, "flops": 125420, "rank": 6},
+    {"sampling": "SMOTE", "model": "MobileNetV4", "accuracy": 0.95596, "precision": 0.95633, "recall": 0.95596, "f1": 0.95595, "balanced_accuracy": 0.95598, "mcc": 0.91230, "roc_auc": 0.99389, "parameters": 62710, "flops": 125420, "rank": 7},
+    {"sampling": "SMOTE-NCR", "model": "MobileNetV4+Attention", "accuracy": 0.95422, "precision": 0.95459, "recall": 0.95422, "f1": 0.95421, "balanced_accuracy": 0.95423, "mcc": 0.90881, "roc_auc": 0.99404, "parameters": 87990, "flops": 175980, "rank": 8},
+    {"sampling": "ADASYN-ENN", "model": "MobileNetV4", "accuracy": 0.95051, "precision": 0.95190, "recall": 0.95051, "f1": 0.95065, "balanced_accuracy": 0.95295, "mcc": 0.90082, "roc_auc": 0.98849, "parameters": 62710, "flops": 125420, "rank": 9},
+    {"sampling": "ADASYN-ENN", "model": "MobileNetV4+Attention", "accuracy": 0.95002, "precision": 0.95147, "recall": 0.95002, "f1": 0.95016, "balanced_accuracy": 0.95253, "mcc": 0.89989, "roc_auc": 0.98799, "parameters": 87990, "flops": 175980, "rank": 10},
+    {"sampling": "ADASYN-Tomek", "model": "MobileNetV4", "accuracy": 0.94437, "precision": 0.94497, "recall": 0.94437, "f1": 0.94435, "balanced_accuracy": 0.94439, "mcc": 0.88934, "roc_auc": 0.98319, "parameters": 62710, "flops": 125420, "rank": 11},
+    {"sampling": "ADASYN", "model": "MobileNetV4", "accuracy": 0.94381, "precision": 0.94439, "recall": 0.94381, "f1": 0.94379, "balanced_accuracy": 0.94372, "mcc": 0.88819, "roc_auc": 0.98417, "parameters": 62710, "flops": 125420, "rank": 12},
+    {"sampling": "ADASYN-Tomek", "model": "MobileNetV4+Attention", "accuracy": 0.94374, "precision": 0.94400, "recall": 0.94374, "f1": 0.94373, "balanced_accuracy": 0.94373, "mcc": 0.88774, "roc_auc": 0.98307, "parameters": 87990, "flops": 175980, "rank": 13},
+    {"sampling": "ADASYN", "model": "MobileNetV4+Attention", "accuracy": 0.94356, "precision": 0.94404, "recall": 0.94356, "f1": 0.94354, "balanced_accuracy": 0.94349, "mcc": 0.88758, "roc_auc": 0.98318, "parameters": 87990, "flops": 175980, "rank": 14},
+    {"sampling": "ADASYN-NCR", "model": "MobileNetV4", "accuracy": 0.94319, "precision": 0.94384, "recall": 0.94319, "f1": 0.94316, "balanced_accuracy": 0.94318, "mcc": 0.88703, "roc_auc": 0.98223, "parameters": 62710, "flops": 125420, "rank": 15},
+    {"sampling": "ADASYN-NCR", "model": "MobileNetV4+Attention", "accuracy": 0.94085, "precision": 0.94115, "recall": 0.94085, "f1": 0.94084, "balanced_accuracy": 0.94085, "mcc": 0.88200, "roc_auc": 0.98226, "parameters": 87990, "flops": 175980, "rank": 16}
+  ],
+  "cnn_bilstm_benchmark_cell22": [
+    {"method": "ADASYN", "accuracy": 0.9836, "precision": 0.9848, "recall": 0.9986, "f1": 0.9916, "roc_auc": 0.9387, "mcc": 0.5772, "specificity": 0.3889, "fpr": 0.6111, "fnr": 0.0014, "balanced_accuracy": 0.6937, "parameters": 1108931, "flops_m": 16.633, "rank": 1},
+    {"method": "SMOTE", "accuracy": 0.9830, "precision": 0.9891, "recall": 0.9935, "f1": 0.9913, "roc_auc": 0.8760, "mcc": 0.6159, "specificity": 0.5679, "fpr": 0.4321, "fnr": 0.0065, "balanced_accuracy": 0.7807, "parameters": 1108931, "flops_m": 16.633, "rank": 2},
+    {"method": "SMOTE+Tomek", "accuracy": 0.9799, "precision": 0.9803, "recall": 0.9995, "f1": 0.9898, "roc_auc": 0.5686, "mcc": 0.4270, "specificity": 0.2037, "fpr": 0.7963, "fnr": 0.0005, "balanced_accuracy": 0.6016, "parameters": 1108931, "flops_m": 16.633, "rank": 3},
+    {"method": "SMOTE+NCR", "accuracy": 0.9784, "precision": 0.9803, "recall": 0.9980, "f1": 0.9890, "roc_auc": 0.6806, "mcc": 0.3751, "specificity": 0.2037, "fpr": 0.7963, "fnr": 0.0020, "balanced_accuracy": 0.6008, "parameters": 1108931, "flops_m": 16.633, "rank": 4},
+    {"method": "ADASYN+Tomek", "accuracy": 0.9751, "precision": 0.9754, "recall": 0.9997, "f1": 0.9874, "roc_auc": 0.6571, "mcc": -0.0028, "specificity": 0.0, "fpr": 1.0, "fnr": 0.0003, "balanced_accuracy": 0.4998, "parameters": 1108931, "flops_m": 16.633, "rank": 5},
+    {"method": "ADASYN+NCR", "accuracy": 0.9751, "precision": 0.9754, "recall": 0.9997, "f1": 0.9874, "roc_auc": 0.6442, "mcc": -0.0028, "specificity": 0.0, "fpr": 1.0, "fnr": 0.0003, "balanced_accuracy": 0.4998, "parameters": 1108931, "flops_m": 16.633, "rank": 6},
+    {"method": "No Balancing", "accuracy": 0.9644, "precision": 0.9976, "recall": 0.9659, "f1": 0.9815, "roc_auc": 0.9883, "mcc": 0.5905, "specificity": 0.9074, "fpr": 0.0926, "fnr": 0.0341, "balanced_accuracy": 0.9366, "parameters": 1108931, "flops_m": 16.633, "rank": 7},
+    {"method": "SMOTE+ENN", "accuracy": 0.0255, "precision": 1.0, "recall": 0.0009, "f1": 0.0019, "roc_auc": 0.7075, "mcc": 0.0048, "specificity": 1.0, "fpr": 0.0, "fnr": 0.9991, "balanced_accuracy": 0.5005, "parameters": 1108931, "flops_m": 16.633, "rank": 8},
+    {"method": "ADASYN+ENN", "accuracy": 0.0248, "precision": 1.0, "recall": 0.0002, "f1": 0.0003, "roc_auc": 0.6320, "mcc": 0.0020, "specificity": 1.0, "fpr": 0.0, "fnr": 0.9998, "balanced_accuracy": 0.5001, "parameters": 1108931, "flops_m": 16.633, "rank": 9}
+  ],
+  "cell22_api_mi_features": [
+    {"feature": "t_86", "mi_score": 0.035700},
+    {"feature": "t_82", "mi_score": 0.035183},
+    {"feature": "t_90", "mi_score": 0.030504},
+    {"feature": "t_92", "mi_score": 0.030159},
+    {"feature": "t_75", "mi_score": 0.029292}
+  ],
+  "leakage_notes": [
+    "Cell 4 fits RobustScaler and PowerTransformer on all selected rows before the train/test split.",
+    "Cell 4 applies SMOTE or SMOTE-ENN to the full matrix before the split, so synthetic neighbours can cross into the test fold.",
+    "Cell 4 runs mutual information and the genetic algorithm on labels from the same matrix that is later split.",
+    "Cell 4 fits the logistic meta-learner on base-model predictions of the training rows, not on out-of-fold predictions.",
+    "Cell 22 selects API features and fits StandardScaler before the split.",
+    "Cell 22 loads NF-UQ-NIDS but the executed alignment uses API-derived features and API sequences only. NIDS rows are not joined by application id.",
+    "Earlier TRIM-SEC cells align independent NIDS and API tables by row position and rewrite the label distribution. Those runs are not the final ensemble."
+  ]
+}

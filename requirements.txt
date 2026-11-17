@@ -1,0 +1,12 @@
+# Local AMSEC console — Python 3.14 on Windows.
+# TensorFlow is unavailable for this interpreter; the served stack is PyTorch.
+torch==2.15.0
+numpy==2.5.5
+pandas==3.1.1
+scikit-learn==1.9.1
+imbalanced-learn==0.14.2
+streamlit==1.67.0
+plotly==7.1.0
+joblib==1.6.0
+h5py==3.16.0
+pytest==9.2.0

@@ -1,0 +1,145 @@
+{
+  "experiment_id": "local_retrain_cell4_stack_smoteenn",
+  "status": "local_retrain_not_kaggle_weights",
+  "source_notebook": "Final phd-Experiment-android-malware.ipynb",
+  "source_cell": 4,
+  "claim": "These weights were trained in this workspace. They are not the missing Kaggle HDF5 files and are not claimed to reproduce the notebook's 0.97789 accuracy.",
+  "feature_names": [
+    "L4_SRC_PORT",
+    "L4_DST_PORT",
+    "IN_PKTS",
+    "OUT_BYTES",
+    "TCP_FLAGS",
+    "FLOW_DURATION_MILLISECONDS",
+    "MIN_TTL",
+    "MAX_TTL",
+    "MIN_IP_PKT_LEN",
+    "MAX_IP_PKT_LEN",
+    "DST_TO_SRC_SECOND_BYTES",
+    "RETRANSMITTED_IN_BYTES",
+    "RETRANSMITTED_OUT_BYTES",
+    "DST_TO_SRC_AVG_THROUGHPUT",
+    "NUM_PKTS_UP_TO_128_BYTES",
+    "NUM_PKTS_256_TO_512_BYTES",
+    "NUM_PKTS_512_TO_1024_BYTES",
+    "DNS_QUERY_ID",
+    "FTP_COMMAND_RET_CODE"
+  ],
+  "feature_types": [
+    "float",
+    "float",
+    "float",
+    "float",
+    "float",
+    "float",
+    "float",
+    "float",
+    "float",
+    "float",
+    "float",
+    "float",
+    "float",
+    "float",
+    "float",
+    "float",
+    "float",
+    "float",
+    "float"
+  ],
+  "label_mapping": {
+    "0": "normal",
+    "1": "attack"
+  },
+  "decision_threshold": 0.5,
+  "meta_feature_order": [
+    "mobilenet_p_normal",
+    "mobilenet_p_attack",
+    "lightweight_p_normal",
+    "lightweight_p_attack"
+  ],
+  "preprocessor_file": "preprocessor.joblib",
+  "meta_learner_file": "meta_learner.joblib",
+  "mobilenet_file": "mobilenetv4.pt",
+  "lightweight_file": "lightweight.pt",
+  "model_files": [
+    "mobilenetv4.pt",
+    "lightweight.pt",
+    "meta_learner.joblib"
+  ],
+  "preprocessor_files": [
+    "preprocessor.joblib"
+  ],
+  "hashes": {
+    "preprocessor": "cceb4ee737ff11f1cb5d558bc243760db65b7a5d252dae5e7e960983c5ac5772",
+    "meta_learner": "6c574c2b1e971ec1bc844bb4c160bf34684c0b17d000c947f5b452971676fd75",
+    "mobilenet": "57240aaac25fd0a6f48a829e62bad471751baef0b64795222c3fb738457aaaff",
+    "lightweight": "229202d1d05217bd21fb5a1be6b2f8125e108f7d83803317f7660d4e8aed2830",
+    "dataset_prefix": "b1641766533ac59436c1f338230c08ef67ba676c4193cc980eb32222e9cc7ade"
+  },
+  "software": {
+    "python": "3.14.7 (tags/v3.14.7:823f032, Aug  5 2026, 10:51:32) [MSC v.1944 64 bit (AMD64)]",
+    "platform": "Windows-11-10.0.26200-SP0",
+    "torch": "2.15.0+cpu",
+    "sklearn": "1.9.1",
+    "numpy": "2.5.5",
+    "pandas": "3.1.1"
+  },
+  "architecture_parameter_counts_keras_style": {
+    "mobilenetv4_style": 62766,
+    "lightweight_cnn": 12350
+  },
+  "training": {
+    "max_rows": 150000,
+    "epochs_cap": 8,
+    "batch_size": 128,
+    "seed": 42,
+    "resampler": "SMOTEENN",
+    "meta_learner": "LogisticRegression",
+    "split_before_fit": true,
+    "deviations_from_notebook": [
+      "TensorFlow 2.20 weights were not in the package and TensorFlow has no Python 3.14 wheel, so the same layer stack was trained in PyTorch.",
+      "Preprocessing, feature selection and SMOTE-ENN were fit on the training fold only. The notebook fit them before the split.",
+      "The meta-learner still receives the four base-class probabilities in notebook order, but it is fit on resampled training predictions.",
+      "Genetic search used population 12, generations 5, forests of 25 trees and 8000 rows. The notebook used 40, 30, 100 and 20000.",
+      "Training stopped at or before 8 epochs. The notebook trained for up to 30.",
+      "The notebook's kernel L2 penalties were not added on top of AdamW weight decay.",
+      "The five Kaggle feature names were never printed, so this feature set is a new selection."
+    ]
+  },
+  "historical_reference_not_this_model": {
+    "notebook_best_config": "SMOTE-ENN_GA_Ensemble_Stacking",
+    "accuracy": 0.97789,
+    "f1": 0.97789,
+    "balanced_accuracy": 0.97775
+  },
+  "local_test_metrics": {
+    "accuracy": 0.9662666666666667,
+    "precision": 0.9930493427843919,
+    "recall": 0.9563891834570519,
+    "f1": 0.9743745568722779,
+    "balanced_accuracy": 0.9713813159595028,
+    "mcc": 0.9264804048394868,
+    "roc_auc": 0.9947320520834347,
+    "threshold": 0.5,
+    "confusion_matrix": {
+      "labels": [
+        "normal",
+        "attack"
+      ],
+      "matrix": [
+        [
+          7311,
+          101
+        ],
+        [
+          658,
+          14430
+        ]
+      ]
+    },
+    "support": {
+      "normal": 7412,
+      "attack": 15088
+    }
+  }
+}

@@ -1,0 +1,264 @@
+{
+  "protocol": "leakage_corrected_local_retrain",
+  "rows_loaded": 150000,
+  "label_column": "Label",
+  "split": {
+    "train": 105000,
+    "validation": 22500,
+    "test": 22500,
+    "resampled_train": 136537
+  },
+  "test_metrics": {
+    "accuracy": 0.9662666666666667,
+    "precision": 0.9930493427843919,
+    "recall": 0.9563891834570519,
+    "f1": 0.9743745568722779,
+    "balanced_accuracy": 0.9713813159595028,
+    "mcc": 0.9264804048394868,
+    "roc_auc": 0.9947320520834347,
+    "threshold": 0.5,
+    "confusion_matrix": {
+      "labels": [
+        "normal",
+        "attack"
+      ],
+      "matrix": [
+        [
+          7311,
+          101
+        ],
+        [
+          658,
+          14430
+        ]
+      ]
+    },
+    "support": {
+      "normal": 7412,
+      "attack": 15088
+    }
+  },
+  "mobile_history": [
+    {
+      "epoch": 1,
+      "train_loss": 0.1694221470909868,
+      "val_loss": 0.1496208906173706,
+      "lr": 0.0012
+    },
+    {
+      "epoch": 2,
+      "train_loss": 0.11205448691476513,
+      "val_loss": 0.13249559700489044,
+      "lr": 0.0012
+    },
+    {
+      "epoch": 3,
+      "train_loss": 0.09162406356437607,
+      "val_loss": 0.1072627454996109,
+      "lr": 0.0012
+    },
+    {
+      "epoch": 4,
+      "train_loss": 0.08075722707028204,
+      "val_loss": 0.11997582763433456,
+      "lr": 0.0012
+    },
+    {
+      "epoch": 5,
+      "train_loss": 0.0727959560404979,
+      "val_loss": 0.09601966291666031,
+      "lr": 0.0012
+    },
+    {
+      "epoch": 6,
+      "train_loss": 0.06580075559937378,
+      "val_loss": 0.09877616167068481,
+      "lr": 0.0012
+    },
+    {
+      "epoch": 7,
+      "train_loss": 0.062467921692409674,
+      "val_loss": 0.10061793029308319,
+      "lr": 0.0012
+    },
+    {
+      "epoch": 8,
+      "train_loss": 0.05943280150991157,
+      "val_loss": 0.09908363223075867,
+      "lr": 0.0012
+    }
+  ],
+  "lightweight_history": [
+    {
+      "epoch": 1,
+      "train_loss": 0.22010385436439128,
+      "val_loss": 0.16271410882472992,
+      "lr": 0.0015
+    },
+    {
+      "epoch": 2,
+      "train_loss": 0.15361650862473689,
+      "val_loss": 0.16651654243469238,
+      "lr": 0.0015
+    },
+    {
+      "epoch": 3,
+      "train_loss": 0.13558241778723107,
+      "val_loss": 0.15055422484874725,
+      "lr": 0.0015
+    },
+    {
+      "epoch": 4,
+      "train_loss": 0.12689674859395098,
+      "val_loss": 0.14456988871097565,
+      "lr": 0.0015
+    },
+    {
+      "epoch": 5,
+      "train_loss": 0.12018982101872526,
+      "val_loss": 0.12210100144147873,
+      "lr": 0.0015
+    },
+    {
+      "epoch": 6,
+      "train_loss": 0.11462699823288908,
+      "val_loss": 0.12436819821596146,
+      "lr": 0.0015
+    },
+    {
+      "epoch": 7,
+      "train_loss": 0.10836052656609378,
+      "val_loss": 0.11268532276153564,
+      "lr": 0.0015
+    },
+    {
+      "epoch": 8,
+      "train_loss": 0.10453326804945176,
+      "val_loss": 0.1325714886188507,
+      "lr": 0.0015
+    }
+  ],
+  "meta_coefficients": {
+    "classes": [
+      0,
+      1
+    ],
+    "coef": [
+      [
+        -4.557090759277344,
+        4.656735420227051,
+        -1.239345908164978,
+        1.3390600681304932
+      ]
+    ],
+    "intercept": [
+      0.10422135144472122
+    ],
+    "feature_order": [
+      "mobilenet_p_normal",
+      "mobilenet_p_attack",
+      "lightweight_p_normal",
+      "lightweight_p_attack"
+    ]
+  },
+  "selection": {
+    "variance_threshold": 1e-05,
+    "features_after_variance_threshold": 41,
+    "mutual_information_k": 41,
+    "ga_sample_rows": 8000,
+    "ga_population": 12,
+    "ga_generations": 5,
+    "ga_trees": 25,
+    "ga_fitness_history": [
+      0.9350873195449152,
+      0.9417898509021316,
+      0.9460517820637899,
+      0.9460517820637899,
+      0.9508490574358974
+    ],
+    "selected_features": [
+      "L4_SRC_PORT",
+      "L4_DST_PORT",
+      "IN_PKTS",
+      "OUT_BYTES",
+      "TCP_FLAGS",
+      "FLOW_DURATION_MILLISECONDS",
+      "MIN_TTL",
+      "MAX_TTL",
+      "MIN_IP_PKT_LEN",
+      "MAX_IP_PKT_LEN",
+      "DST_TO_SRC_SECOND_BYTES",
+      "RETRANSMITTED_IN_BYTES",
+      "RETRANSMITTED_OUT_BYTES",
+      "DST_TO_SRC_AVG_THROUGHPUT",
+      "NUM_PKTS_UP_TO_128_BYTES",
+      "NUM_PKTS_256_TO_512_BYTES",
+      "NUM_PKTS_512_TO_1024_BYTES",
+      "DNS_QUERY_ID",
+      "FTP_COMMAND_RET_CODE"
+    ],
+    "top_mutual_information": [
+      {
+        "feature": "LONGEST_FLOW_PKT",
+        "score": 0.4397192007212425
+      },
+      {
+        "feature": "MAX_IP_PKT_LEN",
+        "score": 0.4382082891669157
+      },
+      {
+        "feature": "SRC_TO_DST_AVG_THROUGHPUT",
+        "score": 0.4125022435696526
+      },
+      {
+        "feature": "IN_BYTES",
+        "score": 0.40267454158928806
+      },
+      {
+        "feature": "MAX_TTL",
+        "score": 0.37507600642419203
+      },
+      {
+        "feature": "MIN_TTL",
+        "score": 0.37097599341706733
+      },
+      {
+        "feature": "L4_DST_PORT",
+        "score": 0.33963536023377516
+      },
+      {
+        "feature": "L7_PROTO",
+        "score": 0.3315962590284447
+      },
+      {
+        "feature": "SHORTEST_FLOW_PKT",
+        "score": 0.3156092839513407
+      },
+      {
+        "feature": "OUT_BYTES",
+        "score": 0.3107391411260867
+      },
+      {
+        "feature": "DST_TO_SRC_AVG_THROUGHPUT",
+        "score": 0.30716214484854
+      },
+      {
+        "feature": "FLOW_DURATION_MILLISECONDS",
+        "score": 0.2830801616997576
+      },
+      {
+        "feature": "DURATION_IN",
+        "score": 0.28135625439433976
+      },
+      {
+        "feature": "TCP_WIN_MAX_IN",
+        "score": 0.27361531919232074
+      },
+      {
+        "feature": "IN_PKTS",
+        "score": 0.21009540621171685
+      }
+    ]
+  },
+  "elapsed_seconds": 24154.685435056686
+}

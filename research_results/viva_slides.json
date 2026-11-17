@@ -1,0 +1,515 @@
+{
+  "version": "1.0",
+  "source_policy": "Slide bodies use catalog.json, verified_results.json, SOURCE_AUDIT.md and local_evaluation.json. Thesis PDF is not in this workspace; narrative aim/RQ/gap wording is marked for_review where not transcribed from those sources.",
+  "slides": [
+    {
+      "id": "title",
+      "title": "Research title and identity",
+      "heading": "AMSEC — Android Malware Security Framework",
+      "subtitle": "An Explainable, Lightweight Hybrid Deep Learning Framework for Android Malware Detection",
+      "review_status": "verified",
+      "bullets": [
+        "PhD research prototype · KASU/PHD/19/CSC/007",
+        "Researcher: Abdullahi Umar Diso",
+        "Kaduna State University · Faculty of Computing · Department of Informatics",
+        "Supervisory committee: Dr Muhammad Aminu Ahmad (Chairman); Dr Mohammed Ibrahim; Dr Ahmad Abubakar Aliyu"
+      ],
+      "figure": "none",
+      "notes": {
+        "main_point": "Open with the research brand, title and institutional identity.",
+        "figure": "No quantitative figure on this slide.",
+        "contribution": "Establishes the viva context and authorship.",
+        "method": "Identity fields are taken from research_results/catalog.json.",
+        "examiner_questions": [
+          "What does AMSEC stand for in your thesis?",
+          "Confirm the supervisory committee roles."
+        ],
+        "evidence": "research_results/catalog.json → identity"
+      }
+    },
+    {
+      "id": "background",
+      "title": "Background and motivation",
+      "heading": "Background and motivation",
+      "subtitle": "Why hybrid, lightweight and explainable Android malware detection matters",
+      "review_status": "for_review",
+      "review_note": "Motivation prose is not copied from a thesis PDF in this workspace. Content below is limited to facts evidenced by the executed notebooks and local datasets.",
+      "bullets": [
+        "Android malware research commonly combines static and dynamic signals; this project evaluates API-call sequences, system-call frequencies and network-flow tables as separate modalities.",
+        "The executed final ensemble (notebook cell 4) classifies NF-UQ-NIDS network flows — not APK packages directly.",
+        "Class imbalance is material: cell-4 flows used 49,414 normal vs 100,586 attack among 150,000 rows; the API file is heavily malware-skewed (≈39.7:1).",
+        "Lightweight stacks and resampling were studied to balance detection quality against model size relative to a CNN–BiLSTM benchmark."
+      ],
+      "figure": "none",
+      "notes": {
+        "main_point": "Frame the threat and modality landscape without overstating multimodal fusion.",
+        "figure": "None.",
+        "contribution": "Sets up why MI–GA, resampling and lightweight ensembles were studied.",
+        "method": "Cite dataset roles from SOURCE_AUDIT.md.",
+        "examiner_questions": [
+          "Is the final model an APK scanner?",
+          "Which modality produced the 0.97789 score?"
+        ],
+        "evidence": "docs/SOURCE_AUDIT.md; data/verified_results.json"
+      }
+    },
+    {
+      "id": "problem",
+      "title": "Research problem statement",
+      "heading": "Research problem statement",
+      "subtitle": "Evidence-aligned problem framing",
+      "review_status": "for_review",
+      "review_note": "A formal thesis problem statement was not found in the workspace. Replace this wording with the approved thesis text before the viva if required.",
+      "bullets": [
+        "Problem observed in the experimental programme: high headline accuracy can coexist with poor specificity under imbalance (cell-22 ADASYN FPR 0.6111).",
+        "Problem observed: heavy models (CNN–BiLSTM ≈1.11M parameters) versus lightweight stacks (≈75k parameters in the cell-4 ensemble).",
+        "Problem observed: feature selection and resampling choices materially change outcomes; protocols that resample before the split inflate optimism.",
+        "Problem observed: API and network rows are not joined by application id in the executed final run — multimodal claims require careful wording."
+      ],
+      "figure": "none",
+      "notes": {
+        "main_point": "State the scientific problem as evidenced by the notebooks, not as marketing claims.",
+        "figure": "None.",
+        "contribution": "Justifies evaluating resampling, complexity and leakage-aware protocols.",
+        "method": "Use cell-22 and cell-4 facts.",
+        "examiner_questions": [
+          "How do you define the positive class?",
+          "Why is FPR important under imbalance?"
+        ],
+        "evidence": "verified_results.json · cnn_bilstm_benchmark_cell22; final_ensemble"
+      }
+    },
+    {
+      "id": "aims",
+      "title": "Research aim and objectives",
+      "heading": "Research aim and objectives",
+      "subtitle": "Objectives demonstrated by the experimental programme",
+      "review_status": "for_review",
+      "review_note": "Official thesis aim/objectives text is not in this package. The bullets list objectives that the notebooks demonstrably address.",
+      "bullets": [
+        "Design a lightweight hybrid detection stack with MobileNetV4-style and Conv1D base learners plus a logistic stacking meta-learner.",
+        "Apply variance → mutual information → genetic-algorithm feature selection on network-flow features.",
+        "Compare resampling strategies (SMOTE, ADASYN and hybrid cleaners) under multiple metrics.",
+        "Benchmark against a CNN–BiLSTM API model and report parameter/FLOP estimates.",
+        "Prototype schema-validated inference in a research console (local PyTorch retrain)."
+      ],
+      "figure": "none",
+      "notes": {
+        "main_point": "Map viva narrative to what was actually implemented.",
+        "figure": "None.",
+        "contribution": "Connects aim language to cell-4 / cell-22 / local prototype.",
+        "method": "Do not claim APK on-device deployment as an achieved objective.",
+        "examiner_questions": [
+          "Which objectives were fully achieved versus partially achieved?"
+        ],
+        "evidence": "catalog.json contributions; SOURCE_AUDIT.md"
+      }
+    },
+    {
+      "id": "questions",
+      "title": "Research questions and contributions",
+      "heading": "Research questions and contributions",
+      "subtitle": "Contributions registered in the AMSEC results catalogue",
+      "review_status": "for_review",
+      "review_note": "Numbered research questions were not transcribed from a thesis PDF. Contributions below match catalog.json.",
+      "bullets": [
+        "Contribution: hybrid feature engineering with variance filtering before MI–GA selection.",
+        "Contribution: MI–GA feature selection (mutual information pool + GA with random-forest fitness).",
+        "Contribution: lightweight ensemble learning (MobileNetV4-style + lightweight Conv1D + logistic meta-learner).",
+        "Contribution: comparative class-imbalance handling across notebook experiments.",
+        "Contribution: interpretability pathway (notebook LRP design; local meta coefficients / sensitivity).",
+        "Contribution: computational-efficiency reporting versus CNN–BiLSTM.",
+        "Contribution: prototype integration with versioned local artifacts."
+      ],
+      "figure": "none",
+      "notes": {
+        "main_point": "Present catalogue contributions; mark RQs for thesis alignment.",
+        "figure": "None.",
+        "contribution": "Seven contribution cards from the registry.",
+        "method": "Keep notebook vs local evidence separate later in the talk.",
+        "examiner_questions": [
+          "Which contribution is primary for the viva?"
+        ],
+        "evidence": "research_results/catalog.json → contributions"
+      }
+    },
+    {
+      "id": "gap",
+      "title": "Research gap and related work",
+      "heading": "Research gap and related work",
+      "subtitle": "Gap statements limited to evidence from this package",
+      "review_status": "for_review",
+      "review_note": "A literature review chapter is not present in the workspace. Do not invent citations. Align this slide with the thesis related-work chapter before the viva.",
+      "bullets": [
+        "Gap addressed experimentally: many pipelines optimise accuracy alone; this programme also reports balanced accuracy, MCC, FPR and FNR where available.",
+        "Gap addressed experimentally: heavy sequence models versus lightweight Conv1D stacks under explicit parameter/FLOP accounting.",
+        "Gap addressed experimentally: resampling effects that can inflate F1 while collapsing specificity (documented in cell 22).",
+        "Related-work citations: For review — insert thesis bibliography entries here."
+      ],
+      "figure": "none",
+      "notes": {
+        "main_point": "Be honest that related-work text must come from the thesis.",
+        "figure": "None.",
+        "contribution": "Positions metric plurality and complexity trade-offs.",
+        "method": "Avoid claiming a comprehensive literature survey from this console alone.",
+        "examiner_questions": [
+          "Which prior systems is AMSEC most similar to?"
+        ],
+        "evidence": "SOURCE_AUDIT.md; verified cell-22 FPR findings"
+      }
+    },
+    {
+      "id": "architecture",
+      "title": "Proposed AMSEC framework architecture",
+      "heading": "Proposed AMSEC framework architecture",
+      "subtitle": "Pipeline stages implemented by the local serving model versus notebook-only elements",
+      "review_status": "verified",
+      "bullets": [
+        "Data Acquisition → Preprocessing → MI–GA Feature Selection → Class Imbalance Handling → Lightweight Base Learners → Stacking Meta-Learner → Detection → Explainability",
+        "Executed final notebook fit: network-flow modality only (API path missing in that run).",
+        "Local serving model implements the same stage family with split-before-fit selection and SMOTE-ENN on the training fold."
+      ],
+      "figure": "architecture",
+      "notes": {
+        "main_point": "Walk the pipeline left to right; flag partial explainability.",
+        "figure": "Stage cards from catalog pipeline_stages.",
+        "contribution": "Shows the hybrid framework structure.",
+        "method": "Distinguish implemented vs partial stages.",
+        "examiner_questions": [
+          "Where does leakage enter the notebook protocol?"
+        ],
+        "evidence": "catalog.json → pipeline_stages"
+      }
+    },
+    {
+      "id": "datasets",
+      "title": "Datasets and experimental setup",
+      "heading": "Datasets and experimental setup",
+      "subtitle": "Provenance and roles of each table",
+      "review_status": "verified",
+      "bullets": [
+        "NF-UQ-NIDS family: final ensemble source. Notebook used first 150,000 rows of NF-UQ-NIDS-v2 (49,414 normal / 100,586 attack).",
+        "API sequences (43,876 rows): used by cell-22 CNN–BiLSTM; not loaded in executed cell 4.",
+        "Syscall/binder frequencies (11,598 rows, 5 classes): present locally; not used by cell 4 or cell 22.",
+        "Local console file: NF-UQ-NIDS-Dataset.csv (1,048,575 rows · 46 columns)."
+      ],
+      "figure": "dataset_dist",
+      "notes": {
+        "main_point": "Clarify which dataset feeds which experiment.",
+        "figure": "Class counts for the three local files.",
+        "contribution": "Transparent experimental setup.",
+        "method": "Emphasise network-flow-only final ensemble.",
+        "examiner_questions": [
+          "Why was API unavailable in cell 4?"
+        ],
+        "evidence": "SOURCE_AUDIT.md; verified_results.json final_ensemble"
+      }
+    },
+    {
+      "id": "feature_selection",
+      "title": "Hybrid feature engineering and MI–GA",
+      "heading": "Hybrid feature engineering and MI–GA",
+      "subtitle": "Notebook five unnamed features versus local nineteen named features",
+      "review_status": "verified",
+      "bullets": [
+        "Notebook cell 4: variance threshold → 41 features; MI kept 41; GA kept 5 (names not printed).",
+        "Local retrain: variance → MI → GA logged 19 named NF-UQ-NIDS columns and GA fitness history.",
+        "These selection outcomes are not interchangeable; protocols differ."
+      ],
+      "figure": "mi_ga",
+      "notes": {
+        "main_point": "Show real MI ranking from the local retrain; admit notebook names are unknown.",
+        "figure": "Local MI top features and GA fitness curve.",
+        "contribution": "MI–GA feature selection contribution.",
+        "method": "Never invent feature_000 names for the notebook run.",
+        "examiner_questions": [
+          "Why did the local GA keep 19 features instead of 5?"
+        ],
+        "evidence": "artifacts/local_evaluation.json → selection; SOURCE_AUDIT.md"
+      }
+    },
+    {
+      "id": "resampling",
+      "title": "Class imbalance and resampling",
+      "heading": "Class imbalance handling and resampling",
+      "subtitle": "Best strategy depends on the chosen criterion",
+      "review_status": "verified",
+      "bullets": [
+        "Cell-4 stacking: SMOTE-ENN ranks first by F1 (0.97789) among nine sampling configurations.",
+        "Cell-22: ADASYN reaches F1 0.9916 but FPR 0.6111 and balanced accuracy 0.6937; No Balancing has FPR 0.0926 and balanced accuracy 0.9366.",
+        "Local retrain applies SMOTE-ENN on the training fold only (105,000 → 136,537 resampled training rows)."
+      ],
+      "figure": "resampling",
+      "notes": {
+        "main_point": "Accuracy/F1 winners are not always the operationally safest models.",
+        "figure": "Cell-4 and cell-22 resampling charts.",
+        "contribution": "Class-imbalance handling contribution.",
+        "method": "State that notebook cell 4 resampled before the split.",
+        "examiner_questions": [
+          "Which metric would you optimise for SOC false alarms?"
+        ],
+        "evidence": "verified_results.json stacking_ablations_cell4; cnn_bilstm_benchmark_cell22"
+      }
+    },
+    {
+      "id": "base_learners",
+      "title": "Lightweight MobileNetV4 and CNN bases",
+      "heading": "Lightweight MobileNetV4 and CNN base learners",
+      "subtitle": "Parameter counts from the notebook architecture",
+      "review_status": "verified",
+      "bullets": [
+        "MobileNetV4-style Conv1D base: 62,710 parameters (notebook).",
+        "Lightweight Conv1D base: 12,294 parameters (notebook).",
+        "Cell-2 ablation also tested MobileNetV4+Attention (87,990 parameters); best F1 0.97058 under SMOTE-ENN.",
+        "Local serving uses matching layer widths in PyTorch."
+      ],
+      "figure": "mobilenet_ablation",
+      "notes": {
+        "main_point": "Bases are lightweight relative to the BiLSTM benchmark.",
+        "figure": "Cell-2 F1 versus parameters scatter.",
+        "contribution": "Lightweight ensemble learning.",
+        "method": "Clarify attention variant is an ablation, not the final stack requirement.",
+        "examiner_questions": [
+          "How is MobileNet adapted to 1-D flow features?"
+        ],
+        "evidence": "verified_results.json final_ensemble; mobilenet_ablations_cell2"
+      }
+    },
+    {
+      "id": "stacking",
+      "title": "Stacking ensemble and meta-learner",
+      "heading": "Stacking ensemble and meta-learner",
+      "subtitle": "Four class probabilities → logistic regression",
+      "review_status": "verified",
+      "bullets": [
+        "Meta-learner inputs: [mobile p(normal), mobile p(attack), light p(normal), light p(attack)].",
+        "Class mapping: 0 = normal, 1 = attack (label > 0).",
+        "Decision at evaluation: argmax ≡ 0.5 threshold on attack probability for binary classes.",
+        "Local meta coefficients are exported in local_evaluation.json."
+      ],
+      "figure": "stacking_diagram",
+      "notes": {
+        "main_point": "Explain stacking inputs and threshold clearly.",
+        "figure": "Architecture steps for the served ensemble.",
+        "contribution": "Stacking ensemble design.",
+        "method": "Notebook fitted meta-learner on in-sample base predictions (leakage note).",
+        "examiner_questions": [
+          "Did you use out-of-fold stacking?"
+        ],
+        "evidence": "SOURCE_AUDIT.md; artifacts/local_evaluation.json → meta_coefficients"
+      }
+    },
+    {
+      "id": "metrics",
+      "title": "Research evaluation metrics",
+      "heading": "Research evaluation metrics",
+      "subtitle": "Why multiple metrics are required under imbalance",
+      "review_status": "verified",
+      "bullets": [
+        "Reported throughout: accuracy, precision, recall, F1, balanced accuracy, MCC, ROC-AUC.",
+        "Where confusion matrices exist: FPR, FNR, per-class precision/recall.",
+        "Interpretation rule used in this console: do not optimise accuracy alone; inspect FPR and balanced accuracy together."
+      ],
+      "figure": "none",
+      "notes": {
+        "main_point": "Educate examiners on metric choice before showing score tables.",
+        "figure": "None.",
+        "contribution": "Scientific evaluation discipline.",
+        "method": "Define MCC and balanced accuracy briefly if asked.",
+        "examiner_questions": [
+          "Why report MCC?"
+        ],
+        "evidence": "Dashboard metric help text; verified tables"
+      }
+    },
+    {
+      "id": "performance",
+      "title": "Classification performance",
+      "heading": "Classification performance",
+      "subtitle": "Notebook cell-4 SMOTE-ENN stack versus local leakage-corrected retrain",
+      "review_status": "verified",
+      "bullets": [
+        "Notebook cell-4 SMOTE-ENN stack accuracy 97.789% (0.97789) · F1 0.97789 · balanced accuracy 0.97775 · MCC 0.95582 · ROC-AUC 0.99767.",
+        "Local leakage-corrected retrain accuracy ≈96.627% (0.96627) on a held-out test set — separate protocol, not a reproduction claim.",
+        "Configurations are labelled non-equivalent (resample-before-split + unnamed 5 features vs split-before-fit + 19 named features)."
+      ],
+      "figure": "performance_compare",
+      "notes": {
+        "main_point": "State both numbers; refuse to merge them into one leaderboard.",
+        "figure": "Grouped bars of shared scalar metrics.",
+        "contribution": "Transparent reporting of original vs local evidence.",
+        "method": "Quote percentages and decimals consistently with the dashboard.",
+        "examiner_questions": [
+          "Why is local accuracy lower?"
+        ],
+        "evidence": "verified_results.json; artifacts/local_evaluation.json"
+      }
+    },
+    {
+      "id": "bilstm",
+      "title": "Comparison with CNN–BiLSTM",
+      "heading": "Comparison with CNN–BiLSTM",
+      "subtitle": "Cell-22 API benchmark — keep experiments separate",
+      "review_status": "verified",
+      "bullets": [
+        "CNN–BiLSTM: 1,108,931 parameters · ≈16.633M FLOPs (notebook estimate).",
+        "No Balancing: accuracy 0.9644 · F1 0.9815 · balanced accuracy 0.9366 · FPR 0.0926.",
+        "ADASYN: accuracy 0.9836 · F1 0.9916 · balanced accuracy 0.6937 · FPR 0.6111.",
+        "Do not treat cell-22 F1 as evidence for the cell-4 network-flow stack."
+      ],
+      "figure": "bilstm_compare",
+      "notes": {
+        "main_point": "Complexity vs false-alarm trade-off, not a single winner.",
+        "figure": "FPR versus balanced accuracy for cell 22.",
+        "contribution": "Benchmarking against a heavier sequence model.",
+        "method": "API modality only in cell 22's executed alignment.",
+        "examiner_questions": [
+          "Which BiLSTM configuration would you deploy?"
+        ],
+        "evidence": "verified_results.json → cnn_bilstm_benchmark_cell22"
+      }
+    },
+    {
+      "id": "complexity",
+      "title": "Computational complexity and efficiency",
+      "heading": "Computational complexity and efficiency",
+      "subtitle": "Parameters, FLOPs estimate and training time",
+      "review_status": "verified",
+      "bullets": [
+        "Cell-4 stack: 75,004 parameters · 150,008 FLOPs where FLOPs = 2 × parameters · training ≈326.63 s · reported inference ≈7.15 s (cloud notebook).",
+        "CNN–BiLSTM: ≈14.8× more parameters than the cell-4 stack.",
+        "No Android on-device latency or memory measurements are claimed from these cloud runs."
+      ],
+      "figure": "complexity",
+      "notes": {
+        "main_point": "Lightweight is relative and notebook-defined.",
+        "figure": "Performance versus parameter scatter.",
+        "contribution": "Computational efficiency contribution.",
+        "method": "Clarify FLOPs definition.",
+        "examiner_questions": [
+          "Are FLOPs profiled MACs?"
+        ],
+        "evidence": "verified_results.json final_ensemble; complexity_table()"
+      }
+    },
+    {
+      "id": "xai",
+      "title": "Feature-level and modality-level explainability",
+      "heading": "Explainability",
+      "subtitle": "What can and cannot be shown from available artifacts",
+      "review_status": "verified",
+      "bullets": [
+        "Notebook cell 4 designed absolute input×gradient (LRP-style) analysis; Kaggle JSON is Unavailable in this package.",
+        "Modality-level API versus network attribution is Not validated for the executed final ensemble (API not loaded).",
+        "Local console: meta-learner coefficients and finite-difference sensitivity on named flow features."
+      ],
+      "figure": "explain",
+      "notes": {
+        "main_point": "Show local coefficients; admit missing LRP export.",
+        "figure": "Meta-learner coefficient bars.",
+        "contribution": "Interpretability contribution with honest limits.",
+        "method": "Do not fabricate SHAP/LRP heatmaps.",
+        "examiner_questions": [
+          "How would you validate explanations quantitatively?"
+        ],
+        "evidence": "artifacts/local_evaluation.json; SOURCE_AUDIT.md"
+      }
+    },
+    {
+      "id": "live_demo",
+      "title": "Live malware-detection demonstration",
+      "heading": "Live detection demonstration",
+      "subtitle": "Genuine inference from the local trained bundle",
+      "review_status": "verified",
+      "bullets": [
+        "Uses schema-validated PyTorch ensemble `local_retrain_cell4_stack_smoteenn`.",
+        "Select a parity sample or zeros vector; run real prediction probabilities.",
+        "Optional: open the full Malware Detection page, then return to this slide."
+      ],
+      "figure": "live_demo",
+      "notes": {
+        "main_point": "Demonstrate working software without simulated scores.",
+        "figure": "Live prediction metrics.",
+        "contribution": "Prototype integration.",
+        "method": "If bundle missing, stop and report Unavailable.",
+        "examiner_questions": [
+          "What features does the model require?"
+        ],
+        "evidence": "artifacts/model_manifest.json; inference pipeline"
+      }
+    },
+    {
+      "id": "findings",
+      "title": "Research findings and contributions",
+      "heading": "Research findings and contributions",
+      "subtitle": "Findings supported by verified outputs",
+      "review_status": "verified",
+      "bullets": [
+        "Finding: among cell-4 stacking runs, SMOTE-ENN achieved the highest F1 (0.97789) under the notebook protocol.",
+        "Finding: lightweight stacking (75,004 parameters) is far smaller than the CNN–BiLSTM benchmark (1,108,931 parameters).",
+        "Finding: resampling that maximises F1 can degrade balanced accuracy and inflate FPR (cell 22).",
+        "Finding: a leakage-corrected local retrain remains strong (≈0.9663 accuracy) but is not equivalent to the notebook score.",
+        "Finding: executed final ensemble evidence is network-flow based."
+      ],
+      "figure": "performance_compare",
+      "notes": {
+        "main_point": "Close the results arc with five evidence-backed findings.",
+        "figure": "Revisit notebook vs local metrics.",
+        "contribution": "Synthesis of contributions.",
+        "method": "Avoid multimodal overclaim.",
+        "examiner_questions": [
+          "What is your strongest finding?"
+        ],
+        "evidence": "verified_results.json; local_evaluation.json"
+      }
+    },
+    {
+      "id": "limitations",
+      "title": "Limitations, conclusion and future work",
+      "heading": "Limitations, conclusion and future work",
+      "subtitle": "Honest boundaries of the current evidence",
+      "review_status": "verified",
+      "bullets": [
+        "Limitation: final executed ensemble scores network flows, not APKs; no paired API+flow id.",
+        "Limitation: notebook resample-before-split and in-sample meta-fitting inflate optimism risk.",
+        "Limitation: Kaggle weights / LRP JSON / full ROC curves unavailable locally; repeated-run statistics Not established.",
+        "Conclusion (evidence-based): AMSEC demonstrates a lightweight stacking pathway with competitive notebook metrics and a working leakage-aware prototype.",
+        "Future work (for review with thesis): paired multimodal ids, out-of-fold stacking, exported probability curves, on-device measurement, repeated trials."
+      ],
+      "figure": "none",
+      "notes": {
+        "main_point": "End with integrity; invite future work that fixes documented gaps.",
+        "figure": "None.",
+        "contribution": "Shows examiner readiness and scientific caution.",
+        "method": "List limitations from the Research Limitations page.",
+        "examiner_questions": [
+          "What would you change in a journal revision?"
+        ],
+        "evidence": "SOURCE_AUDIT.md leakage_notes; Research Limitations page"
+      }
+    },
+    {
+      "id": "questions_end",
+      "title": "Questions and discussion",
+      "heading": "Questions and discussion",
+      "subtitle": "Thank you",
+      "review_status": "verified",
+      "bullets": [
+        "Happy to discuss methodology, metrics, leakage controls, and the live prototype.",
+        "Research Dashboard mode remains available for detailed tables and analytics.",
+        "Contact / identity: Abdullahi Umar Diso · Kaduna State University · KASU/PHD/19/CSC/007"
+      ],
+      "figure": "none",
+      "notes": {
+        "main_point": "Invite questions; keep Dashboard one click away.",
+        "figure": "None.",
+        "contribution": "Viva closing.",
+        "method": "If stuck, open Research Analytics for the exact table.",
+        "examiner_questions": [
+          "Open question period."
+        ],
+        "evidence": "catalog.json identity"
+      }
+    }
+  ]
+}

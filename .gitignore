@@ -1,0 +1,26 @@
+# Python / local env
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+*.egg-info/
+.mypy_cache/
+.ruff_cache/
+
+# IDE / OS
+.idea/
+.vscode/
+.DS_Store
+Thumbs.db
+
+# Large local datasets (exceed GitHub file limits / keep local)
+others files that can help/*.csv
+others files that can help/*.CSV
+
+# Nested clone kept for inspection only
+upstream/
+
+# Local runtime noise
+*.log
+.streamlit/secrets.toml

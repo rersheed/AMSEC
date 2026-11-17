@@ -1,0 +1,59 @@
+API Dataset shape: (43876, 102)
+NIDS Dataset shape: (200000, 46)
+API sequences shape: (43876, 80)
+Top 5 features selected:
+  Parameters: 1,108,931 | FLOPs: 16.63 M
+✓ No Balancing completed - Test Acc: 0.9644 | F1: 0.9815
+Balanced → Benign: 29958, Malware: 29958
+  Parameters: 1,108,931 | FLOPs: 16.63 M
+✓ SMOTE completed - Test Acc: 0.9830 | F1: 0.9913
+Balanced → Benign: 29805, Malware: 29958
+  Parameters: 1,108,931 | FLOPs: 16.63 M
+✓ ADASYN completed - Test Acc: 0.9836 | F1: 0.9916
+Balanced → Benign: 26719, Malware: 28275
+  Parameters: 1,108,931 | FLOPs: 16.63 M
+✓ SMOTE+ENN completed - Test Acc: 0.0255 | F1: 0.0019
+Balanced → Benign: 29943, Malware: 29943
+  Parameters: 1,108,931 | FLOPs: 16.63 M
+✓ SMOTE+Tomek completed - Test Acc: 0.9799 | F1: 0.9898
+Balanced → Benign: 29958, Malware: 28808
+  Parameters: 1,108,931 | FLOPs: 16.63 M
+✓ SMOTE+NCR completed - Test Acc: 0.9784 | F1: 0.9890
+Balanced → Benign: 26752, Malware: 28232
+  Parameters: 1,108,931 | FLOPs: 16.63 M
+✓ ADASYN+Tomek completed - Test Acc: 0.9751 | F1: 0.9874
+Balanced → Benign: 29805, Malware: 28731
+  Parameters: 1,108,931 | FLOPs: 16.63 M
+✓ ADASYN+NCR completed - Test Acc: 0.9751 | F1: 0.9874
+COMPLETE COMPARISON TABLE - RANKED FROM HIGHEST TO LOWEST (by Test F1-Score)
+ Rank       Method  Train_Benign  Train_Malware  Test_Accuracy  Test_Precision  Test_Recall  Test_F1  Test_AUC  Test_MCC  Test_Specificity  Test_FPR  Test_FNR  Test_Balanced_Accuracy  Parameters  FLOPs_M  Inference_ms  Throughput_s_s
+✓ Ranked comparison table saved to: balancing_methods_comparison_ranked.csv
+Metric               | No Balancing | ADASYN (Best) | Improvement
+Accuracy             | 0.9644      | 0.9836           | +1.91%
+Precision            | 0.9976      | 0.9848           | -1.28%
+Recall               | 0.9659      | 0.9986           | +3.27%
+F1_score             | 0.9815      | 0.9916           | +1.02%
+Auc_roc              | 0.9883      | 0.9387           | -4.96%
+Mcc                  | 0.5905      | 0.5772           | -1.33%
+Specificity          | 0.9074      | 0.3889           | -51.85%
+Fpr                  | 0.0926      | 0.6111           | +51.85%
+Fnr                  | 0.0341      | 0.0014           | -3.27%
+Balanced_accuracy    | 0.9366      | 0.6937           | -24.29%
+Parameters           : 1,108,931
+FLOPs (M)            : 16.63 M
+🏆 Best Method: ADASYN
+📈 F1-Score Improvement: +1.02%
+📊 Accuracy Improvement: +1.91%
+--- All Methods Performance Ranking (Highest → Lowest by F1-Score) ---
+1. ADASYN          | F1: 0.9916 | Acc: 0.9836 | AUC: 0.9387 | Params: 1,108,931 | FLOPs: 16.6M | Inf: 3.64ms | Thr: 275/s
+2. SMOTE           | F1: 0.9913 | Acc: 0.9830 | AUC: 0.8760 | Params: 1,108,931 | FLOPs: 16.6M | Inf: 4.05ms | Thr: 247/s
+3. SMOTE+Tomek     | F1: 0.9898 | Acc: 0.9799 | AUC: 0.5686 | Params: 1,108,931 | FLOPs: 16.6M | Inf: 2.88ms | Thr: 347/s
+4. SMOTE+NCR       | F1: 0.9890 | Acc: 0.9784 | AUC: 0.6806 | Params: 1,108,931 | FLOPs: 16.6M | Inf: 1.04ms | Thr: 957/s
+5. ADASYN+Tomek    | F1: 0.9874 | Acc: 0.9751 | AUC: 0.6571 | Params: 1,108,931 | FLOPs: 16.6M | Inf: 3.00ms | Thr: 333/s
+6. ADASYN+NCR      | F1: 0.9874 | Acc: 0.9751 | AUC: 0.6442 | Params: 1,108,931 | FLOPs: 16.6M | Inf: 2.75ms | Thr: 363/s
+7. No Balancing    | F1: 0.9815 | Acc: 0.9644 | AUC: 0.9883 | Params: 1,108,931 | FLOPs: 16.6M | Inf: 0.33ms | Thr: 3072/s
+8. SMOTE+ENN       | F1: 0.0019 | Acc: 0.0255 | AUC: 0.7075 | Params: 1,108,931 | FLOPs: 16.6M | Inf: 0.43ms | Thr: 2319/s
+9. ADASYN+ENN      | F1: 0.0003 | Acc: 0.0248 | AUC: 0.6320 | Params: 1,108,931 | FLOPs: 16.6M | Inf: 0.51ms | Thr: 1965/s
+All comparison results are ranked from HIGHEST to LOWEST by Test F1-Score
+Metrics included: Accuracy, Precision, Recall, F1, AUC, MCC, Specificity, FPR, FNR, Balanced Accuracy
++ Efficiency: Parameters | FLOPs (M) | Inference (ms) | Throughput (s/s)
