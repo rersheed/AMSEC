@@ -2,105 +2,78 @@
 
 **AMSEC — An Explainable Lightweight Hybrid Deep Learning Framework for Android Malware Detection.**
 
-Local Streamlit research console for the AMSEC PhD work. It ships two operating modes:
+A single-mode Streamlit platform for **research, experimentation, analytics and malware detection**. There is no presentation mode.
 
-1. **Research Dashboard** — overview, analytics, single/batch detection, dataset explorer, model comparison, resampling experiments, explainability, methodology, and limitations.
-2. **PhD Viva Presentation Mode** — a 21-slide viva deck with speaker notes and a live detection hand-off that reuses the same inference path.
+## Authoritative experimental source
 
-Predictions come only from a model trained in this workspace (PyTorch cell-4 stack retrain). Historical notebook metrics are shown as transcribed evidence and are **not** claimed as the served model’s scores.
+`notebooks/Final_phd-Experiment-android-malware_CORRECTED.ipynb` (SHA-256 `9e4724f7…e8fa`) is the **sole** experimental source. AMSEC checks its hash at start-up. Earlier notebooks are archived in `archive/pre_corrected_notebook/notebooks/` and are not used.
 
-Repository: https://github.com/rersheed/AMSEC
+| Cell | Experiment | AMSEC |
+|---|---|---|
+| 2 | 16-configuration lightweight-model experiment (MobileNetV4 / +Attention × 8 samplers) — Keras | executable + historical |
+| 4 | 9-entry ensemble-stacking experiment (SMOTE listed twice) — Keras + LR meta-learner | executable + historical; serves detection models |
+| 6, 7, 9, 11–19 | earlier CNN–BiLSTM benchmark implementations (cell 7: outputs without code) | historical only |
+| 22 | corrected dual-dataset CNN–BiLSTM benchmark (label-matched pairing, CPU-feasible) — PyTorch | executable (no saved outputs in notebook) |
 
-## Features
+Details, pairing assumptions and methodological concerns: [docs/NOTEBOOK_EXPERIMENT_AUDIT.md](docs/NOTEBOOK_EXPERIMENT_AUDIT.md). Validation results: [docs/EXECUTION_REPORT.md](docs/EXECUTION_REPORT.md).
 
-- Switchable Research Dashboard / Viva Presentation modes
-- Research Overview and Analytics (Plotly)
-- Malware Detection and Batch Detection (trained ensemble)
-- Dataset Explorer with schema/profile checks
-- Model Comparison and Resampling Experiments views
-- Explainability panel (feature-level scores from the served pipeline)
-- Local artifact bundle under `artifacts/` (preprocessor, MobileNetV4 / lightweight towers, meta-learner, evaluation JSON)
-- Verified research registry (`research_results/`, `data/verified_results.json`)
+## How fidelity is enforced
 
-## Methodology (summary)
+* Notebook classes/functions are copied **verbatim** (`scripts/generate_notebook_modules.py`) and AST-compared with the notebook (`tests/test_notebook_fidelity.py`).
+* Cell 22's refactor is proven equal to the unmodified cell by execution (`scripts/validate_cell22_refactor.py`).
+* Historical numbers are **parsed** from the notebook's saved outputs (`scripts/build_historical_registry.py` → `research_results/corrected_notebook_historical.json`); nothing is typed in.
+* New results live in `experiment_runs/run_XXXX/` with parameters, deviations, environment, dataset fingerprints and the notebook hash. Historical and new results are shown separately and compared only in an explicit "Historical vs reproduced" view.
 
-The notebook final ensemble (`SMOTE-ENN_GA_Ensemble_Stacking`, cell 4 of `Final phd-Experiment-android-malware.ipynb`) reported accuracy ≈ **0.97789** on a Kaggle run. Those Keras `.h5` weights are **not** in this package.
+## Pages
 
-This console retrains an equivalent **PyTorch** layer stack locally via `scripts/train_local_ensemble.py`, writes `artifacts/`, and serves that bundle. Local accuracy is lower (~0.966 on the local protocol) and must not be presented as the notebook figure. See `docs/LOCAL_VALIDATION_REPORT.md` and `docs/SOURCE_AUDIT.md`.
+Research Overview · Experiment Laboratory · Results & Analytics · Notebook Outputs (Historical) · Malware Detection · Explainable AI · Dataset Explorer · Reproducibility & Audit · Methodology & Limitations
 
 ## Requirements
 
-- Python **3.11** recommended (`.python-version`). Local validation also ran on Python 3.14 with the pinned PyTorch stack.
-- TensorFlow is **not** required for the served console.
-- Large CSV datasets under `others files that can help/` stay local and are gitignored.
-
-## Installation
-
-```bat
-git clone https://github.com/rersheed/AMSEC.git
-cd AMSEC
-python -m venv .venv
-.venv\Scripts\python -m pip install -r requirements.txt
-```
-
-If `artifacts/` is incomplete on a fresh machine, retrain:
+* **Python 3.11** (validated with CPython 3.11.9).
+* TensorFlow-CPU 2.20 (cells 2/4, detection) and PyTorch 2.6 CPU (cell 22) — see `requirements.txt`.
+* Datasets (not in git) in `others files that can help/` or `AMSEC_DATA_DIR`:
+  `NF-UQ-NIDS-Dataset.csv`, `dynamic_api_call_sequence_per_malware_100_0_306.csv`, `feature_vectors_syscallsbinders_frequency_5_Cat.csv`.
 
 ```bat
-.venv\Scripts\python scripts\train_local_ensemble.py
-```
-
-Place research CSVs (optional for Dataset Explorer) under `others files that can help/` without committing them.
-
-## Run
-
-```bat
+py -3.11 -m venv .venv311
+.venv311\Scripts\python -m pip install -r requirements.txt
 start_amsec.bat
 ```
 
-Or:
+## Running experiments from the command line
 
 ```bat
-.venv\Scripts\python -m streamlit run app.py
+.venv311\Scripts\python scripts\run_notebook_experiment.py --experiment cell22_dual_dataset
+.venv311\Scripts\python scripts\run_notebook_experiment.py --experiment cell04_stacking9
+.venv311\Scripts\python scripts\run_notebook_experiment.py --experiment cell02_lightweight16 --select 5,6
+.venv311\Scripts\python scripts\run_notebook_experiment.py --experiment cell04_stacking9 --smoke
 ```
 
-Open http://localhost:8501
+Run kinds: `full_reproduction` (notebook parameters, all configurations), `partial` (subset of configurations), `smoke` (reduced parameters — plumbing only, never a result).
 
-Production-oriented Streamlit settings live in `.streamlit/config.toml`. Do not commit `.streamlit/secrets.toml`.
+## Validation
 
-## Project layout
+```bat
+.venv311\Scripts\python -m pytest -q
+.venv311\Scripts\python scripts\validate_cell22_refactor.py
+.venv311\Scripts\python scripts\build_historical_registry.py
+```
+
+## Layout
 
 | Path | Role |
-| --- | --- |
-| `app.py` | Streamlit entry (mode router + dashboard pages) |
-| `src/amsec/` | Inference, datasets, research registry, dashboard/viva UI |
-| `artifacts/` | Served local PyTorch ensemble + evaluation metadata |
-| `research_results/` | Catalog + viva slide content |
-| `scripts/` | Train, audit, viva checks |
-| `tests/` | Integrity, science schema, inference parity |
-| `docs/` | Validation report, source audit, extracted notebook evidence |
+|---|---|
+| `notebooks/` | the authoritative notebook |
+| `src/amsec/notebook/` | faithful modules (generated verbatim definitions + pipelines), provenance |
+| `src/amsec/lab/` | run management |
+| `src/amsec/detection.py` | serving of Keras models trained by runs |
+| `src/amsec/dashboard/` | Streamlit pages |
+| `research_results/` | historical registry + notebook figures |
+| `experiment_runs/` | auditable runs |
+| `docs/extracted_corrected/` | per-cell source and text output extracted from the notebook |
+| `archive/pre_corrected_notebook/` | superseded notebooks, code, docs and model bundle (not used) |
 
-## Tests
+## Deployment
 
-```bat
-.venv\Scripts\python -m pytest -q
-.venv\Scripts\python scripts\check_viva.py
-```
-
-## Model artifacts
-
-| Artifact | Status |
-| --- | --- |
-| Local PyTorch bundle in `artifacts/` | Included (small; required for inference) |
-| Original Kaggle Keras `.h5` ensemble | **Missing** — obtain only from the authorised Kaggle/`/kaggle/working/models` run; not redistributed here |
-| Large NIDS / API CSVs | Local only; see validation report for schemas |
-
-Do not enable Git LFS unless the deployment target (e.g. Streamlit Community Cloud) is confirmed to support it.
-
-## Deployment notes
-
-- This repository push does **not** deploy to Streamlit Community Cloud.
-- For a future cloud deploy: pin Python 3.11, ensure `artifacts/` is present or rebuildable, set secrets only via Streamlit secrets / env vars, and keep CSVs out of the repo.
-
-## Licence / academic integrity
-
-Treat notebook metrics and local retrain metrics as separate evidence streams. Do not substitute local scores for the published notebook figures.
+Not deployed or pushed automatically. On Streamlit Community Cloud select **Python 3.11** in Advanced settings (see `docs/STREAMLIT_CLOUD_PYTHON.md`).

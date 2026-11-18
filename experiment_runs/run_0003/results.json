@@ -1,0 +1,37 @@
+[
+  {
+    "entry": 3,
+    "config": "SMOTE-ENN_GA_Ensemble_Stacking",
+    "sampling_method": "SMOTE-ENN",
+    "model_type": "Ensemble_Stacking",
+    "accuracy": 0.8470906630581867,
+    "precision": 0.8472661909078952,
+    "recall": 0.8470906630581867,
+    "f1_score": 0.847102423484039,
+    "balanced_accuracy": 0.8472100111365102,
+    "mcc": 0.6943132036826065,
+    "roc_auc": 0.9232459996483207,
+    "parameters": 75204,
+    "flops": 150408,
+    "training_time": 46.26858377456665,
+    "inference_time": 2.1206443309783936,
+    "train_samples": 3684,
+    "val_samples": 503,
+    "test_samples": 739,
+    "samples_after_sampling": 4926,
+    "class_counts_after_sampling": {
+      "0": 2421,
+      "1": 2505
+    },
+    "confusion_matrix": [
+      [
+        310,
+        53
+      ],
+      [
+        60,
+        316
+      ]
+    ]
+  }
+]

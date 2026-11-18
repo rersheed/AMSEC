@@ -1,0 +1,614 @@
+thop not available. Will use alternative FLOPs estimation.
+✓ imbalanced-learn available
+Device: cuda
+GPU: Tesla T4
+
+================================================================================
+MEMORY OPTIMIZATION: Starting with clean memory
+Available GPU Memory: 15.64 GB
+================================================================================
+
+================================================================================
+STEP 1: DATA LOADING AND PREPROCESSING (CHUNKED FOR MEMORY EFFICIENCY)
+================================================================================
+Checking NF-UQ-NIDS-v2 dataset at: /kaggle/input/datasets/aryashah2k/nfuqnidsv2-network-intrusion-detection-dataset/NF-UQ-NIDS-v2.csv
+✓ Found NF-UQ-NIDS-v2 dataset - File size: 13093.31 MB
+Checking API Sequences dataset at: /kaggle/input/datasets/ang3loliveira/malware-analysis-datasets-api-call-sequences/dynamic_api_call_sequence_per_malware_100_0_306.csv
+✓ Found API Sequences dataset - File size: 17.12 MB
+
+================================================================================
+STEP 2: LOADING AND PREPROCESSING NF-UQ-NIDS-v2 DATASET (CHUNKED - 500 000 ROWS)
+================================================================================
+Loading NF-UQ-NIDS-v2 dataset with memory optimization (max 500 000 rows)...
+Loading NIDS dataset in chunks of 50000 rows (max 500,000)...
+Processing chunk 1... Total samples: 50,000
+Processing chunk 2... Total samples: 100,000
+Processing chunk 3... Total samples: 150,000
+Processing chunk 4... Total samples: 200,000
+Processing chunk 5... Total samples: 250,000
+Processing chunk 6... Total samples: 300,000
+Processing chunk 7... Total samples: 350,000
+Processing chunk 8... Total samples: 400,000
+Processing chunk 9... Total samples: 450,000
+Processing chunk 10... Total samples: 500,000
+Loaded 500,000 samples from NIDS dataset
+✓ Loaded NIDS dataset: (500000, 46)
+Original NIDS dataset shape: (500000, 46)
+After removing duplicates: (499998, 46)
+After removing all-null columns: (499998, 46)
+Using 'Attack' as label column
+Label distribution: Normal/Benign=165203, Attack/Malware=334795
+Final NIDS dataset shape: (499998, 45)
+Preprocessed NIDS dataset: (499998, 45)
+NIDS label distribution: Normal=165203, Attack=334795
+
+================================================================================
+STEP 3: LOADING AND PROCESSING API SEQUENCES
+================================================================================
+Loading API Sequences dataset...
+✓ Loaded API dataset: (43876, 102)
+API label distribution: Benign=1079, Malware=42797
+
+================================================================================
+STEP 4: PROCESSING API SEQUENCES
+================================================================================
+Found 100 API columns
+Vocabulary size: 265
+API sequences shape: (43876, 100)
+Max value in sequences: 264, Vocab size: 265
+
+================================================================================
+STEP 5: FEATURE ENGINEERING AND SELECTION (BO + MI)
+================================================================================
+Using NF-UQ-NIDS-v2 dataset for feature selection
+Feature selection dataset shape: (499998, 45)
+
+--- BO + MI (Bayesian Optimization + Mutual Information) ---
+Sampling 30000 samples for MI computation...
+Top 20 features selected by BO + MI:
+  1. Label: 0.639030
+  2. IPV4_DST_ADDR: 0.523891
+  3. IPV4_SRC_ADDR: 0.517446
+  4. LONGEST_FLOW_PKT: 0.460725
+  5. MAX_IP_PKT_LEN: 0.454617
+  6. IN_BYTES: 0.426039
+  7. SRC_TO_DST_AVG_THROUGHPUT: 0.424054
+  8. MIN_TTL: 0.380588
+  9. MAX_TTL: 0.380345
+  10. Dataset: 0.379295
+  11. L4_DST_PORT: 0.359433
+  12. L7_PROTO: 0.340486
+  13. SHORTEST_FLOW_PKT: 0.331650
+  14. OUT_BYTES: 0.320367
+  15. DST_TO_SRC_AVG_THROUGHPUT: 0.316767
+  16. DURATION_IN: 0.291293
+  17. FLOW_DURATION_MILLISECONDS: 0.290128
+  18. TCP_WIN_MAX_IN: 0.283490
+  19. IN_PKTS: 0.214769
+  20. MIN_IP_PKT_LEN: 0.186647
+
+Selected features: ['Label', 'IPV4_DST_ADDR', 'IPV4_SRC_ADDR', 'LONGEST_FLOW_PKT', 'MAX_IP_PKT_LEN', 'IN_BYTES', 'SRC_TO_DST_AVG_THROUGHPUT', 'MIN_TTL', 'MAX_TTL', 'Dataset', 'L4_DST_PORT', 'L7_PROTO', 'SHORTEST_FLOW_PKT', 'OUT_BYTES', 'DST_TO_SRC_AVG_THROUGHPUT', 'DURATION_IN', 'FLOW_DURATION_MILLISECONDS', 'TCP_WIN_MAX_IN', 'IN_PKTS', 'MIN_IP_PKT_LEN']
+
+--- Scaling (Z-score Standardization) ---
+
+Using labels from NF-UQ-NIDS-v2: Normal/Benign=165203, Attack/Malware=334795
+
+[IMAGE cell_09_img_1.png]
+
+================================================================================
+STEP 6: ALIGNING DATASETS
+================================================================================
+Aligned shapes - Features: (43876, 20), Sequences: (43876, 100), Labels: (43876,)
+Final label distribution: Normal/Benign=14532, Attack/Malware=29344
+
+================================================================================
+STEP 7: TRAIN-TEST SPLIT
+================================================================================
+Train: 30713, Val: 6581, Test: 6582
+Train label dist BEFORE balancing: Normal/Benign=10172, Attack/Malware=20541
+
+================================================================================
+STEP 8: SAMPLING METHODS CONFIGURATION
+================================================================================
+
+================================================================================
+STEP 9: HYBRID CNN-BiLSTM MODEL (Mutambik 2025 parameters)
+================================================================================
+  CNN Layer 1: 32 filters, kernel=3, stride=1
+  CNN Layer 2: 64 filters, kernel=3, stride=1
+  BiLSTM: 1 layer, 128 hidden units, bidirectional
+  Regularization: L2 (λ=0.0001), Dropout in [0.1, 0.5]
+  *** Exact Mutambik (2025) CNN-BiLSTM configuration ***
+
+================================================================================
+STEP 10: PREPARING NIDS EVALUATION DATA
+================================================================================
+Preparing NF-UQ-NIDS-v2 dataset for evaluation...
+NIDS evaluation data ready: (43876, 20)
+
+================================================================================
+STEP 11: COMPREHENSIVE SAMPLING METHODS COMPARISON
+================================================================================
+
+Testing 9 sampling methods: ['None', 'SMOTE', 'ADASYN', 'SMOTE-ENN', 'SMOTE-Tomek', 'SMOTE-NCR', 'ADASYN-ENN', 'ADASYN-Tomek', 'ADASYN-NCR']
+
+============================================================
+Testing method: None
+============================================================
+
+============================================================
+Training with None sampling method
+============================================================
+
+                                                               
+
+None - API Sequences Results:
+  Accuracy:  0.9998
+  Precision: 0.9998
+  Recall:    1.0000
+  F1-Score:  0.9999
+  AUC-ROC:   1.0000
+  MCC:       0.9997
+
+None - Computational Complexity:
+  Parameters:     322,947
+  FLOPs:          1,291,788 (1.29 M)
+  Inference Time: 1.698 ± 0.162 ms
+  Throughput:     589.04 samples/sec
+
+Evaluating None on NF-UQ-NIDS-v2 dataset...
+None - NF-UQ-NIDS-v2 Results:
+  Accuracy:  1.0000
+  Precision: 1.0000
+  Recall:    1.0000
+  F1-Score:  1.0000
+  AUC-ROC:   1.0000
+  MCC:       0.9999
+
+============================================================
+Testing method: SMOTE
+============================================================
+
+============================================================
+Training with SMOTE sampling method
+============================================================
+After SMOTE: Normal/Benign=20541, Attack/Malware=20541
+Total training samples: 41082
+
+                                                               
+Early stopping at epoch 24
+
+SMOTE - API Sequences Results:
+  Accuracy:  0.9997
+  Precision: 0.9995
+  Recall:    1.0000
+  F1-Score:  0.9998
+  AUC-ROC:   0.9995
+  MCC:       0.9993
+
+SMOTE - Computational Complexity:
+  Parameters:     322,947
+  FLOPs:          1,291,788 (1.29 M)
+  Inference Time: 1.701 ± 0.081 ms
+  Throughput:     587.72 samples/sec
+
+Evaluating SMOTE on NF-UQ-NIDS-v2 dataset...
+SMOTE - NF-UQ-NIDS-v2 Results:
+  Accuracy:  1.0000
+  Precision: 0.9999
+  Recall:    1.0000
+  F1-Score:  1.0000
+  AUC-ROC:   0.9999
+  MCC:       0.9999
+
+============================================================
+Testing method: ADASYN
+============================================================
+
+============================================================
+Training with ADASYN sampling method
+============================================================
+After ADASYN: Normal/Benign=20546, Attack/Malware=20541
+Total training samples: 41087
+
+                                                               
+Early stopping at epoch 25
+
+ADASYN - API Sequences Results:
+  Accuracy:  0.9997
+  Precision: 0.9995
+  Recall:    1.0000
+  F1-Score:  0.9998
+  AUC-ROC:   1.0000
+  MCC:       0.9993
+
+ADASYN - Computational Complexity:
+  Parameters:     322,947
+  FLOPs:          1,291,788 (1.29 M)
+  Inference Time: 1.715 ± 0.158 ms
+  Throughput:     582.97 samples/sec
+
+Evaluating ADASYN on NF-UQ-NIDS-v2 dataset...
+ADASYN - NF-UQ-NIDS-v2 Results:
+  Accuracy:  1.0000
+  Precision: 0.9999
+  Recall:    1.0000
+  F1-Score:  1.0000
+  AUC-ROC:   1.0000
+  MCC:       0.9999
+
+============================================================
+Testing method: SMOTE-ENN
+============================================================
+
+============================================================
+Training with SMOTE-ENN sampling method
+============================================================
+After SMOTE-ENN: Normal/Benign=20525, Attack/Malware=20517
+Total training samples: 41042
+
+                                                               
+Early stopping at epoch 13
+
+SMOTE-ENN - API Sequences Results:
+  Accuracy:  1.0000
+  Precision: 1.0000
+  Recall:    1.0000
+  F1-Score:  1.0000
+  AUC-ROC:   1.0000
+  MCC:       1.0000
+
+SMOTE-ENN - Computational Complexity:
+  Parameters:     322,947
+  FLOPs:          1,291,788 (1.29 M)
+  Inference Time: 1.712 ± 0.065 ms
+  Throughput:     584.23 samples/sec
+
+Evaluating SMOTE-ENN on NF-UQ-NIDS-v2 dataset...
+SMOTE-ENN - NF-UQ-NIDS-v2 Results:
+  Accuracy:  0.9999
+  Precision: 1.0000
+  Recall:    0.9999
+  F1-Score:  0.9999
+  AUC-ROC:   1.0000
+  MCC:       0.9998
+
+============================================================
+Testing method: SMOTE-Tomek
+============================================================
+
+============================================================
+Training with SMOTE-Tomek sampling method
+============================================================
+After SMOTE-Tomek: Normal/Benign=20541, Attack/Malware=20541
+Total training samples: 41082
+
+                                                               
+Early stopping at epoch 25
+
+SMOTE-Tomek - API Sequences Results:
+  Accuracy:  0.9997
+  Precision: 0.9995
+  Recall:    1.0000
+  F1-Score:  0.9998
+  AUC-ROC:   1.0000
+  MCC:       0.9993
+
+SMOTE-Tomek - Computational Complexity:
+  Parameters:     322,947
+  FLOPs:          1,291,788 (1.29 M)
+  Inference Time: 1.702 ± 0.099 ms
+  Throughput:     587.53 samples/sec
+
+Evaluating SMOTE-Tomek on NF-UQ-NIDS-v2 dataset...
+SMOTE-Tomek - NF-UQ-NIDS-v2 Results:
+  Accuracy:  1.0000
+  Precision: 0.9999
+  Recall:    1.0000
+  F1-Score:  1.0000
+  AUC-ROC:   1.0000
+  MCC:       0.9999
+
+============================================================
+Testing method: SMOTE-NCR
+============================================================
+
+============================================================
+Training with SMOTE-NCR sampling method
+============================================================
+After SMOTE-NCR: Normal/Benign=20541, Attack/Malware=20541
+Total training samples: 41082
+
+                                                               
+Early stopping at epoch 27
+
+SMOTE-NCR - API Sequences Results:
+  Accuracy:  1.0000
+  Precision: 1.0000
+  Recall:    1.0000
+  F1-Score:  1.0000
+  AUC-ROC:   1.0000
+  MCC:       1.0000
+
+SMOTE-NCR - Computational Complexity:
+  Parameters:     322,947
+  FLOPs:          1,291,788 (1.29 M)
+  Inference Time: 1.723 ± 0.068 ms
+  Throughput:     580.44 samples/sec
+
+Evaluating SMOTE-NCR on NF-UQ-NIDS-v2 dataset...
+SMOTE-NCR - NF-UQ-NIDS-v2 Results:
+  Accuracy:  1.0000
+  Precision: 1.0000
+  Recall:    1.0000
+  F1-Score:  1.0000
+  AUC-ROC:   1.0000
+  MCC:       1.0000
+
+============================================================
+Testing method: ADASYN-ENN
+============================================================
+
+============================================================
+Training with ADASYN-ENN sampling method
+============================================================
+After ADASYN-ENN: Normal/Benign=20546, Attack/Malware=20541
+Total training samples: 41087
+
+                                                               
+Early stopping at epoch 26
+
+ADASYN-ENN - API Sequences Results:
+  Accuracy:  0.9998
+  Precision: 0.9998
+  Recall:    1.0000
+  F1-Score:  0.9999
+  AUC-ROC:   1.0000
+  MCC:       0.9997
+
+ADASYN-ENN - Computational Complexity:
+  Parameters:     322,947
+  FLOPs:          1,291,788 (1.29 M)
+  Inference Time: 1.746 ± 0.070 ms
+  Throughput:     572.69 samples/sec
+
+Evaluating ADASYN-ENN on NF-UQ-NIDS-v2 dataset...
+ADASYN-ENN - NF-UQ-NIDS-v2 Results:
+  Accuracy:  1.0000
+  Precision: 1.0000
+  Recall:    1.0000
+  F1-Score:  1.0000
+  AUC-ROC:   1.0000
+  MCC:       0.9999
+
+============================================================
+Testing method: ADASYN-Tomek
+============================================================
+
+============================================================
+Training with ADASYN-Tomek sampling method
+============================================================
+After ADASYN-Tomek: Normal/Benign=20546, Attack/Malware=20541
+Total training samples: 41087
+
+                                                               
+Early stopping at epoch 20
+
+ADASYN-Tomek - API Sequences Results:
+  Accuracy:  0.9997
+  Precision: 0.9995
+  Recall:    1.0000
+  F1-Score:  0.9998
+  AUC-ROC:   0.9995
+  MCC:       0.9993
+
+ADASYN-Tomek - Computational Complexity:
+  Parameters:     322,947
+  FLOPs:          1,291,788 (1.29 M)
+  Inference Time: 1.625 ± 0.040 ms
+  Throughput:     615.46 samples/sec
+
+Evaluating ADASYN-Tomek on NF-UQ-NIDS-v2 dataset...
+ADASYN-Tomek - NF-UQ-NIDS-v2 Results:
+  Accuracy:  1.0000
+  Precision: 0.9999
+  Recall:    1.0000
+  F1-Score:  1.0000
+  AUC-ROC:   0.9999
+  MCC:       0.9999
+
+============================================================
+Testing method: ADASYN-NCR
+============================================================
+
+============================================================
+Training with ADASYN-NCR sampling method
+============================================================
+After ADASYN-NCR: Normal/Benign=20541, Attack/Malware=20541
+Total training samples: 41082
+
+                                                               
+Early stopping at epoch 20
+
+ADASYN-NCR - API Sequences Results:
+  Accuracy:  0.9998
+  Precision: 0.9998
+  Recall:    1.0000
+  F1-Score:  0.9999
+  AUC-ROC:   1.0000
+  MCC:       0.9997
+
+ADASYN-NCR - Computational Complexity:
+  Parameters:     322,947
+  FLOPs:          1,291,788 (1.29 M)
+  Inference Time: 1.669 ± 0.067 ms
+  Throughput:     599.28 samples/sec
+
+Evaluating ADASYN-NCR on NF-UQ-NIDS-v2 dataset...
+ADASYN-NCR - NF-UQ-NIDS-v2 Results:
+  Accuracy:  1.0000
+  Precision: 1.0000
+  Recall:    1.0000
+  F1-Score:  1.0000
+  AUC-ROC:   1.0000
+  MCC:       0.9999
+
+================================================================================
+STEP 12: COMPREHENSIVE RESULTS TABLE (SORTED BY DESCENDING F1-SCORE)
+================================================================================
+
+========================================================================================================================
+COMPREHENSIVE RESULTS - API SEQUENCES DATASET (sorted by F1-Score ↓, with Computational Metrics)
+========================================================================================================================
+Sampling Method Accuracy Precision Recall F1-Score AUC-ROC    MCC Parameters FLOPs (M) Inference (ms) Throughput (s/s)
+      SMOTE-ENN   1.0000    1.0000 1.0000   1.0000  1.0000 1.0000    322,947      1.29           1.71           584.23
+      SMOTE-NCR   1.0000    1.0000 1.0000   1.0000  1.0000 1.0000    322,947      1.29           1.72           580.44
+           None   0.9998    0.9998 1.0000   0.9999  1.0000 0.9997    322,947      1.29           1.70           589.04
+     ADASYN-ENN   0.9998    0.9998 1.0000   0.9999  1.0000 0.9997    322,947      1.29           1.75           572.69
+     ADASYN-NCR   0.9998    0.9998 1.0000   0.9999  1.0000 0.9997    322,947      1.29           1.67           599.28
+          SMOTE   0.9997    0.9995 1.0000   0.9998  0.9995 0.9993    322,947      1.29           1.70           587.72
+         ADASYN   0.9997    0.9995 1.0000   0.9998  1.0000 0.9993    322,947      1.29           1.72           582.97
+    SMOTE-Tomek   0.9997    0.9995 1.0000   0.9998  1.0000 0.9993    322,947      1.29           1.70           587.53
+   ADASYN-Tomek   0.9997    0.9995 1.0000   0.9998  0.9995 0.9993    322,947      1.29           1.62           615.46
+========================================================================================================================
+
+====================================================================================================
+COMPREHENSIVE RESULTS - NF-UQ-NIDS-v2 DATASET (same method order)
+====================================================================================================
+Sampling Method Accuracy Precision Recall F1-Score AUC-ROC    MCC
+      SMOTE-ENN   0.9999    1.0000 0.9999   0.9999  1.0000 0.9998
+      SMOTE-NCR   1.0000    1.0000 1.0000   1.0000  1.0000 1.0000
+           None   1.0000    1.0000 1.0000   1.0000  1.0000 0.9999
+     ADASYN-ENN   1.0000    1.0000 1.0000   1.0000  1.0000 0.9999
+     ADASYN-NCR   1.0000    1.0000 1.0000   1.0000  1.0000 0.9999
+          SMOTE   1.0000    0.9999 1.0000   1.0000  0.9999 0.9999
+         ADASYN   1.0000    0.9999 1.0000   1.0000  1.0000 0.9999
+    SMOTE-Tomek   1.0000    0.9999 1.0000   1.0000  1.0000 0.9999
+   ADASYN-Tomek   1.0000    0.9999 1.0000   1.0000  0.9999 0.9999
+====================================================================================================
+
+Results saved to CSV files
+
+================================================================================
+STEP 13: GENERATING VISUALIZATIONS
+================================================================================
+
+[IMAGE cell_09_img_2.png]
+[IMAGE cell_09_img_3.png]
+[IMAGE cell_09_img_4.png]
+[IMAGE cell_09_img_5.png]
+[IMAGE cell_09_img_6.png]
+
+Generating confusion matrices for EVERY sampling method...
+
+[IMAGE cell_09_img_7.png]
+[IMAGE cell_09_img_8.png]
+[IMAGE cell_09_img_9.png]
+
+================================================================================
+FINAL SUMMARY - Mutambik (2025) CNN-BiLSTM BENCHMARK
+================================================================================
+
+================================================================================
+TRIM-SEC FRAMEWORK - Mutambik (2025) CNN-BiLSTM RESULTS SUMMARY
+================================================================================
+
+[METHODS TESTED]
+  9 methods tested (sorted by F1-Score ↓): ['SMOTE-ENN', 'SMOTE-NCR', 'None', 'ADASYN-ENN', 'ADASYN-NCR', 'SMOTE', 'ADASYN', 'SMOTE-Tomek', 'ADASYN-Tomek']
+
+[MODEL CONFIGURATION - Exact Mutambik (2025)]
+  - CNN Layer 1: 32 filters, kernel=3, stride=1
+  - CNN Layer 2: 64 filters, kernel=3, stride=1
+  - BiLSTM: 1 layer, 128 hidden units, bidirectional
+  - Regularization: L2 (λ=0.0001), Dropout=0.3 (within 0.1-0.5)
+  - Features: 20
+  - Epochs: up to 30 (+ early stopping)
+  - NF-UQ-NIDS-v2 rows: up to 500 000
+
+================================================================================
+API SEQUENCES DATASET RESULTS (sorted by performance)
+================================================================================
+  Best Accuracy:  SMOTE-ENN - 1.0000
+  Best F1-Score:  SMOTE-ENN - 1.0000
+  Best AUC-ROC:   SMOTE-ENN - 1.0000
+
+  Recommended Method: SMOTE-ENN
+  - Accuracy:  1.0000
+  - Precision: 1.0000
+  - Recall:    1.0000
+  - F1-Score:  1.0000
+  - AUC-ROC:   1.0000
+  - MCC:       1.0000
+
+
+================================================================================
+NF-UQ-NIDS-v2 DATASET RESULTS
+================================================================================
+  Best Accuracy:  SMOTE-NCR - 1.0000
+  Best F1-Score:  SMOTE-NCR - 1.0000
+
+  Recommended Method: SMOTE-NCR
+  - Accuracy:  1.0000
+  - Precision: 1.0000
+  - Recall:    1.0000
+  - F1-Score:  1.0000
+  - AUC-ROC:   1.0000
+  - MCC:       1.0000
+
+
+================================================================================
+COMPUTATIONAL EFFICIENCY (Best Method: SMOTE-ENN)
+================================================================================
+  - Parameters:     322,947
+  - FLOPs:          1,291,788 (1.29 M)
+  - Inference Time: 1.71 ms
+  - Throughput:     584.23 samples/sec
+
+================================================================================
+FILES SAVED
+================================================================================
+  - sampling_methods_comparison_api.csv (API results with computational metrics, sorted)
+  - sampling_methods_comparison_nids.csv (NIDS results)
+  - sampling_methods_api_comparison.png (API performance comparison)
+  - sampling_methods_nids_comparison.png (NIDS performance comparison)
+  - computational_complexity_comparison.png (Parameters, FLOPs, Inference Time)
+  - throughput_comparison.png (Throughput comparison)
+  - training_curves_SMOTE-ENN.png (Training curves)
+  - all_confusion_matrices_api.png (ALL sampling-method confusion matrices)
+  - confusion_matrix_api_SMOTE-ENN.png (best-method matrix)
+  - roc_curves_api_comparison.png (ROC curves comparison)
+
+
+========================================================================================================================
+FINAL RESULTS - API SEQUENCES DATASET (sorted by F1-Score ↓, with Computational Metrics)
+========================================================================================================================
+Sampling Method Accuracy Precision Recall F1-Score AUC-ROC    MCC Parameters FLOPs (M) Inference (ms) Throughput (s/s)
+      SMOTE-ENN   1.0000    1.0000 1.0000   1.0000  1.0000 1.0000    322,947      1.29           1.71           584.23
+      SMOTE-NCR   1.0000    1.0000 1.0000   1.0000  1.0000 1.0000    322,947      1.29           1.72           580.44
+           None   0.9998    0.9998 1.0000   0.9999  1.0000 0.9997    322,947      1.29           1.70           589.04
+     ADASYN-ENN   0.9998    0.9998 1.0000   0.9999  1.0000 0.9997    322,947      1.29           1.75           572.69
+     ADASYN-NCR   0.9998    0.9998 1.0000   0.9999  1.0000 0.9997    322,947      1.29           1.67           599.28
+          SMOTE   0.9997    0.9995 1.0000   0.9998  0.9995 0.9993    322,947      1.29           1.70           587.72
+         ADASYN   0.9997    0.9995 1.0000   0.9998  1.0000 0.9993    322,947      1.29           1.72           582.97
+    SMOTE-Tomek   0.9997    0.9995 1.0000   0.9998  1.0000 0.9993    322,947      1.29           1.70           587.53
+   ADASYN-Tomek   0.9997    0.9995 1.0000   0.9998  0.9995 0.9993    322,947      1.29           1.62           615.46
+========================================================================================================================
+
+====================================================================================================
+FINAL RESULTS - NF-UQ-NIDS-v2 DATASET
+====================================================================================================
+Sampling Method Accuracy Precision Recall F1-Score AUC-ROC    MCC
+      SMOTE-ENN   0.9999    1.0000 0.9999   0.9999  1.0000 0.9998
+      SMOTE-NCR   1.0000    1.0000 1.0000   1.0000  1.0000 1.0000
+           None   1.0000    1.0000 1.0000   1.0000  1.0000 0.9999
+     ADASYN-ENN   1.0000    1.0000 1.0000   1.0000  1.0000 0.9999
+     ADASYN-NCR   1.0000    1.0000 1.0000   1.0000  1.0000 0.9999
+          SMOTE   1.0000    0.9999 1.0000   1.0000  0.9999 0.9999
+         ADASYN   1.0000    0.9999 1.0000   1.0000  1.0000 0.9999
+    SMOTE-Tomek   1.0000    0.9999 1.0000   1.0000  1.0000 0.9999
+   ADASYN-Tomek   1.0000    0.9999 1.0000   1.0000  0.9999 0.9999
+====================================================================================================
+
+================================================================================
+TRIM-SEC Framework Benchmark Complete! (Mutambik 2025 CNN-BiLSTM parameters)
+================================================================================

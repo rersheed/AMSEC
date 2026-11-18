@@ -9,7 +9,9 @@ PLOTLY_LAYOUT = dict(
     font=dict(family="DM Mono, Consolas, monospace", color="#9bb0d0", size=12),
     margin=dict(l=48, r=28, t=56, b=48),
     legend=dict(bgcolor="rgba(0,0,0,0)", font=dict(color="#c5d4ea")),
-    colorway=["#3a7bfd", "#00e5cc", "#8b5cf6", "#22c55e", "#ff6b35", "#ef4444"],
+    # Validated dark-mode categorical order (scripts/validate_palette.js, surface #0b1220: all checks pass)
+    colorway=["#3987e5", "#d95926", "#199e70", "#c98500", "#d55181", "#0ca30c", "#9085e9", "#e66767"],
+    hoverlabel=dict(bgcolor="#0b1220", bordercolor="#3987e5", font=dict(color="#e8edf5")),
     xaxis=dict(gridcolor="rgba(58,123,253,0.12)", zerolinecolor="rgba(58,123,253,0.18)"),
     yaxis=dict(gridcolor="rgba(58,123,253,0.12)", zerolinecolor="rgba(58,123,253,0.18)"),
 )
@@ -55,6 +57,23 @@ def style_fig(fig, title: str = "", height: int = 420):
     if title:
         layout["title"] = dict(text=title, font=dict(family="Syne, sans-serif", size=14, color="#e8edf5"), x=0.01)
     fig.update_layout(**layout)
+    return fig
+
+
+CATEGORICAL = list(PLOTLY_LAYOUT["colorway"])
+# Source identity is fixed: notebook (historical) vs AMSEC run (reproduced).
+SOURCE_COLORS = {"Notebook (historical)": "#3987e5", "AMSEC run (new)": "#d95926"}
+
+
+def color_map(keys: list[str]) -> dict[str, str]:
+    """Stable entity → colour (follows the entity, never its rank)."""
+    ordered = sorted(dict.fromkeys(map(str, keys)))
+    return {k: CATEGORICAL[i % len(CATEGORICAL)] for i, k in enumerate(ordered)}
+
+
+def thin_bars(fig):
+    fig.update_traces(selector=dict(type="bar"), marker_line_width=2, marker_line_color="#0b1220", marker_cornerradius=4)
+    fig.update_layout(bargap=0.35, bargroupgap=0.08)
     return fig
 
 

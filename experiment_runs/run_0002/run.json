@@ -1,0 +1,56 @@
+{
+  "run_id": "run_0002",
+  "experiment_id": "cell04_stacking9",
+  "cell": 4,
+  "title": "Ensemble-stacking experiment \u2014 9 entries",
+  "notebook": {
+    "name": "Final_phd-Experiment-android-malware_CORRECTED.ipynb",
+    "sha256_recorded": "9e4724f7af4a8438bf7aea02b8768cc1579a50afc0be935b1f24b08581a0e8fa",
+    "path": "notebooks\\Final_phd-Experiment-android-malware_CORRECTED.ipynb",
+    "present": true,
+    "sha256": "9e4724f7af4a8438bf7aea02b8768cc1579a50afc0be935b1f24b08581a0e8fa",
+    "matches_recorded": true
+  },
+  "selection": null,
+  "overrides": {},
+  "kind": "full_reproduction",
+  "label": "Full cell-4 reproduction (9 entries, phases 1-9)",
+  "created_at": "2026-11-18T14:22:29+00:00",
+  "environment": {
+    "python": "3.11.9",
+    "platform": "Windows-10-10.0.26200-SP0",
+    "packages": {
+      "numpy": "2.1.3",
+      "pandas": "2.2.3",
+      "sklearn": "1.9.1",
+      "imblearn": "0.14.2",
+      "torch": "2.6.0+cpu",
+      "tensorflow": "2.20.0",
+      "keras": "3.15.1",
+      "scipy": "1.17.1"
+    }
+  },
+  "datasets": {
+    "nids": {
+      "file": "NF-UQ-NIDS-Dataset.csv",
+      "present": true,
+      "bytes": 181150252,
+      "sha256": "b1641766533ac59436c1f338230c08ef67ba676c4193cc980eb32222e9cc7ade",
+      "data_rows": 1048575
+    },
+    "api": {
+      "file": "dynamic_api_call_sequence_per_malware_100_0_306.csv",
+      "present": true,
+      "bytes": 17949131,
+      "sha256": "11005ff6f5007bfee7d60bd0dc2e787f4e77b46f3b0a3d09424421c5339a8406",
+      "data_rows": 43876
+    },
+    "syscall": {
+      "file": "feature_vectors_syscallsbinders_frequency_5_Cat.csv",
+      "present": true,
+      "bytes": 11701483,
+      "sha256": "f345df28987fe6e3fb54cc711317dd1057a249b71ceb55f9a16cfadaee23f59d",
+      "data_rows": 11598
+    }
+  }
+}

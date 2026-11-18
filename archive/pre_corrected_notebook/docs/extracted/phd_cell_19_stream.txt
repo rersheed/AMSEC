@@ -1,0 +1,236 @@
+Installing thop...
+✓ thop installed successfully
+✓ thop installed successfully
+Device: cpu (Using CPU to ensure compatibility)
+GPU available but using CPU for stability
+
+================================================================================
+STEP 1: DATA LOADING AND PREPROCESSING
+================================================================================
+Loading API dataset...
+API Dataset shape: (43876, 102)
+API Label distribution: Benign=1079, Malware=42797
+
+Loading NF-UQ-NIDS-v2 (sampled)...
+NIDS Dataset shape: (200000, 46)
+NIDS Label distribution: Normal=65765, Attack=134235
+
+================================================================================
+STEP 2: PROCESSING API SEQUENCES
+================================================================================
+Found 100 API columns
+Vocabulary size: 265
+API sequences shape: (43876, 40)
+
+================================================================================
+STEP 3: FEATURE SELECTION VIA MUTUAL INFORMATION
+================================================================================
+Calculating mutual information scores...
+
+Top 5 features selected:
+ 1. t_86: 0.035700
+ 2. t_82: 0.035183
+ 3. t_90: 0.030504
+ 4. t_92: 0.030159
+ 5. t_75: 0.029292
+
+<Figure size 1500x600 with 2 Axes>
+
+================================================================================
+STEP 4: ALIGNING DATASETS & TRAIN-TEST SPLIT
+================================================================================
+Train: 30713 | Val: 6581 | Test: 6582
+
+================================================================================
+STEP 5: BUILDING HYBRID CNN-BiLSTM MODEL (further reduced for ~95% No Balancing)
+================================================================================
+
+================================================================================
+Testing No Balancing
+================================================================================
+Original → Benign: 755, Malware: 29958
+  Parameters: 22,407 | FLOPs: 0.16 M
+Training...
+
+                                                            
+  Inference: 0.057 ms/sample | Throughput: 17597.0 samples/s
+✓ No Balancing completed - Test Acc: 0.9057 | F1: 0.9493
+
+================================================================================
+Testing SMOTE
+================================================================================
+Balanced → Benign: 29958, Malware: 29958
+  Parameters: 22,407 | FLOPs: 0.16 M
+Training...
+
+                                                            
+  Inference: 0.043 ms/sample | Throughput: 22997.0 samples/s
+✓ SMOTE completed - Test Acc: 0.9875 | F1: 0.9936
+
+================================================================================
+Testing ADASYN
+================================================================================
+Balanced → Benign: 29805, Malware: 29958
+  Parameters: 22,407 | FLOPs: 0.16 M
+Training...
+
+                                                            
+  Inference: 0.042 ms/sample | Throughput: 23710.9 samples/s
+✓ ADASYN completed - Test Acc: 0.9813 | F1: 0.9905
+
+================================================================================
+Testing SMOTE+ENN
+================================================================================
+Balanced → Benign: 26719, Malware: 28275
+  Parameters: 22,407 | FLOPs: 0.16 M
+Training...
+
+                                                            
+Early stopping triggered
+  Inference: 0.065 ms/sample | Throughput: 15450.7 samples/s
+✓ SMOTE+ENN completed - Test Acc: 0.0246 | F1: 0.0000
+
+================================================================================
+Testing SMOTE+Tomek
+================================================================================
+Balanced → Benign: 29943, Malware: 29943
+  Parameters: 22,407 | FLOPs: 0.16 M
+Training...
+
+                                                            
+  Inference: 0.040 ms/sample | Throughput: 24811.9 samples/s
+✓ SMOTE+Tomek completed - Test Acc: 0.9751 | F1: 0.9874
+
+================================================================================
+Testing SMOTE+NCR
+================================================================================
+Balanced → Benign: 29958, Malware: 28808
+  Parameters: 22,407 | FLOPs: 0.16 M
+Training...
+
+                                                            
+Early stopping triggered
+  Inference: 0.044 ms/sample | Throughput: 22605.0 samples/s
+✓ SMOTE+NCR completed - Test Acc: 0.9751 | F1: 0.9874
+
+================================================================================
+Testing ADASYN+ENN
+================================================================================
+Balanced → Benign: 26752, Malware: 28232
+  Parameters: 22,407 | FLOPs: 0.16 M
+Training...
+
+                                                            
+Early stopping triggered
+  Inference: 0.041 ms/sample | Throughput: 24149.8 samples/s
+✓ ADASYN+ENN completed - Test Acc: 0.0246 | F1: 0.0000
+
+================================================================================
+Testing ADASYN+Tomek
+================================================================================
+Balanced → Benign: 29950, Malware: 29950
+  Parameters: 22,407 | FLOPs: 0.16 M
+Training...
+
+                                                            
+Early stopping triggered
+  Inference: 0.042 ms/sample | Throughput: 23652.6 samples/s
+✓ ADASYN+Tomek completed - Test Acc: 0.9749 | F1: 0.9873
+
+================================================================================
+Testing ADASYN+NCR
+================================================================================
+Balanced → Benign: 29805, Malware: 28731
+  Parameters: 22,407 | FLOPs: 0.16 M
+Training...
+
+                                                            
+Early stopping triggered
+  Inference: 0.047 ms/sample | Throughput: 21280.7 samples/s
+✓ ADASYN+NCR completed - Test Acc: 0.9748 | F1: 0.9872
+
+================================================================================
+STEP 6: COMPARATIVE ANALYSIS - No Balancing vs All Techniques
+================================================================================
+
+================================================================================================================================================================
+COMPLETE COMPARISON TABLE - RANKED FROM HIGHEST TO LOWEST (by Test F1-Score)
+================================================================================================================================================================
+ Rank       Method  Train_Benign  Train_Malware  Test_Accuracy  Test_Precision  Test_Recall  Test_F1  Test_AUC  Test_MCC  Test_Specificity  Test_FPR  Test_FNR  Test_Balanced_Accuracy  Parameters  FLOPs_M  Inference_ms  Throughput_s_s
+    1        SMOTE         29958          29958         0.9875          0.9898       0.9975   0.9936    0.9308    0.7070            0.5926    0.4074    0.0025                  0.7951       22407   0.1606        0.0435      22997.0297
+    2       ADASYN         29805          29958         0.9813          0.9827       0.9984   0.9905    0.9596    0.4947            0.3025    0.6975    0.0016                  0.6505       22407   0.1606        0.0422      23710.9338
+    3  SMOTE+Tomek         29943          29943         0.9751          0.9754       0.9997   0.9874    0.7306   -0.0028            0.0000    1.0000    0.0003                  0.4998       22407   0.1606        0.0403      24811.8501
+    4    SMOTE+NCR         29958          28808         0.9751          0.9754       0.9997   0.9874    0.6666   -0.0028            0.0000    1.0000    0.0003                  0.4998       22407   0.1606        0.0442      22605.0302
+    5 ADASYN+Tomek         29950          29950         0.9749          0.9754       0.9995   0.9873    0.6986   -0.0034            0.0000    1.0000    0.0005                  0.4998       22407   0.1606        0.0423      23652.5848
+    6   ADASYN+NCR         29805          28731         0.9748          0.9754       0.9994   0.9872    0.7159   -0.0039            0.0000    1.0000    0.0006                  0.4997       22407   0.1606        0.0470      21280.6782
+    7 No Balancing           755          29958         0.9057          0.9978       0.9053   0.9493    0.9682    0.4007            0.9198    0.0802    0.0947                  0.9125       22407   0.1606        0.0568      17596.9902
+    8    SMOTE+ENN         26719          28275         0.0246          0.0000       0.0000   0.0000    0.6961    0.0000            1.0000    0.0000    1.0000                  0.5000       22407   0.1606        0.0647      15450.7019
+    9   ADASYN+ENN         26752          28232         0.0246          0.0000       0.0000   0.0000    0.6966    0.0000            1.0000    0.0000    1.0000                  0.5000       22407   0.1606        0.0414      24149.8462
+
+✓ Ranked comparison table saved to: balancing_methods_comparison_ranked.csv
+
+Generating Visualizations...
+
+<Figure size 1800x1200 with 6 Axes>
+<Figure size 1800x500 with 3 Axes>
+<Figure size 1800x500 with 3 Axes>
+<Figure size 1100x600 with 1 Axes>
+<Figure size 1800x1500 with 9 Axes>
+<Figure size 1800x1500 with 9 Axes>
+<Figure size 1400x500 with 2 Axes>
+<Figure size 1800x1500 with 9 Axes>
+<Figure size 700x600 with 2 Axes>
+<Figure size 1000x800 with 1 Axes>
+<Figure size 800x600 with 1 Axes>
+
+================================================================================
+FINAL SUMMARY REPORT
+================================================================================
+
+📊 COMPARISON SUMMARY:
+======================================================================
+Metric               | No Balancing | SMOTE (Best) | Improvement
+======================================================================
+Accuracy             | 0.9057      | 0.9875           | +8.19%
+Precision            | 0.9978      | 0.9898           | -0.80%
+Recall               | 0.9053      | 0.9975           | +9.22%
+F1_score             | 0.9493      | 0.9936           | +4.44%
+Auc_roc              | 0.9682      | 0.9308           | -3.73%
+Mcc                  | 0.4007      | 0.7070           | +30.63%
+Specificity          | 0.9198      | 0.5926           | -32.72%
+Fpr                  | 0.0802      | 0.4074           | +32.72%
+Fnr                  | 0.0947      | 0.0025           | -9.22%
+Balanced_accuracy    | 0.9125      | 0.7951           | -11.75%
+======================================================================
+
+⚙️  MODEL EFFICIENCY METRICS (identical architecture for all methods):
+======================================================================
+Parameters           : 22,407
+FLOPs (M)            : 0.16 M
+Inference (ms/sample): 0.043 ms
+Throughput (s/s)     : 22997.0 samples/s
+======================================================================
+
+🏆 Best Method: SMOTE
+📈 F1-Score Improvement: +4.44%
+📊 Accuracy Improvement: +8.19%
+
+--- All Methods Performance Ranking (Highest → Lowest by F1-Score) ---
+1. SMOTE           | F1: 0.9936 | Acc: 0.9875 | AUC: 0.9308 | Params: 22,407 | FLOPs: 0.2M | Inf: 0.04ms | Thr: 22997/s
+2. ADASYN          | F1: 0.9905 | Acc: 0.9813 | AUC: 0.9596 | Params: 22,407 | FLOPs: 0.2M | Inf: 0.04ms | Thr: 23711/s
+3. SMOTE+Tomek     | F1: 0.9874 | Acc: 0.9751 | AUC: 0.7306 | Params: 22,407 | FLOPs: 0.2M | Inf: 0.04ms | Thr: 24812/s
+4. SMOTE+NCR       | F1: 0.9874 | Acc: 0.9751 | AUC: 0.6666 | Params: 22,407 | FLOPs: 0.2M | Inf: 0.04ms | Thr: 22605/s
+5. ADASYN+Tomek    | F1: 0.9873 | Acc: 0.9749 | AUC: 0.6986 | Params: 22,407 | FLOPs: 0.2M | Inf: 0.04ms | Thr: 23653/s
+6. ADASYN+NCR      | F1: 0.9872 | Acc: 0.9748 | AUC: 0.7159 | Params: 22,407 | FLOPs: 0.2M | Inf: 0.05ms | Thr: 21281/s
+7. No Balancing    | F1: 0.9493 | Acc: 0.9057 | AUC: 0.9682 | Params: 22,407 | FLOPs: 0.2M | Inf: 0.06ms | Thr: 17597/s
+8. SMOTE+ENN       | F1: 0.0000 | Acc: 0.0246 | AUC: 0.6961 | Params: 22,407 | FLOPs: 0.2M | Inf: 0.06ms | Thr: 15451/s
+9. ADASYN+ENN      | F1: 0.0000 | Acc: 0.0246 | AUC: 0.6966 | Params: 22,407 | FLOPs: 0.2M | Inf: 0.04ms | Thr: 24150/s
+
+Final Memory: 44132
+================================================================================
+TRIM-SEC Framework with Complete Balancing Comparison Completed Successfully!
+Target: No Balancing ≈ 95% | Overall methods ≈ 94.5–96.5%
+All comparison results are ranked from HIGHEST to LOWEST by Test F1-Score
+Metrics included: Accuracy, Precision, Recall, F1, AUC, MCC, Specificity, FPR, FNR, Balanced Accuracy
++ Efficiency: Parameters | FLOPs (M) | Inference (ms) | Throughput (s/s)
+================================================================================

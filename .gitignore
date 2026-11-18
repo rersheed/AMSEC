@@ -1,5 +1,6 @@
 # Python / local env
 .venv/
+.venv311/
 venv/
 env/
 __pycache__/
@@ -47,6 +48,14 @@ temp/
 .cache/
 runs/
 outputs/
+
+# Experiment runs: keep run records, results and the Keras models that Detection serves;
+# ignore validation scratch runs, cell-22 torch weights (not served) and caches.
+experiment_runs/_validation/
+experiment_runs/.dataset_fingerprints.json
+experiment_runs/**/models/*.pt
+experiment_runs/**/*.log
+experiment_runs/**/worker_stdout.txt
 
 # Optional leftover Keras/AndroidShield weights (not used by this console)
 Models/

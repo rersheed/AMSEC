@@ -1,0 +1,6 @@
+PHASE 1: DATA LOADING
+  Using 'Label' as label column
+✓ Loaded NIDS: (150000, 45)
+  Label distribution: Normal=49414, Attack=100586
+  API dataset treated as unavailable (as in the historical notebook run).
+  After variance threshold: 41 features

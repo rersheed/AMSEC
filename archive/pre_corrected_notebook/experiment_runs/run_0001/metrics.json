@@ -1,0 +1,70 @@
+{
+  "accuracy": 0.8683333333333333,
+  "precision": 0.8863620000529393,
+  "recall": 0.8683333333333333,
+  "f1": 0.871029322267516,
+  "balanced_accuracy": 0.8835321078310581,
+  "mcc": 0.7360372979694256,
+  "specificity": 0.9320388349514563,
+  "false_positive_rate": 0.06796116504854369,
+  "false_negative_rate": 0.1649746192893401,
+  "confusion_matrix": [
+    [
+      192,
+      14
+    ],
+    [
+      65,
+      329
+    ]
+  ],
+  "roc_auc": 0.953329062145779,
+  "parameters": 75140,
+  "flops": 150280,
+  "training_seconds": 6.269160985946655,
+  "backend": "pytorch_notebook_port",
+  "protocol": "leakage_controlled",
+  "sampling_method": "SMOTE",
+  "n_features_selected": 22,
+  "selected_features": [
+    "L4_SRC_PORT",
+    "L4_DST_PORT",
+    "L7_PROTO",
+    "OUT_PKTS",
+    "TCP_FLAGS",
+    "CLIENT_TCP_FLAGS",
+    "FLOW_DURATION_MILLISECONDS",
+    "DURATION_IN",
+    "LONGEST_FLOW_PKT",
+    "MAX_IP_PKT_LEN",
+    "SRC_TO_DST_SECOND_BYTES",
+    "DST_TO_SRC_SECOND_BYTES",
+    "RETRANSMITTED_IN_BYTES",
+    "RETRANSMITTED_OUT_BYTES",
+    "DST_TO_SRC_AVG_THROUGHPUT",
+    "NUM_PKTS_UP_TO_128_BYTES",
+    "NUM_PKTS_256_TO_512_BYTES",
+    "TCP_WIN_MAX_IN",
+    "TCP_WIN_MAX_OUT",
+    "ICMP_IPV4_TYPE",
+    "DNS_QUERY_TYPE",
+    "DNS_TTL_ANSWER"
+  ],
+  "split_sizes": {
+    "train": 3936,
+    "val": 408,
+    "test": 600
+  },
+  "train_class_counts_after_resample": {
+    "0": 1968,
+    "1": 1968
+  },
+  "leakage_controls": [
+    "split_before_fit",
+    "scaler_train_only",
+    "mi_ga_train_only",
+    "resample_train_only",
+    "meta_learner_on_validation_predictions",
+    "evaluate_once_on_held_out_test"
+  ]
+}

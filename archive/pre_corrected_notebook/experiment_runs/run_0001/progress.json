@@ -1,0 +1,8 @@
+{
+  "phase": "done",
+  "message": "completed",
+  "metrics": {
+    "accuracy": 0.8683333333333333,
+    "f1": 0.871029322267516
+  }
+}

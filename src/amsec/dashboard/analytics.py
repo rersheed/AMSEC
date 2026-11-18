@@ -1,527 +1,214 @@
-"""Advanced Research Analytics workspace — ten scientific tabs."""
+"""Results & Analytics — every chart names its experiment (cell) and its source."""
 from __future__ import annotations
-
-import json
-from pathlib import Path
 
 import numpy as np
 import pandas as pd
 import plotly.express as px
 import plotly.graph_objects as go
 import streamlit as st
-from plotly.subplots import make_subplots
+from sklearn.metrics import auc, precision_recall_curve, roc_curve
 
-from amsec.dashboard.theme import source_chip, style_fig, unavailable_box
-from amsec.inference import get_ensemble, manifest_available
-from amsec.research import (
-    ROOT,
-    artifact_file_sizes,
-    cnn_bilstm_benchmark,
-    complexity_table,
-    comparison_rows,
-    load_catalog,
-    load_local_evaluation,
-    load_manifest,
-    load_verified,
-    local_metrics_enriched,
-    mobilenet_ablations,
-    notebook_final_metrics,
-    stacking_ablations,
+from amsec.dashboard.data import (
+    CELL22_METRIC_NOTE, CELL24_METRIC_NOTE, METRIC_LABELS, compare_with_historical, historical,
+    historical_tables, run_confusion, run_file, run_history, run_predictions, run_results, runs_for,
 )
+from amsec.dashboard.theme import SOURCE_COLORS, color_map, style_fig, thin_bars
+from amsec.notebook.provenance import EXPERIMENTS
+
+TEXT_COLS = ("method", "model_type", "config")
 
 
-METRIC_HELP = {
-    "accuracy": "Overall correct predictions / total. Misleading under severe imbalance.",
-    "precision": "Of predicted positives, how many are true positives.",
-    "recall": "Of actual positives, how many were found (sensitivity / TPR).",
-    "f1": "Harmonic mean of precision and recall.",
-    "balanced_accuracy": "Mean of recall for each class — preferred under imbalance.",
-    "mcc": "Matthews correlation; robust for binary imbalance.",
-    "roc_auc": "Area under ROC. Scalar only here unless probability curves were exported.",
-    "fpr": "False positive rate = FP / (FP + TN).",
-    "fnr": "False negative rate = FN / (FN + TP).",
-}
+def _label_col(df: pd.DataFrame) -> str:
+    if "config" in df.columns and "model_type" in df.columns and df["model_type"].nunique() > 1:
+        df["label"] = df["method"].astype(str) + " · " + df["model_type"].astype(str)
+    elif "entry" in df.columns and "config" in df.columns:
+        df["label"] = df["entry"].astype(int).astype(str) + ". " + df.get("sampling_method", df.get("method")).astype(str)
+    elif "entry" in df.columns:
+        df["label"] = df["entry"].astype(int).astype(str) + ". " + df["method"].astype(str)
+    else:
+        df["label"] = df["method"].astype(str)
+    return "label"
 
 
-def _fmt(value, digits=5):
-    if value is None or (isinstance(value, float) and pd.isna(value)):
-        return "—"
-    if isinstance(value, float):
-        return f"{value:.{digits}f}"
-    return f"{value:,}"
+def metric_bar(df: pd.DataFrame, metric: str, title: str, color_by: str | None = None):
+    d = df.copy()
+    lab = _label_col(d)
+    d = d.sort_values(metric, ascending=True)
+    kwargs = {}
+    if color_by and color_by in d.columns and d[color_by].nunique() > 1:
+        kwargs = dict(color=color_by, color_discrete_map=color_map(d[color_by].unique().tolist()))
+    fig = px.bar(d, x=metric, y=lab, orientation="h", text=d[metric].map(lambda v: f"{v:.4f}"),
+                 hover_data=[c for c in d.columns if c in ("accuracy", "f1_score", "balanced_accuracy", "roc_auc", "mcc", "fpr")], **kwargs)
+    fig.update_traces(textposition="outside", cliponaxis=False)
+    lo = max(0.0, float(d[metric].min()) - 0.05) if d[metric].min() > 0.5 else 0.0
+    fig.update_xaxes(range=[lo, min(1.02, float(d[metric].max()) + 0.03)], title=METRIC_LABELS.get(metric, metric))
+    fig.update_yaxes(title="")
+    return thin_bars(style_fig(fig, title, height=max(320, 34 * len(d) + 120)))
+
+
+def _metric_choices(df: pd.DataFrame) -> list[str]:
+    return [m for m in METRIC_LABELS if m in df.columns]
 
 
 def render_analytics() -> None:
-    st.title("Research Analytics")
-    st.caption("Publication-oriented workspace. Every chart is gated on an explicit source. Fabricated curves are not shown.")
-    experiment = st.selectbox(
-        "Primary experiment focus",
-        [
-            "Notebook cell-4 SMOTE-ENN stack",
-            "Local leakage-corrected retrain",
-            "Cell-2 MobileNet ablations",
-            "Cell-22 CNN–BiLSTM benchmark",
-        ],
-    )
-    tabs = st.tabs(
-        [
-            "1 · Performance",
-            "2 · Training",
-            "3 · Confusion",
-            "4 · ROC / PR",
-            "5 · MI–GA",
-            "6 · Resampling",
-            "7 · Complexity",
-            "8 · Explainability",
-            "9 · Statistics",
-            "10 · Reproducibility",
-        ]
-    )
-    with tabs[0]:
-        _tab_performance(experiment)
-    with tabs[1]:
-        _tab_training()
-    with tabs[2]:
-        _tab_confusion()
-    with tabs[3]:
-        _tab_roc_pr()
-    with tabs[4]:
-        _tab_feature_selection()
-    with tabs[5]:
-        _tab_resampling()
-    with tabs[6]:
-        _tab_complexity()
-    with tabs[7]:
-        _tab_explain()
-    with tabs[8]:
-        _tab_statistics()
-    with tabs[9]:
-        _tab_reproducibility()
+    st.title("Results & Analytics")
+    options = {k: f"Cell {v['cell']} — {v['short']}" for k, v in EXPERIMENTS.items()}
+    exp_id = st.selectbox("Experiment", list(options), format_func=options.get, index=list(options).index("cell04_stacking9"))
+    spec = EXPERIMENTS[exp_id]
+    st.caption(f"{spec['title']} · {spec['framework']} · {spec['design']}")
+    st.caption(CELL22_METRIC_NOTE if exp_id == "cell22_dual_dataset" else (CELL24_METRIC_NOTE if exp_id in ("cell02_lightweight16", "cell04_stacking9") else ""))
+    tabs = ["Notebook (historical)", "AMSEC runs (new)"]
+    if exp_id in ("cell02_lightweight16", "cell04_stacking9"):
+        tabs.append("Historical vs reproduced")
+    t = st.tabs(tabs)
+    with t[0]:
+        _historical(exp_id)
+    with t[1]:
+        _runs(exp_id)
+    if len(t) > 2:
+        with t[2]:
+            _comparison(exp_id)
 
 
-def _tab_performance(experiment: str) -> None:
-    st.subheader("Experimental performance")
-    with st.expander("Metric definitions", expanded=False):
-        for key, text in METRIC_HELP.items():
-            st.markdown(f"**{key}** — {text}")
-
-    st.markdown(f"**Focus:** {experiment}")
-    st.caption(source_chip("mixed"))
-
-    notebook = notebook_final_metrics()
-    local = local_metrics_enriched()
-    scorecards = st.columns(4)
-    scorecards[0].metric("Notebook accuracy", _fmt(notebook["accuracy"]))
-    scorecards[1].metric("Notebook F1", _fmt(notebook["f1"]))
-    if local:
-        scorecards[2].metric("Local accuracy", _fmt(local["accuracy"]))
-        scorecards[3].metric("Local F1", _fmt(local["f1"]))
-    else:
-        scorecards[2].metric("Local accuracy", "—")
-        scorecards[3].metric("Local F1", "—")
-
-    st.markdown("##### Notebook versus local (non-equivalent protocols)")
-    st.dataframe(comparison_rows(), hide_index=True, width="stretch")
-
-    stack = stacking_ablations()
-    st.markdown("##### Cell-4 stacking ablations (same notebook protocol)")
-    st.caption(source_chip("notebook"))
-    metric = st.selectbox("Metric for ranking chart", ["f1", "balanced_accuracy", "accuracy", "mcc", "roc_auc"], key="perf_metric")
-    fig = px.bar(stack.sort_values(metric, ascending=False), x="sampling", y=metric, color="sampling", text=metric)
-    st.plotly_chart(style_fig(fig, f"Cell-4 stacking · {metric}", 420), width="stretch")
-
-    radar_metrics = ["accuracy", "precision", "recall", "f1", "balanced_accuracy", "mcc", "roc_auc"]
-    if local:
-        fig_r = go.Figure()
-        fig_r.add_trace(go.Scatterpolar(r=[notebook[m] for m in radar_metrics] + [notebook["accuracy"]], theta=radar_metrics + ["accuracy"], fill="toself", name="Notebook"))
-        fig_r.add_trace(go.Scatterpolar(r=[local[m] for m in radar_metrics] + [local["accuracy"]], theta=radar_metrics + ["accuracy"], fill="toself", name="Local retrain"))
-        fig_r.update_layout(polar=dict(radialaxis=dict(visible=True, range=[0.9, 1.0])))
-        st.plotly_chart(style_fig(fig_r, "Radar of scalar metrics (protocols differ)", 420), width="stretch")
-
-    st.markdown("##### Cell-2 MobileNet ablations")
-    st.caption(source_chip("notebook"))
-    mobile = mobilenet_ablations()
-    st.dataframe(mobile, hide_index=True, width="stretch")
-    fig_m = px.scatter(mobile, x="parameters", y="f1", color="model", hover_data=["sampling", "balanced_accuracy", "roc_auc"], size="roc_auc")
-    st.plotly_chart(style_fig(fig_m, "Cell-2 · F1 versus parameters", 420), width="stretch")
-
-    st.markdown("##### Cell-22 CNN–BiLSTM benchmark")
-    st.caption(source_chip("notebook"))
-    bench = cnn_bilstm_benchmark()
-    st.dataframe(bench, hide_index=True, width="stretch")
-    st.download_button("Export performance tables (CSV)", _bundle_performance_csv(), "amsec_performance_tables.csv", "text/csv")
-
-
-def _bundle_performance_csv() -> bytes:
-    parts = [
-        comparison_rows().assign(table="notebook_vs_local"),
-        stacking_ablations().assign(table="cell4_stack"),
-        mobilenet_ablations().assign(table="cell2_mobilenet"),
-        cnn_bilstm_benchmark().assign(table="cell22_bilstm"),
-    ]
-    return pd.concat(parts, ignore_index=True).to_csv(index=False).encode("utf-8")
-
-
-def _tab_training() -> None:
-    st.subheader("Training behaviour")
-    evaluation = load_local_evaluation()
-    if evaluation is None:
-        unavailable_box("No local training history. Train with scripts/train_local_ensemble.py.")
+# ---------------------------------------------------------------- historical
+def _historical(exp_id: str) -> None:
+    spec = EXPERIMENTS[exp_id]
+    if spec.get("untraceable"):
+        st.error("Cell 7 has **no source code**; its saved outputs cannot be traced to an implementation. Shown for audit only.")
+    if spec.get("no_saved_outputs"):
+        st.info("The corrected notebook stores **no outputs** for cell 22. There is nothing historical to show — see AMSEC runs.")
         return
-    st.caption(source_chip("verified") + " · Loss histories only (accuracy per epoch was not logged).")
-    mobile = pd.DataFrame(evaluation["mobile_history"])
-    light = pd.DataFrame(evaluation["lightweight_history"])
-    fig = make_subplots(rows=1, cols=2, subplot_titles=["MobileNet-style loss", "Lightweight CNN loss"])
-    fig.add_trace(go.Scatter(x=mobile["epoch"], y=mobile["train_loss"], name="Mobile train", line=dict(color="#3a7bfd")), row=1, col=1)
-    fig.add_trace(go.Scatter(x=mobile["epoch"], y=mobile["val_loss"], name="Mobile val", line=dict(color="#00e5cc", dash="dot")), row=1, col=1)
-    fig.add_trace(go.Scatter(x=light["epoch"], y=light["train_loss"], name="Light train", line=dict(color="#8b5cf6")), row=1, col=2)
-    fig.add_trace(go.Scatter(x=light["epoch"], y=light["val_loss"], name="Light val", line=dict(color="#ff6b35", dash="dot")), row=1, col=2)
-    st.plotly_chart(style_fig(fig, "Local retrain epoch histories", 420), width="stretch")
-
-    lr_fig = go.Figure()
-    lr_fig.add_trace(go.Scatter(x=mobile["epoch"], y=mobile["lr"], name="MobileNet LR", mode="lines+markers"))
-    lr_fig.add_trace(go.Scatter(x=light["epoch"], y=light["lr"], name="Lightweight LR", mode="lines+markers"))
-    st.plotly_chart(style_fig(lr_fig, "Learning-rate progression", 320), width="stretch")
-
-    best_m = int(mobile["val_loss"].idxmin())
-    best_l = int(light["val_loss"].idxmin())
-    st.info(
-        f"MobileNet-style best validation loss at epoch {mobile.loc[best_m, 'epoch']} "
-        f"({mobile.loc[best_m, 'val_loss']:.4f}). Lightweight best at epoch {light.loc[best_l, 'epoch']} "
-        f"({light.loc[best_l, 'val_loss']:.4f}). Early-stop restored those checkpoints."
-    )
-    gap_m = float(mobile.iloc[-1]["val_loss"] - mobile.iloc[-1]["train_loss"])
-    gap_l = float(light.iloc[-1]["val_loss"] - light.iloc[-1]["train_loss"])
-    st.write(f"Final train–val loss gap · MobileNet-style: **{gap_m:.4f}** · Lightweight: **{gap_l:.4f}**")
-    unavailable_box(
-        "Notebook training/validation accuracy curves were not exported from Kaggle. "
-        "Do not invent exponential learning curves. Re-run the notebook with history export to populate this tab for the original experiment."
-    )
-    st.download_button(
-        "Export local training histories",
-        pd.concat([mobile.assign(model="mobilenet"), light.assign(model="lightweight")]).to_csv(index=False),
-        "amsec_local_training_history.csv",
-        "text/csv",
-    )
+    tables = historical_tables(exp_id)
+    if not tables:
+        st.info("No results table in the saved outputs.")
+        return
+    for table_id, t in tables.items():
+        if not t.get("rows"):
+            continue
+        df = pd.DataFrame(t["rows"])
+        st.markdown(f"**{t['description']}** — source: notebook cell {spec['cell']} saved output (`{table_id}`)")
+        metric = st.selectbox("Metric", _metric_choices(df), index=_metric_choices(df).index("f1_score"), key=f"h_{exp_id}_{table_id}")
+        st.plotly_chart(metric_bar(df, metric, f"Cell {spec['cell']} · {METRIC_LABELS[metric]} · notebook", color_by="model_type"),
+                        width="stretch", key=f"hc_{exp_id}_{table_id}")
+        if {"f1_score", "balanced_accuracy"} <= set(df.columns) and exp_id not in ("cell02_lightweight16", "cell04_stacking9"):
+            fig = px.scatter(df, x="balanced_accuracy", y="f1_score", text="method", hover_data=[c for c in ("fpr", "specificity", "accuracy") if c in df.columns])
+            fig.update_traces(marker=dict(size=11, line=dict(width=2, color="#0b1220")), textposition="top center")
+            fig.update_xaxes(title="Balanced accuracy"); fig.update_yaxes(title="F1 (malware class)")
+            st.plotly_chart(style_fig(fig, f"Cell {spec['cell']} · F1 vs balanced accuracy · notebook", 400), width="stretch", key=f"hs_{exp_id}_{table_id}")
+            st.caption("High F1 with balanced accuracy near 0.5 means the benign minority is mostly misclassified.")
+        st.dataframe(df, hide_index=True, width="stretch")
+    fs = historical()["experiments"][exp_id].get("feature_selection")
+    if fs and fs.get("checkpoints"):
+        st.markdown("**Genetic algorithm convergence (printed every 5 generations)** — notebook")
+        g = pd.DataFrame(fs["checkpoints"])
+        fig = px.line(g, x="generation", y="best_fitness", markers=True, hover_data=["n_features"])
+        fig.update_traces(line_width=2, marker_size=9)
+        st.plotly_chart(style_fig(fig, f"Cell {spec['cell']} · GA best fitness · notebook", 320), width="stretch", key=f"ga_{exp_id}")
+        st.caption(f"NIDS shape {fs['nids_shape']}, labels {fs['label_counts']}, {fs['after_variance_threshold']} features after variance threshold, "
+                   f"GA kept {fs['selected']} of {fs['candidates']}. Feature names were not printed by the notebook.")
 
 
-def _tab_confusion() -> None:
-    st.subheader("Confusion matrix and classification errors")
-    local = local_metrics_enriched()
-    mode = st.radio("Matrix display", ["Raw counts", "Row-normalised percentages"], horizontal=True)
-    if local is None:
-        unavailable_box("Local hold-out confusion matrix unavailable.")
-    else:
-        st.caption(source_chip("verified") + " · Local leakage-corrected hold-out test set.")
-        matrix = np.array(local["confusion_matrix"]["matrix"], dtype=float)
-        labels = local["confusion_matrix"]["labels"]
-        z = matrix.copy()
-        text = matrix.astype(int).astype(str)
-        if mode.startswith("Row"):
-            z = matrix / matrix.sum(axis=1, keepdims=True)
-            text = np.vectorize(lambda v: f"{v:.1%}")(z)
-        fig = go.Figure(
-            go.Heatmap(
-                z=z,
-                x=[f"Pred {x}" for x in labels],
-                y=[f"True {y}" for y in labels],
-                text=text,
-                texttemplate="%{text}",
-                colorscale=[[0, "#0b1220"], [0.5, "#3a7bfd"], [1, "#00e5cc"]],
-                showscale=True,
-            )
-        )
-        st.plotly_chart(style_fig(fig, "Local hold-out confusion matrix", 420), width="stretch")
-        c1, c2, c3, c4 = st.columns(4)
-        c1.metric("TN", local["tn"])
-        c2.metric("FP", local["fp"])
-        c3.metric("FN", local["fn"])
-        c4.metric("TP", local["tp"])
-        d1, d2, d3, d4 = st.columns(4)
-        d1.metric("FPR", _fmt(local["fpr"]))
-        d2.metric("FNR", _fmt(local["fnr"]))
-        d3.metric("Attack precision", _fmt(local["precision_attack"]))
-        d4.metric("Attack recall", _fmt(local["recall_attack"]))
-        err = pd.DataFrame(
-            {
-                "rate": ["FPR", "FNR", "Error rate"],
-                "value": [local["fpr"], local["fnr"], local["error_rate"]],
-            }
-        )
-        st.plotly_chart(style_fig(px.bar(err, x="rate", y="value", text="value"), "Local error rates", 320), width="stretch")
+# ---------------------------------------------------------------- runs
+def _runs(exp_id: str) -> None:
+    runs = runs_for(exp_id)
+    if not runs:
+        st.info("No completed AMSEC run for this experiment." + (" Launch one in the Experiment Laboratory." if EXPERIMENTS[exp_id].get("executable") else " This experiment is historical-only."))
+        return
+    run = st.selectbox("Run", runs, format_func=lambda r: f"{r['run_id']} · {r['kind']} · {r['created_at']}", key=f"run_{exp_id}")
+    if run["kind"] == "smoke":
+        st.warning("Smoke run — reduced parameters. Not a scientific result.")
+    elif run["kind"] == "partial":
+        st.info(f"Partial run — configurations: {run['selection']}.")
+    df = run_results(run)
+    if df.empty:
+        st.error("Run has no results.")
+        return
+    metric = st.selectbox("Metric", _metric_choices(df), index=_metric_choices(df).index("f1_score"), key=f"rm_{run['run_id']}")
+    st.plotly_chart(metric_bar(df, metric, f"Cell {run['cell']} · {METRIC_LABELS[metric]} · {run['run_id']}", color_by="model_type"),
+                    width="stretch", key=f"rc_{run['run_id']}")
+    st.dataframe(df.drop(columns=[c for c in ("confusion_matrix", "class_counts_after_sampling") if c in df.columns]), hide_index=True, width="stretch")
 
-    unavailable_box(
-        "Notebook cell-4 SMOTE-ENN confusion matrix arrays were not serialised into this package. "
-        "Only scalar metrics were transcribed."
-    )
-    st.markdown("##### Cell-22 benchmark false-alarm profile")
-    st.caption(source_chip("notebook"))
-    bench = cnn_bilstm_benchmark()[["method", "accuracy", "f1", "balanced_accuracy", "fpr", "fnr", "specificity"]]
-    st.dataframe(bench, hide_index=True, width="stretch")
-    st.plotly_chart(
-        style_fig(px.bar(bench, x="method", y=["fpr", "balanced_accuracy"], barmode="group"), "Cell-22 FPR vs balanced accuracy", 420),
-        width="stretch",
-    )
-
-
-def _tab_roc_pr() -> None:
-    st.subheader("ROC and precision–recall analysis")
-    notebook = notebook_final_metrics()
-    local = local_metrics_enriched()
+    keys = df["method"].tolist() if exp_id == "cell22_dual_dataset" else df.sort_values("entry")["entry"].astype(int).tolist()
+    fmt = (lambda k: k) if exp_id == "cell22_dual_dataset" else (lambda k: f"{k}. {df[df['entry'] == k]['config'].iloc[0]}")
+    key = st.selectbox("Configuration detail", keys, format_func=fmt, key=f"rk_{run['run_id']}")
     c1, c2 = st.columns(2)
-    c1.metric("Notebook ROC-AUC (scalar)", _fmt(notebook["roc_auc"]))
-    c1.caption(source_chip("notebook"))
-    if local:
-        c2.metric("Local ROC-AUC (scalar)", _fmt(local["roc_auc"]))
-        c2.caption(source_chip("verified"))
-    unavailable_box(
-        "Full ROC and precision–recall curves require exported test probability vectors. "
-        "Those arrays were not saved for the notebook run or the local hold-out. "
-        "Scalar AUC values above are transcribed / verified; curves are not fabricated from a single AUC."
-    )
-    unavailable_box(
-        "Precision/recall versus threshold and TPR/FPR versus threshold plots are Not validated here for the same reason."
-    )
-    st.info(
-        "Class imbalance implication: high accuracy with elevated FPR (see cell-22 ADASYN) can look strong on ROC-AUC "
-        "while harming specificity. Prefer balanced accuracy, MCC and FPR together."
-    )
+    with c1:
+        cm = run_confusion(run, key)
+        if cm:
+            names = ["benign/normal", "malware/attack"]
+            fig = go.Figure(go.Heatmap(z=cm, x=names, y=names, colorscale=[[0, "#0b1220"], [1, "#3987e5"]], text=cm, texttemplate="%{text}",
+                                       hovertemplate="true %{y}<br>predicted %{x}<br>%{z}<extra></extra>", showscale=False))
+            fig.update_xaxes(title="Predicted"); fig.update_yaxes(title="True", autorange="reversed")
+            st.plotly_chart(style_fig(fig, f"Confusion matrix · {run['run_id']}", 340), width="stretch", key=f"cm_{run['run_id']}_{key}")
+    with c2:
+        pred = run_predictions(run, key)
+        if pred is not None and pred["y_true"].nunique() == 2:
+            fpr, tpr, _ = roc_curve(pred["y_true"], pred["proba"])
+            prec, rec, _ = precision_recall_curve(pred["y_true"], pred["proba"])
+            curves = pd.concat([
+                pd.DataFrame({"x": fpr, "y": tpr, "curve": f"ROC (AUC {auc(fpr, tpr):.4f})"}),
+                pd.DataFrame({"x": rec, "y": prec, "curve": f"Precision–recall (AP area {auc(rec, prec):.4f})"}),
+            ])
+            fig = px.line(curves, x="x", y="y", color="curve", color_discrete_sequence=["#3987e5", "#d95926"])
+            fig.update_traces(line_width=2)
+            fig.update_xaxes(title="FPR / recall", range=[0, 1]); fig.update_yaxes(title="TPR / precision", range=[0, 1.02])
+            st.plotly_chart(style_fig(fig, f"Curves from saved test probabilities · {run['run_id']}", 340), width="stretch", key=f"roc_{run['run_id']}_{key}")
+    hist = run_history(run, key)
+    if hist is not None and len(hist):
+        for measure in ("loss", "accuracy"):
+            h = hist.dropna(subset=[measure]).copy()
+            h["series_label"] = h["model"] + " · " + h["series"]
+            fig = px.line(h, x="epoch", y=measure, color="series_label", markers=True, color_discrete_map=color_map(h["series_label"].unique().tolist()))
+            fig.update_traces(line_width=2, marker_size=8)
+            st.plotly_chart(style_fig(fig, f"Training {measure} · {run['run_id']}", 320), width="stretch", key=f"h_{measure}_{run['run_id']}_{key}")
+    ga = run_file(run, "ga_fitness.csv")
+    if ga.exists():
+        g = pd.read_csv(ga).assign(source="AMSEC run (new)")
+        hist_fs = historical()["experiments"][exp_id].get("feature_selection", {}).get("checkpoints", [])
+        hg = pd.DataFrame(hist_fs).assign(source="Notebook (historical)") if hist_fs else pd.DataFrame()
+        fig = px.line(pd.concat([g, hg]), x="generation", y="best_fitness", color="source", markers=True, color_discrete_map=SOURCE_COLORS)
+        fig.update_traces(line_width=2, marker_size=8)
+        st.plotly_chart(style_fig(fig, "GA best fitness — run vs notebook checkpoints", 320), width="stretch", key=f"ga_{run['run_id']}")
+        feats = run_file(run, "selected_features.json")
+        if feats.exists():
+            import json
+            fr = json.loads(feats.read_text(encoding="utf-8"))
+            st.markdown(f"**Selected features ({len(fr['selected_features'])}):** " + ", ".join(f"`{f}`" for f in fr["selected_features"]))
+    mi = run_file(run, "nids_mutual_information_scores.csv")
+    if mi.exists():
+        m = pd.read_csv(mi).head(15).sort_values("mi_score")
+        fig = px.bar(m, x="mi_score", y="feature", orientation="h")
+        st.plotly_chart(thin_bars(style_fig(fig, f"NIDS mutual information (train split, top 15) · {run['run_id']}", 460)), width="stretch", key=f"mi_{run['run_id']}")
 
 
-def _tab_feature_selection() -> None:
-    st.subheader("Feature engineering and MI–GA")
-    evaluation = load_local_evaluation()
-    verified = load_verified()
-    if evaluation:
-        selection = evaluation["selection"]
-        st.caption(source_chip("verified") + " · Local retrain selection.")
-        a, b, c, d = st.columns(4)
-        a.metric("After variance threshold", selection["features_after_variance_threshold"])
-        b.metric("MI pool (k)", selection["mutual_information_k"])
-        c.metric("Selected features", len(selection["selected_features"]))
-        reduction = 1 - len(selection["selected_features"]) / max(selection["features_after_variance_threshold"], 1)
-        d.metric("Dimensionality reduction", f"{reduction:.1%}")
-        mi = pd.DataFrame(selection["top_mutual_information"])
-        st.plotly_chart(
-            style_fig(px.bar(mi, x="score", y="feature", orientation="h", title=""), "Local MI ranking (top 15)", 480),
-            width="stretch",
-        )
-        st.markdown("**Selected local feature names**")
-        st.code(", ".join(selection["selected_features"]))
-        fitness = pd.DataFrame({"generation": list(range(1, len(selection["ga_fitness_history"]) + 1)), "best_fitness": selection["ga_fitness_history"]})
-        st.plotly_chart(style_fig(px.line(fitness, x="generation", y="best_fitness", markers=True), "Local GA fitness convergence", 320), width="stretch")
-        st.download_button("Export local MI ranking", mi.to_csv(index=False), "amsec_local_mi_ranking.csv", "text/csv")
-    else:
-        unavailable_box("Local MI–GA logs missing.")
-
-    st.markdown("##### Notebook cell-4 selection")
-    st.caption(source_chip("notebook"))
-    st.write("Variance threshold retained 41 features; GA kept **5**. Feature names were **not printed**.")
-    unavailable_box("Notebook MI ranking table and GA convergence series were not exported as machine-readable files.")
-
-    st.markdown("##### Cell-22 API MI features")
-    st.caption(source_chip("notebook"))
-    api_mi = pd.DataFrame(verified["cell22_api_mi_features"])
-    st.dataframe(api_mi, hide_index=True, width="stretch")
-    st.plotly_chart(style_fig(px.bar(api_mi, x="feature", y="mi_score", text="mi_score"), "Cell-22 API MI top-5", 320), width="stretch")
-
-
-def _tab_resampling() -> None:
-    st.subheader("Class imbalance and resampling")
-    criterion = st.selectbox(
-        "Best-strategy criterion",
-        ["f1", "balanced_accuracy", "accuracy", "mcc", "roc_auc"],
-        help="The winner can change with the chosen criterion.",
-    )
-    st.markdown("##### Cell-4 stacking ensemble")
-    st.caption(source_chip("notebook") + " · Notebook applied resampling before the split.")
-    stack = stacking_ablations().sort_values(criterion, ascending=False)
-    st.dataframe(stack, hide_index=True, width="stretch")
-    st.success(f"Best under **{criterion}**: `{stack.iloc[0]['sampling']}` ({criterion}={stack.iloc[0][criterion]:.5f})")
-    st.plotly_chart(
-        style_fig(px.bar(stack, x="sampling", y=["accuracy", "balanced_accuracy", "f1"], barmode="group"), "Cell-4 resampling comparison", 420),
-        width="stretch",
-    )
-
-    evaluation = load_local_evaluation()
-    if evaluation:
-        st.markdown("##### Local retrain class counts")
-        st.caption(source_chip("verified") + " · SMOTE-ENN on training fold only.")
-        split = evaluation["split"]
-        c1, c2, c3, c4 = st.columns(4)
-        c1.metric("Train (pre-resample)", f"{split['train']:,}")
-        c2.metric("Validation", f"{split['validation']:,}")
-        c3.metric("Test", f"{split['test']:,}")
-        c4.metric("Train after SMOTE-ENN", f"{split['resampled_train']:,}")
-
-    st.markdown("##### Cell-22 CNN–BiLSTM resampling")
-    st.caption(source_chip("notebook"))
-    bench = cnn_bilstm_benchmark().sort_values(criterion if criterion in cnn_bilstm_benchmark().columns else "f1", ascending=False)
-    # cell22 may lack mcc in sort for some criteria - use available
-    sort_key = criterion if criterion in bench.columns else "f1"
-    bench = cnn_bilstm_benchmark().sort_values(sort_key, ascending=False)
-    st.dataframe(bench, hide_index=True, width="stretch")
-    st.warning(
-        "Under raw F1, ADASYN wins in cell 22, but balanced accuracy falls to 0.6937 and FPR rises to 0.6111. "
-        "SMOTE-ENN collapses. Criterion choice matters."
-    )
-    fig = px.scatter(bench, x="fpr", y="balanced_accuracy", size="f1", color="method", hover_data=["accuracy", "fnr"])
-    st.plotly_chart(style_fig(fig, "Cell-22 · balanced accuracy versus FPR", 420), width="stretch")
-
-
-def _tab_complexity() -> None:
-    st.subheader("Model architecture and complexity")
-    table = complexity_table()
-    st.dataframe(table, hide_index=True, width="stretch")
-    plot_df = table.dropna(subset=["parameters", "f1"])
-    fig = px.scatter(
-        plot_df,
-        x="parameters",
-        y="f1",
-        color="source",
-        hover_data=["model", "experiment", "balanced_accuracy", "flops_m"],
-        size=[20] * len(plot_df),
-        log_x=True,
-    )
-    st.plotly_chart(style_fig(fig, "Performance versus parameter complexity", 420), width="stretch")
-    st.caption("FLOPs use notebook definitions (often 2×parameters). Local PyTorch FLOPs were not profiled. No Android on-device latency is claimed.")
-
-    sizes = artifact_file_sizes()
-    st.markdown("##### Local artifact sizes")
-    st.caption(source_chip("verified"))
-    st.dataframe(sizes, hide_index=True, width="stretch")
-
-    st.markdown("##### Ensemble architecture (served local model)")
-    stages = [
-        "Input features (named NIDS columns)",
-        "RobustScaler + PowerTransformer",
-        "MobileNetV4-style Conv1D",
-        "Lightweight Conv1D",
-        "Stack 4 class probabilities",
-        "LogisticRegression meta-learner",
-        "Threshold 0.5 → normal / attack",
-    ]
-    for index, stage in enumerate(stages, start=1):
-        st.markdown(f"`{index:02d}`  {stage}")
-
-
-def _tab_explain() -> None:
-    st.subheader("Explainable AI")
-    evaluation = load_local_evaluation()
-    unavailable_box(
-        "Notebook LRP JSON (`xai_analysis/lrp_results_best.json`) is not in this package. "
-        "API versus network modality attribution is Not validated for the executed final ensemble "
-        "(API features were not loaded in that run)."
-    )
-    if evaluation is None or not manifest_available():
-        unavailable_box("Local explainability requires the trained artifact bundle.")
+# ---------------------------------------------------------------- comparison
+def _comparison(exp_id: str) -> None:
+    runs = [r for r in runs_for(exp_id) if r["kind"] != "smoke"]
+    if not runs:
+        st.info("No non-smoke run to compare with the notebook.")
         return
-    st.caption(source_chip("verified"))
-    coef = evaluation["meta_coefficients"]
-    frame = pd.DataFrame({"component": coef["feature_order"], "coefficient": coef["coef"][0]})
-    st.plotly_chart(style_fig(px.bar(frame, x="component", y="coefficient", text="coefficient"), "Meta-learner coefficients (global)", 360), width="stretch")
-    st.write(f"Intercept: `{coef['intercept'][0]:.6f}` · Classes: {coef['classes']}")
-
-    st.markdown("##### Local sample sensitivity")
-    model = get_ensemble()
-    sample = st.selectbox("Case study sample", ["Zeros vector", "Parity batch row 0", "Parity batch row 1"])
-    if sample == "Zeros vector":
-        row = pd.DataFrame([{name: 0.0 for name in model.feature_names}])
-    else:
-        batch = pd.read_csv(ROOT / "artifacts" / "parity_batch.csv")
-        idx = 0 if sample.endswith("0") else 1
-        row = batch.iloc[[idx]][model.feature_names]
-    scored = model.predict_frame(row)
-    st.write(scored[["amsec_prediction", "amsec_probability_normal", "amsec_probability_attack"]])
-    if st.button("Compute finite-difference sensitivity for selected sample"):
-        attrib = model.attribute(row).T.reset_index()
-        attrib.columns = ["feature", "sensitivity"]
-        attrib = attrib.sort_values("sensitivity", key=lambda s: s.abs(), ascending=False)
-        st.plotly_chart(style_fig(px.bar(attrib, x="sensitivity", y="feature", orientation="h"), "Local sensitivity · ΔP(attack)/Δfeature", 520), width="stretch")
-        st.download_button("Export sensitivity CSV", attrib.to_csv(index=False), "amsec_local_sensitivity.csv", "text/csv")
-
-
-def _tab_statistics() -> None:
-    st.subheader("Statistical and scientific validation")
-    st.error("**Not established — repeated experiments required.**")
-    st.markdown(
-        """
-        No repeated independent training runs with saved folds were supplied for the notebook ensemble
-        or the local retrain. Therefore this console does **not** compute:
-
-        - means / standard deviations across runs  
-        - confidence intervals from repeated trials  
-        - paired t-tests or Wilcoxon tests  
-        - effect sizes from multi-run designs  
-
-        A t-test must not be calculated from unrelated single accuracy scores (for example notebook 0.97789 versus local 0.9663),
-        because those figures come from non-equivalent protocols.
-        """
-    )
-    st.info(
-        "Evaluation methodology note: notebook cell-4 metrics follow a resample-before-split design with leakage risk. "
-        "Local metrics follow split-before-fit on 22,500 held-out rows. Sample sizes are documented in the Reproducibility tab."
-    )
-
-
-def _tab_reproducibility() -> None:
-    st.subheader("Reproducibility and export")
-    catalog = load_catalog()
-    manifest = load_manifest()
-    evaluation = load_local_evaluation()
-    verified = load_verified()
-
-    st.markdown("##### Dataset and notebook sources")
-    st.write(f"- Notebook: `{catalog['experiments'][0]['notebook']}`")
-    st.write("- Local dataset file: `others files that can help/NF-UQ-NIDS-Dataset.csv`")
-    st.write("- Verified transcription: `data/verified_results.json`")
-    st.write("- Experiment registry: `research_results/catalog.json`")
-
-    if manifest:
-        st.markdown("##### Local model manifest")
-        st.caption(source_chip("verified"))
-        st.json(
-            {
-                "experiment_id": manifest["experiment_id"],
-                "status": manifest["status"],
-                "claim": manifest["claim"],
-                "feature_names": manifest["feature_names"],
-                "decision_threshold": manifest["decision_threshold"],
-                "hashes": manifest["hashes"],
-                "software": manifest["software"],
-                "training": manifest["training"],
-            }
-        )
-    else:
-        unavailable_box("model_manifest.json missing.")
-
-    if evaluation:
-        st.markdown("##### Local evaluation protocol")
-        st.json({"split": evaluation["split"], "rows_loaded": evaluation["rows_loaded"], "label_column": evaluation["label_column"]})
-
-    st.markdown("##### Leakage notes (historical)")
-    for note in verified["leakage_notes"]:
-        st.write(f"• {note}")
-
-    report = {
-        "identity": catalog["identity"],
-        "notebook_metrics": notebook_final_metrics(),
-        "local_metrics": local_metrics_enriched(),
-        "manifest_hashes": (manifest or {}).get("hashes"),
-    }
-    st.download_button(
-        "Download reproducibility JSON",
-        json.dumps(report, indent=2),
-        "amsec_reproducibility_snapshot.json",
-        "application/json",
-    )
-    html = f"""
-    <html><head><meta charset='utf-8'><title>AMSEC reproducibility</title></head>
-    <body style='font-family:Segoe UI,sans-serif;background:#07111f;color:#e8edf5;padding:24px;'>
-    <h1>AMSEC reproducibility snapshot</h1>
-    <p>Notebook accuracy: {notebook_final_metrics()['accuracy']}</p>
-    <p>Local accuracy: {(local_metrics_enriched() or {}).get('accuracy')}</p>
-    <pre>{json.dumps(report, indent=2)}</pre>
-    </body></html>
-    """
-    st.download_button("Download HTML summary", html.encode("utf-8"), "amsec_reproducibility.html", "text/html")
+    run = st.selectbox("Run", runs, format_func=lambda r: f"{r['run_id']} · {r['kind']}", key=f"cmp_{exp_id}")
+    cmp = compare_with_historical(exp_id, run)
+    if cmp.empty:
+        st.info("Nothing to compare.")
+        return
+    metric = st.selectbox("Metric", ["f1_score", "accuracy", "roc_auc", "balanced_accuracy", "mcc"], key=f"cmpm_{exp_id}")
+    long = pd.concat([
+        pd.DataFrame({"entry": cmp["entry"].astype(str) + ". " + cmp["config"], "value": cmp[f"{metric}_notebook"], "source": "Notebook (historical)"}),
+        pd.DataFrame({"entry": cmp["entry"].astype(str) + ". " + cmp["config"], "value": cmp[f"{metric}_reproduced"], "source": "AMSEC run (new)"}),
+    ])
+    fig = px.bar(long, x="value", y="entry", color="source", barmode="group", orientation="h", color_discrete_map=SOURCE_COLORS)
+    lo = max(0.0, float(long["value"].min()) - 0.03)
+    fig.update_xaxes(range=[lo, min(1.0, float(long["value"].max()) + 0.01)], title=METRIC_LABELS[metric]); fig.update_yaxes(title="", autorange="reversed")
+    st.plotly_chart(thin_bars(style_fig(fig, f"Cell {EXPERIMENTS[exp_id]['cell']} · {METRIC_LABELS[metric]} · notebook vs {run['run_id']}", 34 * 2 * len(cmp) + 140)),
+                    width="stretch", key=f"cmpc_{exp_id}")
+    d = cmp[f"{metric}_delta"]
+    c = st.columns(3)
+    c[0].metric("Mean Δ (run − notebook)", f"{d.mean():+.5f}")
+    c[1].metric("Max |Δ|", f"{d.abs().max():.5f}")
+    if "split_sizes_match" in cmp:
+        c[2].metric("Split sizes identical", f"{int(cmp['split_sizes_match'].sum())}/{len(cmp)}")
+    st.dataframe(cmp, hide_index=True, width="stretch")
+    st.caption("Exact checks (sample counts after resampling, split sizes, parameter counts) test the deterministic part of the pipeline. "
+               "Metric deltas include GPU-vs-CPU and Keras-version training nondeterminism; the notebook itself shows ~0.002 F1 spread "
+               "between its SMOTE-equivalent entries (1, 5, 9).")

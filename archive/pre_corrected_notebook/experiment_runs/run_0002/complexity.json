@@ -1,0 +1,5 @@
+{
+  "parameters": 75140,
+  "flops": 150280,
+  "flops_rule": "2 * parameters"
+}

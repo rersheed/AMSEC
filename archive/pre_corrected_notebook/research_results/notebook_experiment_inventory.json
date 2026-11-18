@@ -1,0 +1,1021 @@
+{
+  "notebook": "others files that can help/Final phd-Experiment-android-malware.ipynb",
+  "cells": {
+    "2": {
+      "family": "mobilenetv4_16_config",
+      "description": "8 samplers \u00d7 MobileNetV4 and MobileNetV4+Attention = 16 configs",
+      "source_file": "phd_cell_2_source.py",
+      "stream_file": "phd_cell_2_stream.txt",
+      "stream_chars": 285196,
+      "rank_hints": [
+        {
+          "line": "SMOTE-ENN MobileNetV4+Attention   0.97059    0.97076 0.97059   0.97058       0.97039 0.94132  0.99787       87990 175980          195.86988             3.57949     1",
+          "name_hint": "SMOTE-ENN",
+          "numbers": [
+            0.97059,
+            0.97076,
+            0.97059,
+            0.97058,
+            0.97039,
+            0.94132,
+            0.99787,
+            195.86988,
+            3.57949
+          ]
+        },
+        {
+          "line": "SMOTE-ENN           MobileNetV4   0.96900    0.96905 0.96900   0.96900       0.96909 0.93803  0.99804       62710 125420          157.41778             2.86387     2",
+          "name_hint": "SMOTE-ENN",
+          "numbers": [
+            0.969,
+            0.96905,
+            0.969,
+            0.969,
+            0.96909,
+            0.93803,
+            0.99804,
+            157.41778,
+            2.86387
+          ]
+        },
+        {
+          "line": "SMOTE MobileNetV4+Attention   0.95974    0.96037 0.95974   0.95973       0.95974 0.92012  0.99376       87990 175980          200.42817             3.89693     3",
+          "name_hint": "SMOTE",
+          "numbers": [
+            0.95974,
+            0.96037,
+            0.95974,
+            0.95973,
+            0.95974,
+            0.92012,
+            0.99376,
+            200.42817,
+            3.89693
+          ]
+        },
+        {
+          "line": "SMOTE-Tomek MobileNetV4+Attention   0.95919    0.95957 0.95919   0.95918       0.95918 0.91875  0.99430       87990 175980          196.05370             3.56238     4",
+          "name_hint": "SMOTE-Tomek",
+          "numbers": [
+            0.95919,
+            0.95957,
+            0.95919,
+            0.95918,
+            0.95918,
+            0.91875,
+            0.9943,
+            196.0537,
+            3.56238
+          ]
+        },
+        {
+          "line": "SMOTE-Tomek           MobileNetV4   0.95774    0.95805 0.95774   0.95773       0.95774 0.91579  0.99425       62710 125420          157.92627             2.90336     5",
+          "name_hint": "SMOTE-Tomek",
+          "numbers": [
+            0.95774,
+            0.95805,
+            0.95774,
+            0.95773,
+            0.95774,
+            0.91579,
+            0.99425,
+            157.92627,
+            2.90336
+          ]
+        },
+        {
+          "line": "SMOTE-NCR           MobileNetV4   0.95744    0.95784 0.95744   0.95744       0.95745 0.91529  0.99416       62710 125420          159.55819             2.93993     6",
+          "name_hint": "SMOTE-NCR",
+          "numbers": [
+            0.95744,
+            0.95784,
+            0.95744,
+            0.95744,
+            0.95745,
+            0.91529,
+            0.99416,
+            159.55819,
+            2.93993
+          ]
+        },
+        {
+          "line": "SMOTE           MobileNetV4   0.95596    0.95633 0.95596   0.95595       0.95598 0.91230  0.99389       62710 125420          160.52052             3.49594     7",
+          "name_hint": "SMOTE",
+          "numbers": [
+            0.95596,
+            0.95633,
+            0.95596,
+            0.95595,
+            0.95598,
+            0.9123,
+            0.99389,
+            160.52052,
+            3.49594
+          ]
+        },
+        {
+          "line": "SMOTE-NCR MobileNetV4+Attention   0.95422    0.95459 0.95422   0.95421       0.95423 0.90881  0.99404       87990 175980          195.51422             3.63553     8",
+          "name_hint": "SMOTE-NCR",
+          "numbers": [
+            0.95422,
+            0.95459,
+            0.95422,
+            0.95421,
+            0.95423,
+            0.90881,
+            0.99404,
+            195.51422,
+            3.63553
+          ]
+        },
+        {
+          "line": "ADASYN-ENN           MobileNetV4   0.95051    0.95190 0.95051   0.95065       0.95295 0.90082  0.98849       62710 125420          149.91403             3.32552     9",
+          "name_hint": "ADASYN-ENN",
+          "numbers": [
+            0.95051,
+            0.9519,
+            0.95051,
+            0.95065,
+            0.95295,
+            0.90082,
+            0.98849,
+            149.91403,
+            3.32552
+          ]
+        },
+        {
+          "line": "ADASYN-ENN MobileNetV4+Attention   0.95002    0.95147 0.95002   0.95016       0.95253 0.89989  0.98799       87990 175980          181.60029             3.58664    10",
+          "name_hint": "ADASYN-ENN",
+          "numbers": [
+            0.95002,
+            0.95147,
+            0.95002,
+            0.95016,
+            0.95253,
+            0.89989,
+            0.98799,
+            181.60029,
+            3.58664
+          ]
+        },
+        {
+          "line": "ADASYN-Tomek           MobileNetV4   0.94437    0.94497 0.94437   0.94435       0.94439 0.88934  0.98319       62710 125420          159.43845             2.92343    11",
+          "name_hint": "ADASYN-Tomek",
+          "numbers": [
+            0.94437,
+            0.94497,
+            0.94437,
+            0.94435,
+            0.94439,
+            0.88934,
+            0.98319,
+            159.43845,
+            2.92343
+          ]
+        },
+        {
+          "line": "ADASYN           MobileNetV4   0.94381    0.94439 0.94381   0.94379       0.94372 0.88819  0.98417       62710 125420          162.34127             3.02387    12",
+          "name_hint": "ADASYN",
+          "numbers": [
+            0.94381,
+            0.94439,
+            0.94381,
+            0.94379,
+            0.94372,
+            0.88819,
+            0.98417,
+            162.34127,
+            3.02387
+          ]
+        },
+        {
+          "line": "ADASYN-Tomek MobileNetV4+Attention   0.94374    0.94400 0.94374   0.94373       0.94373 0.88774  0.98307       87990 175980          193.84276             3.62671    13",
+          "name_hint": "ADASYN-Tomek",
+          "numbers": [
+            0.94374,
+            0.944,
+            0.94374,
+            0.94373,
+            0.94373,
+            0.88774,
+            0.98307,
+            193.84276,
+            3.62671
+          ]
+        },
+        {
+          "line": "ADASYN MobileNetV4+Attention   0.94356    0.94404 0.94356   0.94354       0.94349 0.88758  0.98318       87990 175980          201.14995             3.49459    14",
+          "name_hint": "ADASYN",
+          "numbers": [
+            0.94356,
+            0.94404,
+            0.94356,
+            0.94354,
+            0.94349,
+            0.88758,
+            0.98318,
+            201.14995,
+            3.49459
+          ]
+        },
+        {
+          "line": "ADASYN-NCR           MobileNetV4   0.94319    0.94384 0.94319   0.94316       0.94318 0.88703  0.98223       62710 125420          158.71283             2.90493    15",
+          "name_hint": "ADASYN-NCR",
+          "numbers": [
+            0.94319,
+            0.94384,
+            0.94319,
+            0.94316,
+            0.94318,
+            0.88703,
+            0.98223,
+            158.71283,
+            2.90493
+          ]
+        },
+        {
+          "line": "ADASYN-NCR MobileNetV4+Attention   0.94085    0.94115 0.94085   0.94084       0.94085 0.88200  0.98226       87990 175980          193.53589             3.54457    16",
+          "name_hint": "ADASYN-NCR",
+          "numbers": [
+            0.94085,
+            0.94115,
+            0.94085,
+            0.94084,
+            0.94085,
+            0.882,
+            0.98226,
+            193.53589,
+            3.54457
+          ]
+        },
+        {
+          "line": "- Best method: SMOTE-ENN (F1=0.97058)",
+          "name_hint": "SMOTE-ENN",
+          "numbers": [
+            0.97058
+          ]
+        },
+        {
+          "line": "SMOTE-ENN MobileNetV4+Attention   0.97059    0.97076 0.97059   0.97058       0.97039 0.94132  0.99787       87990 175980          195.86988             3.57949     1",
+          "name_hint": "SMOTE-ENN",
+          "numbers": [
+            0.97059,
+            0.97076,
+            0.97059,
+            0.97058,
+            0.97039,
+            0.94132,
+            0.99787,
+            195.86988,
+            3.57949
+          ]
+        },
+        {
+          "line": "SMOTE-ENN           MobileNetV4   0.96900    0.96905 0.96900   0.96900       0.96909 0.93803  0.99804       62710 125420          157.41778             2.86387     2",
+          "name_hint": "SMOTE-ENN",
+          "numbers": [
+            0.969,
+            0.96905,
+            0.969,
+            0.969,
+            0.96909,
+            0.93803,
+            0.99804,
+            157.41778,
+            2.86387
+          ]
+        },
+        {
+          "line": "SMOTE MobileNetV4+Attention   0.95974    0.96037 0.95974   0.95973       0.95974 0.92012  0.99376       87990 175980          200.42817             3.89693     3",
+          "name_hint": "SMOTE",
+          "numbers": [
+            0.95974,
+            0.96037,
+            0.95974,
+            0.95973,
+            0.95974,
+            0.92012,
+            0.99376,
+            200.42817,
+            3.89693
+          ]
+        },
+        {
+          "line": "SMOTE-Tomek MobileNetV4+Attention   0.95919    0.95957 0.95919   0.95918       0.95918 0.91875  0.99430       87990 175980          196.05370             3.56238     4",
+          "name_hint": "SMOTE-Tomek",
+          "numbers": [
+            0.95919,
+            0.95957,
+            0.95919,
+            0.95918,
+            0.95918,
+            0.91875,
+            0.9943,
+            196.0537,
+            3.56238
+          ]
+        },
+        {
+          "line": "SMOTE-Tomek           MobileNetV4   0.95774    0.95805 0.95774   0.95773       0.95774 0.91579  0.99425       62710 125420          157.92627             2.90336     5",
+          "name_hint": "SMOTE-Tomek",
+          "numbers": [
+            0.95774,
+            0.95805,
+            0.95774,
+            0.95773,
+            0.95774,
+            0.91579,
+            0.99425,
+            157.92627,
+            2.90336
+          ]
+        },
+        {
+          "line": "SMOTE-NCR           MobileNetV4   0.95744    0.95784 0.95744   0.95744       0.95745 0.91529  0.99416       62710 125420          159.55819             2.93993     6",
+          "name_hint": "SMOTE-NCR",
+          "numbers": [
+            0.95744,
+            0.95784,
+            0.95744,
+            0.95744,
+            0.95745,
+            0.91529,
+            0.99416,
+            159.55819,
+            2.93993
+          ]
+        },
+        {
+          "line": "SMOTE           MobileNetV4   0.95596    0.95633 0.95596   0.95595       0.95598 0.91230  0.99389       62710 125420          160.52052             3.49594     7",
+          "name_hint": "SMOTE",
+          "numbers": [
+            0.95596,
+            0.95633,
+            0.95596,
+            0.95595,
+            0.95598,
+            0.9123,
+            0.99389,
+            160.52052,
+            3.49594
+          ]
+        },
+        {
+          "line": "SMOTE-NCR MobileNetV4+Attention   0.95422    0.95459 0.95422   0.95421       0.95423 0.90881  0.99404       87990 175980          195.51422             3.63553     8",
+          "name_hint": "SMOTE-NCR",
+          "numbers": [
+            0.95422,
+            0.95459,
+            0.95422,
+            0.95421,
+            0.95423,
+            0.90881,
+            0.99404,
+            195.51422,
+            3.63553
+          ]
+        }
+      ]
+    },
+    "4": {
+      "family": "ensemble_stacking_9_config",
+      "description": "9 stacking configs; SMOTE appears twice by design",
+      "source_file": "phd_cell_4_source.py",
+      "stream_file": "phd_cell_4_stream.txt",
+      "stream_chars": 167191,
+      "best_known": {
+        "id": "SMOTE-ENN_GA_Ensemble_Stacking",
+        "accuracy": 0.97789,
+        "f1": 0.97789,
+        "balanced_accuracy": 0.97775,
+        "mcc": 0.95582,
+        "roc_auc": 0.99767,
+        "parameters": 75004,
+        "flops_notebook": 150008
+      },
+      "rank_hints": [
+        {
+          "line": "SMOTE-ENN_GA_Ensemble_Stacking       SMOTE-ENN   0.97789    0.97795 0.97789   0.97789       0.97775 0.95582  0.99767       75004 150008          326.63078             7.15040     1",
+          "name_hint": "SMOTE-ENN_GA_Ensemble_Stacking",
+          "numbers": [
+            0.97789,
+            0.97795,
+            0.97789,
+            0.97789,
+            0.97775,
+            0.95582,
+            0.99767,
+            326.63078,
+            7.1504
+          ]
+        },
+        {
+          "line": "SMOTE-Tomek_GA_Ensemble_Stacking     SMOTE-Tomek   0.95911    0.95957 0.95911   0.95910       0.95912 0.91869  0.99434       75004 150008          325.78655             7.27906     2",
+          "name_hint": "SMOTE-Tomek_GA_Ensemble_Stacking",
+          "numbers": [
+            0.95911,
+            0.95957,
+            0.95911,
+            0.9591,
+            0.95912,
+            0.91869,
+            0.99434,
+            325.78655,
+            7.27906
+          ]
+        },
+        {
+          "line": "SMOTE_GA_Ensemble_Stacking           SMOTE   0.95596    0.95632 0.95596   0.95596       0.95598 0.91228  0.99405       75004 150008          338.36946             7.31661     3",
+          "name_hint": "SMOTE_GA_Ensemble_Stacking",
+          "numbers": [
+            0.95596,
+            0.95632,
+            0.95596,
+            0.95596,
+            0.95598,
+            0.91228,
+            0.99405,
+            338.36946,
+            7.31661
+          ]
+        },
+        {
+          "line": "SMOTE-NCR_GA_Ensemble_Stacking       SMOTE-NCR   0.95452    0.95500 0.95452   0.95451       0.95453 0.90952  0.99420       75004 150008          325.35444             7.05743     4",
+          "name_hint": "SMOTE-NCR_GA_Ensemble_Stacking",
+          "numbers": [
+            0.95452,
+            0.955,
+            0.95452,
+            0.95451,
+            0.95453,
+            0.90952,
+            0.9942,
+            325.35444,
+            7.05743
+          ]
+        },
+        {
+          "line": "SMOTE_GA_Ensemble_Stacking           SMOTE   0.95422    0.95464 0.95422   0.95421       0.95424 0.90887  0.99434       75004 150008          302.41267             6.93089     5",
+          "name_hint": "SMOTE_GA_Ensemble_Stacking",
+          "numbers": [
+            0.95422,
+            0.95464,
+            0.95422,
+            0.95421,
+            0.95424,
+            0.90887,
+            0.99434,
+            302.41267,
+            6.93089
+          ]
+        },
+        {
+          "line": "ADASYN-ENN_GA_Ensemble_Stacking      ADASYN-ENN   0.94979    0.95096 0.94979   0.94992       0.95189 0.89911  0.98804       75004 150008          305.29466             7.93577     6",
+          "name_hint": "ADASYN-ENN_GA_Ensemble_Stacking",
+          "numbers": [
+            0.94979,
+            0.95096,
+            0.94979,
+            0.94992,
+            0.95189,
+            0.89911,
+            0.98804,
+            305.29466,
+            7.93577
+          ]
+        },
+        {
+          "line": "ADASYN-Tomek_GA_Ensemble_Stacking    ADASYN-Tomek   0.94381    0.94432 0.94381   0.94380       0.94382 0.88814  0.98236       75004 150008          319.14057             7.06259     7",
+          "name_hint": "ADASYN-Tomek_GA_Ensemble_Stacking",
+          "numbers": [
+            0.94381,
+            0.94432,
+            0.94381,
+            0.9438,
+            0.94382,
+            0.88814,
+            0.98236,
+            319.14057,
+            7.06259
+          ]
+        },
+        {
+          "line": "ADASYN_GA_Ensemble_Stacking          ADASYN   0.94274    0.94317 0.94274   0.94272       0.94267 0.88590  0.98236       75004 150008          331.05232             7.24147     8",
+          "name_hint": "ADASYN_GA_Ensemble_Stacking",
+          "numbers": [
+            0.94274,
+            0.94317,
+            0.94274,
+            0.94272,
+            0.94267,
+            0.8859,
+            0.98236,
+            331.05232,
+            7.24147
+          ]
+        },
+        {
+          "line": "ADASYN-NCR_GA_Ensemble_Stacking      ADASYN-NCR   0.94107    0.94136 0.94107   0.94106       0.94108 0.88243  0.98185       75004 150008          308.03004             7.00252     9",
+          "name_hint": "ADASYN-NCR_GA_Ensemble_Stacking",
+          "numbers": [
+            0.94107,
+            0.94136,
+            0.94107,
+            0.94106,
+            0.94108,
+            0.88243,
+            0.98185,
+            308.03004,
+            7.00252
+          ]
+        },
+        {
+          "line": "- Best method: SMOTE-ENN (F1=0.97789)",
+          "name_hint": "SMOTE-ENN",
+          "numbers": [
+            0.97789
+          ]
+        },
+        {
+          "line": "SMOTE-ENN_GA_Ensemble_Stacking       SMOTE-ENN   0.97789    0.97795 0.97789   0.97789       0.97775 0.95582  0.99767       75004 150008          326.63078             7.15040     1",
+          "name_hint": "SMOTE-ENN_GA_Ensemble_Stacking",
+          "numbers": [
+            0.97789,
+            0.97795,
+            0.97789,
+            0.97789,
+            0.97775,
+            0.95582,
+            0.99767,
+            326.63078,
+            7.1504
+          ]
+        },
+        {
+          "line": "SMOTE-Tomek_GA_Ensemble_Stacking     SMOTE-Tomek   0.95911    0.95957 0.95911   0.95910       0.95912 0.91869  0.99434       75004 150008          325.78655             7.27906     2",
+          "name_hint": "SMOTE-Tomek_GA_Ensemble_Stacking",
+          "numbers": [
+            0.95911,
+            0.95957,
+            0.95911,
+            0.9591,
+            0.95912,
+            0.91869,
+            0.99434,
+            325.78655,
+            7.27906
+          ]
+        },
+        {
+          "line": "SMOTE_GA_Ensemble_Stacking           SMOTE   0.95596    0.95632 0.95596   0.95596       0.95598 0.91228  0.99405       75004 150008          338.36946             7.31661     3",
+          "name_hint": "SMOTE_GA_Ensemble_Stacking",
+          "numbers": [
+            0.95596,
+            0.95632,
+            0.95596,
+            0.95596,
+            0.95598,
+            0.91228,
+            0.99405,
+            338.36946,
+            7.31661
+          ]
+        },
+        {
+          "line": "SMOTE-NCR_GA_Ensemble_Stacking       SMOTE-NCR   0.95452    0.95500 0.95452   0.95451       0.95453 0.90952  0.99420       75004 150008          325.35444             7.05743     4",
+          "name_hint": "SMOTE-NCR_GA_Ensemble_Stacking",
+          "numbers": [
+            0.95452,
+            0.955,
+            0.95452,
+            0.95451,
+            0.95453,
+            0.90952,
+            0.9942,
+            325.35444,
+            7.05743
+          ]
+        },
+        {
+          "line": "SMOTE_GA_Ensemble_Stacking           SMOTE   0.95422    0.95464 0.95422   0.95421       0.95424 0.90887  0.99434       75004 150008          302.41267             6.93089     5",
+          "name_hint": "SMOTE_GA_Ensemble_Stacking",
+          "numbers": [
+            0.95422,
+            0.95464,
+            0.95422,
+            0.95421,
+            0.95424,
+            0.90887,
+            0.99434,
+            302.41267,
+            6.93089
+          ]
+        },
+        {
+          "line": "ADASYN-ENN_GA_Ensemble_Stacking      ADASYN-ENN   0.94979    0.95096 0.94979   0.94992       0.95189 0.89911  0.98804       75004 150008          305.29466             7.93577     6",
+          "name_hint": "ADASYN-ENN_GA_Ensemble_Stacking",
+          "numbers": [
+            0.94979,
+            0.95096,
+            0.94979,
+            0.94992,
+            0.95189,
+            0.89911,
+            0.98804,
+            305.29466,
+            7.93577
+          ]
+        },
+        {
+          "line": "ADASYN-Tomek_GA_Ensemble_Stacking    ADASYN-Tomek   0.94381    0.94432 0.94381   0.94380       0.94382 0.88814  0.98236       75004 150008          319.14057             7.06259     7",
+          "name_hint": "ADASYN-Tomek_GA_Ensemble_Stacking",
+          "numbers": [
+            0.94381,
+            0.94432,
+            0.94381,
+            0.9438,
+            0.94382,
+            0.88814,
+            0.98236,
+            319.14057,
+            7.06259
+          ]
+        },
+        {
+          "line": "ADASYN_GA_Ensemble_Stacking          ADASYN   0.94274    0.94317 0.94274   0.94272       0.94267 0.88590  0.98236       75004 150008          331.05232             7.24147     8",
+          "name_hint": "ADASYN_GA_Ensemble_Stacking",
+          "numbers": [
+            0.94274,
+            0.94317,
+            0.94274,
+            0.94272,
+            0.94267,
+            0.8859,
+            0.98236,
+            331.05232,
+            7.24147
+          ]
+        },
+        {
+          "line": "ADASYN-NCR_GA_Ensemble_Stacking      ADASYN-NCR   0.94107    0.94136 0.94107   0.94106       0.94108 0.88243  0.98185       75004 150008          308.03004             7.00252     9",
+          "name_hint": "ADASYN-NCR_GA_Ensemble_Stacking",
+          "numbers": [
+            0.94107,
+            0.94136,
+            0.94107,
+            0.94106,
+            0.94108,
+            0.88243,
+            0.98185,
+            308.03004,
+            7.00252
+          ]
+        }
+      ],
+      "best_block": {
+        "accuracy": 0.9035,
+        "f1": 0.95596
+      }
+    },
+    "22": {
+      "family": "cnn_bilstm_benchmark",
+      "description": "API-sequence CNN\u2013BiLSTM with multiple resamplers",
+      "source_file": "phd_cell_22_source.py",
+      "stream_file": "phd_cell_22_stream.txt",
+      "rank_hints": [
+        {
+          "line": "\u2713 No Balancing completed - Test Acc: 0.9644 | F1: 0.9815",
+          "name_hint": "No Balancing",
+          "numbers": [
+            0.9644,
+            0.9815
+          ]
+        },
+        {
+          "line": "\u2713 SMOTE completed - Test Acc: 0.9830 | F1: 0.9913",
+          "name_hint": "SMOTE",
+          "numbers": [
+            0.983,
+            0.9913
+          ]
+        },
+        {
+          "line": "\u2713 ADASYN completed - Test Acc: 0.9836 | F1: 0.9916",
+          "name_hint": "ADASYN",
+          "numbers": [
+            0.9836,
+            0.9916
+          ]
+        },
+        {
+          "line": "\u2713 SMOTE+ENN completed - Test Acc: 0.0255 | F1: 0.0019",
+          "name_hint": "SMOTE+ENN",
+          "numbers": [
+            0.0255,
+            0.0019
+          ]
+        },
+        {
+          "line": "\u2713 SMOTE+Tomek completed - Test Acc: 0.9799 | F1: 0.9898",
+          "name_hint": "SMOTE+Tomek",
+          "numbers": [
+            0.9799,
+            0.9898
+          ]
+        },
+        {
+          "line": "\u2713 SMOTE+NCR completed - Test Acc: 0.9784 | F1: 0.9890",
+          "name_hint": "SMOTE+NCR",
+          "numbers": [
+            0.9784,
+            0.989
+          ]
+        },
+        {
+          "line": "\u2713 ADASYN+Tomek completed - Test Acc: 0.9751 | F1: 0.9874",
+          "name_hint": "ADASYN+Tomek",
+          "numbers": [
+            0.9751,
+            0.9874
+          ]
+        },
+        {
+          "line": "\u2713 ADASYN+NCR completed - Test Acc: 0.9751 | F1: 0.9874",
+          "name_hint": "ADASYN+NCR",
+          "numbers": [
+            0.9751,
+            0.9874
+          ]
+        },
+        {
+          "line": "1       ADASYN         29805          29958         0.9836          0.9848       0.9986   0.9916    0.9387    0.5772            0.3889    0.6111    0.0014                  0.6937     1108931  16.6330 ",
+          "name_hint": "ADASYN",
+          "numbers": [
+            0.9836,
+            0.9848,
+            0.9986,
+            0.9916,
+            0.9387,
+            0.5772,
+            0.3889,
+            0.6111,
+            0.0014,
+            0.6937
+          ]
+        },
+        {
+          "line": "2        SMOTE         29958          29958         0.9830          0.9891       0.9935   0.9913    0.8760    0.6159            0.5679    0.4321    0.0065                  0.7807     1108931  16.6330 ",
+          "name_hint": "SMOTE",
+          "numbers": [
+            0.983,
+            0.9891,
+            0.9935,
+            0.9913,
+            0.876,
+            0.6159,
+            0.5679,
+            0.4321,
+            0.0065,
+            0.7807
+          ]
+        },
+        {
+          "line": "3  SMOTE+Tomek         29943          29943         0.9799          0.9803       0.9995   0.9898    0.5686    0.4270            0.2037    0.7963    0.0005                  0.6016     1108931  16.6330 ",
+          "name_hint": "SMOTE+Tomek",
+          "numbers": [
+            0.9799,
+            0.9803,
+            0.9995,
+            0.9898,
+            0.5686,
+            0.427,
+            0.2037,
+            0.7963,
+            0.0005,
+            0.6016
+          ]
+        },
+        {
+          "line": "4    SMOTE+NCR         29958          28808         0.9784          0.9803       0.9980   0.9890    0.6806    0.3751            0.2037    0.7963    0.0020                  0.6008     1108931  16.6330 ",
+          "name_hint": "SMOTE+NCR",
+          "numbers": [
+            0.9784,
+            0.9803,
+            0.998,
+            0.989,
+            0.6806,
+            0.3751,
+            0.2037,
+            0.7963,
+            0.002,
+            0.6008
+          ]
+        },
+        {
+          "line": "5 ADASYN+Tomek         29950          29950         0.9751          0.9754       0.9997   0.9874    0.6571   -0.0028            0.0000    1.0000    0.0003                  0.4998     1108931  16.6330 ",
+          "name_hint": "ADASYN+Tomek",
+          "numbers": [
+            0.9751,
+            0.9754,
+            0.9997,
+            0.9874,
+            0.6571,
+            0.0028,
+            0.0,
+            1.0,
+            0.0003,
+            0.4998
+          ]
+        },
+        {
+          "line": "6   ADASYN+NCR         29805          28731         0.9751          0.9754       0.9997   0.9874    0.6442   -0.0028            0.0000    1.0000    0.0003                  0.4998     1108931  16.6330 ",
+          "name_hint": "ADASYN+NCR",
+          "numbers": [
+            0.9751,
+            0.9754,
+            0.9997,
+            0.9874,
+            0.6442,
+            0.0028,
+            0.0,
+            1.0,
+            0.0003,
+            0.4998
+          ]
+        },
+        {
+          "line": "7 No Balancing           755          29958         0.9644          0.9976       0.9659   0.9815    0.9883    0.5905            0.9074    0.0926    0.0341                  0.9366     1108931  16.6330 ",
+          "name_hint": "No Balancing",
+          "numbers": [
+            0.9644,
+            0.9976,
+            0.9659,
+            0.9815,
+            0.9883,
+            0.5905,
+            0.9074,
+            0.0926,
+            0.0341,
+            0.9366
+          ]
+        },
+        {
+          "line": "8    SMOTE+ENN         26719          28275         0.0255          1.0000       0.0009   0.0019    0.7075    0.0048            1.0000    0.0000    0.9991                  0.5005     1108931  16.6330 ",
+          "name_hint": "SMOTE+ENN",
+          "numbers": [
+            0.0255,
+            1.0,
+            0.0009,
+            0.0019,
+            0.7075,
+            0.0048,
+            1.0,
+            0.0,
+            0.9991,
+            0.5005
+          ]
+        },
+        {
+          "line": "9   ADASYN+ENN         26752          28232         0.0248          1.0000       0.0002   0.0003    0.6320    0.0020            1.0000    0.0000    0.9998                  0.5001     1108931  16.6330 ",
+          "name_hint": "ADASYN+ENN",
+          "numbers": [
+            0.0248,
+            1.0,
+            0.0002,
+            0.0003,
+            0.632,
+            0.002,
+            1.0,
+            0.0,
+            0.9998,
+            0.5001
+          ]
+        },
+        {
+          "line": "1. ADASYN          | F1: 0.9916 | Acc: 0.9836 | AUC: 0.9387 | Params: 1,108,931 | FLOPs: 16.6M | Inf: 3.64ms | Thr: 275/s",
+          "name_hint": "ADASYN",
+          "numbers": [
+            0.9916,
+            0.9836,
+            0.9387,
+            16.6,
+            3.64
+          ]
+        },
+        {
+          "line": "2. SMOTE           | F1: 0.9913 | Acc: 0.9830 | AUC: 0.8760 | Params: 1,108,931 | FLOPs: 16.6M | Inf: 4.05ms | Thr: 247/s",
+          "name_hint": "SMOTE",
+          "numbers": [
+            0.9913,
+            0.983,
+            0.876,
+            16.6,
+            4.05
+          ]
+        },
+        {
+          "line": "3. SMOTE+Tomek     | F1: 0.9898 | Acc: 0.9799 | AUC: 0.5686 | Params: 1,108,931 | FLOPs: 16.6M | Inf: 2.88ms | Thr: 347/s",
+          "name_hint": "SMOTE+Tomek",
+          "numbers": [
+            0.9898,
+            0.9799,
+            0.5686,
+            16.6,
+            2.88
+          ]
+        },
+        {
+          "line": "4. SMOTE+NCR       | F1: 0.9890 | Acc: 0.9784 | AUC: 0.6806 | Params: 1,108,931 | FLOPs: 16.6M | Inf: 1.04ms | Thr: 957/s",
+          "name_hint": "SMOTE+NCR",
+          "numbers": [
+            0.989,
+            0.9784,
+            0.6806,
+            16.6,
+            1.04
+          ]
+        },
+        {
+          "line": "5. ADASYN+Tomek    | F1: 0.9874 | Acc: 0.9751 | AUC: 0.6571 | Params: 1,108,931 | FLOPs: 16.6M | Inf: 3.00ms | Thr: 333/s",
+          "name_hint": "ADASYN+Tomek",
+          "numbers": [
+            0.9874,
+            0.9751,
+            0.6571,
+            16.6,
+            3.0
+          ]
+        },
+        {
+          "line": "6. ADASYN+NCR      | F1: 0.9874 | Acc: 0.9751 | AUC: 0.6442 | Params: 1,108,931 | FLOPs: 16.6M | Inf: 2.75ms | Thr: 363/s",
+          "name_hint": "ADASYN+NCR",
+          "numbers": [
+            0.9874,
+            0.9751,
+            0.6442,
+            16.6,
+            2.75
+          ]
+        },
+        {
+          "line": "7. No Balancing    | F1: 0.9815 | Acc: 0.9644 | AUC: 0.9883 | Params: 1,108,931 | FLOPs: 16.6M | Inf: 0.33ms | Thr: 3072/s",
+          "name_hint": "No Balancing",
+          "numbers": [
+            0.9815,
+            0.9644,
+            0.9883,
+            16.6,
+            0.33
+          ]
+        },
+        {
+          "line": "8. SMOTE+ENN       | F1: 0.0019 | Acc: 0.0255 | AUC: 0.7075 | Params: 1,108,931 | FLOPs: 16.6M | Inf: 0.43ms | Thr: 2319/s",
+          "name_hint": "SMOTE+ENN",
+          "numbers": [
+            0.0019,
+            0.0255,
+            0.7075,
+            16.6,
+            0.43
+          ]
+        }
+      ]
+    }
+  },
+  "sampling_methods_declared": [
+    "SMOTE",
+    "ADASYN",
+    "SMOTE-ENN",
+    "SMOTE-Tomek",
+    "SMOTE-NCR",
+    "ADASYN-ENN",
+    "ADASYN-Tomek",
+    "ADASYN-NCR"
+  ],
+  "nine_config_note": "Cell 4 declares 8 sampling methods + an extra SMOTE duplicate to reach 9 configurations. The repeated SMOTE is intentional in the notebook template.",
+  "datasets": {
+    "nids": {
+      "notebook_path": "/kaggle/input/.../NF-UQ-NIDS-v2.csv",
+      "local_path": "others files that can help/NF-UQ-NIDS-Dataset.csv",
+      "cell4_nrows": 150000,
+      "label": "Label",
+      "label_rule": "label > 0 -> attack"
+    },
+    "api": {
+      "notebook_path": "dynamic_api_call_sequence_per_malware_100_0_306.csv",
+      "local_path": "others files that can help/dynamic_api_call_sequence_per_malware_100_0_306.csv",
+      "rows": 43876,
+      "label": "malware"
+    },
+    "syscalls": {
+      "local_path": "others files that can help/feature_vectors_syscallsbinders_frequency_5_Cat.csv",
+      "used_by_final_ensemble": false
+    }
+  },
+  "leakage_in_notebook_reproduction": [
+    "RobustScaler/PowerTransformer fit before split (cells 2/4)",
+    "MI + GA feature selection before split",
+    "Resampling applied before split",
+    "Meta-learner fit on in-sample base predictions (cell 4)"
+  ]
+}

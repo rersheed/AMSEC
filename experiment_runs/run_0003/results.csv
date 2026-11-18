@@ -1,0 +1,2 @@
+entry,config,sampling_method,model_type,accuracy,precision,recall,f1_score,balanced_accuracy,mcc,roc_auc,parameters,flops,training_time,inference_time,train_samples,val_samples,test_samples,samples_after_sampling,rank
+3,SMOTE-ENN_GA_Ensemble_Stacking,SMOTE-ENN,Ensemble_Stacking,0.8470906630581867,0.8472661909078952,0.8470906630581867,0.847102423484039,0.8472100111365102,0.6943132036826065,0.9232459996483207,75204,150408,46.26858377456665,2.1206443309783936,3684,503,739,4926,1

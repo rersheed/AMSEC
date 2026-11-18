@@ -1,0 +1,120 @@
+PHASE 1: DATA LOADING
+  Using 'Label' as label column
+✓ Loaded NIDS: (4000, 45)
+  Label distribution: Normal=1370, Attack=2630
+  API dataset treated as unavailable (as in the historical notebook run).
+  After variance threshold: 41 features
+Running Improved Genetic Algorithm...
+  Population: 6, Generations: 2
+  Features: 41
+
+✓ GA Complete! Selected 30 from 41 features
+  Reduction: 26.8%
+[2.3] Final selected features: 30 → ['L4_SRC_PORT', 'L4_DST_PORT', 'PROTOCOL', 'L7_PROTO', 'IN_BYTES', 'IN_PKTS', 'TCP_FLAGS', 'CLIENT_TCP_FLAGS', 'SERVER_TCP_FLAGS', 'DURATION_IN', 'DURATION_OUT', 'MIN_TTL', 'MAX_TTL', 'LONGEST_FLOW_PKT', 'SRC_TO_DST_SECOND_BYTES', 'DST_TO_SRC_SECOND_BYTES', 'RETRANSMITTED_IN_BYTES', 'RETRANSMITTED_IN_PKTS', 'RETRANSMITTED_OUT_PKTS', 'SRC_TO_DST_AVG_THROUGHPUT', 'NUM_PKTS_UP_TO_128_BYTES', 'NUM_PKTS_128_TO_256_BYTES', 'NUM_PKTS_256_TO_512_BYTES', 'NUM_PKTS_1024_TO_1514_BYTES', 'TCP_WIN_MAX_IN', 'TCP_WIN_MAX_OUT', 'ICMP_IPV4_TYPE', 'DNS_QUERY_ID', 'DNS_QUERY_TYPE', 'FTP_COMMAND_RET_CODE']
+
+Config 3/9: SMOTE-ENN_GA_Ensemble_Stacking
+  After SMOTE-ENN: 4926 samples  Normal=2421, Attack=2505
+  Training: (3684, 30), Validation: (503, 30), Test: (739, 30)
+  MobileNetV4 Parameters: 62,810
+  MobileNetV4 FLOPs: 125,620
+  Lightweight Model Parameters: 12,394
+  Lightweight Model FLOPs: 24,788
+
+  Ensemble Stacking Total Parameters: 75,204
+  Ensemble Stacking Total FLOPs: 150,408
+
+[Training MobileNetV4 Model]
+
+[1m 1/29[0m [37m━━━━━━━━━━━━━━━━━━━━[0m [1m8:51[0m 19s/step - accuracy: 0.5312 - auc: 0.5139 - loss: 1.1511
+[1m 3/29[0m [32m━━[0m[37m━━━━━━━━━━━━━━━━━━[0m [1m0s[0m 35ms/step - accuracy: 0.5156 - auc: 0.5220 - loss: 1.0705 
+[1m 5/29[0m [32m━━━[0m[37m━━━━━━━━━━━━━━━━━[0m [1m0s[0m 36ms/step - accuracy: 0.5531 - auc: 0.5829 - loss: 0.9755
+[1m 7/29[0m [32m━━━━[0m[37m━━━━━━━━━━━━━━━━[0m [1m0s[0m 37ms/step - accuracy: 0.5993 - auc: 0.6516 - loss: 0.8732
+[1m 9/29[0m [32m━━━━━━[0m[37m━━━━━━━━━━━━━━[0m [1m0s[0m 38ms/step - accuracy: 0.6259 - auc: 0.6888 - loss: 0.8157
+[1m11/29[0m [32m━━━━━━━[0m[37m━━━━━━━━━━━━━[0m [1m0s[0m 36ms/step - accuracy: 0.6534 - auc: 0.7179 - loss: 0.7781
+[1m13/29[0m [32m━━━━━━━━[0m[37m━━━━━━━━━━━━[0m [1m0s[0m 36ms/step - accuracy: 0.6773 - auc: 0.7469 - loss: 0.7378
+[1m15/29[0m [32m━━━━━━━━━━[0m[37m━━━━━━━━━━[0m [1m0s[0m 36ms/step - accuracy: 0.6974 - auc: 0.7707 - loss: 0.7024
+[1m17/29[0m [32m━━━━━━━━━━━[0m[37m━━━━━━━━━[0m [1m0s[0m 35ms/step - accuracy: 0.7188 - auc: 0.7944 - loss: 0.6616
+[1m19/29[0m [32m━━━━━━━━━━━━━[0m[37m━━━━━━━[0m [1m0s[0m 34ms/step - accuracy: 0.7282 - auc: 0.8056 - loss: 0.6449
+[1m21/29[0m [32m━━━━━━━━━━━━━━[0m[37m━━━━━━[0m [1m0s[0m 34ms/step - accuracy: 0.7440 - auc: 0.8239 - loss: 0.6135
+[1m23/29[0m [32m━━━━━━━━━━━━━━━[0m[37m━━━━━[0m [1m0s[0m 33ms/step - accuracy: 0.7558 - auc: 0.8360 - loss: 0.5925
+[1m25/29[0m [32m━━━━━━━━━━━━━━━━━[0m[37m━━━[0m [1m0s[0m 32ms/step - accuracy: 0.7631 - auc: 0.8435 - loss: 0.5784
+[1m27/29[0m [32m━━━━━━━━━━━━━━━━━━[0m[37m━━[0m [1m0s[0m 32ms/step - accuracy: 0.7694 - auc: 0.8499 - loss: 0.5671
+[1m29/29[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m0s[0m 32ms/step - accuracy: 0.7758 - auc: 0.8557 - loss: 0.5573
+[1m29/29[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m22s[0m 108ms/step - accuracy: 0.7758 - auc: 0.8557 - loss: 0.5573 - val_accuracy: 0.8489 - val_auc: 0.9367 - val_loss: 0.3742 - learning_rate: 0.0012
+Restoring model weights from the end of the best epoch: 1.
+
+✓ MobileNetV4 training completed in 22.29 seconds
+
+[Training Lightweight Model]
+
+[1m 1/29[0m [37m━━━━━━━━━━━━━━━━━━━━[0m [1m7:06[0m 15s/step - accuracy: 0.5156 - auc: 0.5238 - loss: 1.0272
+[1m 4/29[0m [32m━━[0m[37m━━━━━━━━━━━━━━━━━━[0m [1m0s[0m 24ms/step - accuracy: 0.5215 - auc: 0.5294 - loss: 1.0032 
+[1m 7/29[0m [32m━━━━[0m[37m━━━━━━━━━━━━━━━━[0m [1m0s[0m 23ms/step - accuracy: 0.5770 - auc: 0.6035 - loss: 0.8759
+[1m10/29[0m [32m━━━━━━[0m[37m━━━━━━━━━━━━━━[0m [1m0s[0m 23ms/step - accuracy: 0.6023 - auc: 0.6408 - loss: 0.8336
+[1m12/29[0m [32m━━━━━━━━[0m[37m━━━━━━━━━━━━[0m [1m0s[0m 23ms/step - accuracy: 0.6257 - auc: 0.6706 - loss: 0.7935
+[1m15/29[0m [32m━━━━━━━━━━[0m[37m━━━━━━━━━━[0m [1m0s[0m 23ms/step - accuracy: 0.6562 - auc: 0.7091 - loss: 0.7459
+[1m18/29[0m [32m━━━━━━━━━━━━[0m[37m━━━━━━━━[0m [1m0s[0m 22ms/step - accuracy: 0.6801 - auc: 0.7417 - loss: 0.6983
+[1m21/29[0m [32m━━━━━━━━━━━━━━[0m[37m━━━━━━[0m [1m0s[0m 22ms/step - accuracy: 0.6994 - auc: 0.7648 - loss: 0.6657
+[1m24/29[0m [32m━━━━━━━━━━━━━━━━[0m[37m━━━━[0m [1m0s[0m 21ms/step - accuracy: 0.7145 - auc: 0.7841 - loss: 0.6375
+[1m27/29[0m [32m━━━━━━━━━━━━━━━━━━[0m[37m━━[0m [1m0s[0m 21ms/step - accuracy: 0.7242 - auc: 0.7961 - loss: 0.6219
+[1m29/29[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m0s[0m 22ms/step - accuracy: 0.7310 - auc: 0.8032 - loss: 0.6142
+[1m29/29[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m18s[0m 97ms/step - accuracy: 0.7310 - auc: 0.8032 - loss: 0.6142 - val_accuracy: 0.8350 - val_auc: 0.8772 - val_loss: 0.5104 - learning_rate: 0.0015
+Restoring model weights from the end of the best epoch: 1.
+
+✓ Lightweight training completed in 18.15 seconds
+
+[Training Meta-Learner]
+  Meta-Learner Validation Accuracy: 0.86083
+
+✓ Ensemble Stacking training completed in 46.27 seconds
+  ✓ SMOTE-ENN_GA_Ensemble_Stacking  Accuracy: 0.84709, F1: 0.84710, ROC-AUC: 0.92325
+  MobileNetV4 Parameters: 62,810
+  MobileNetV4 FLOPs: 125,620
+  Lightweight Model Parameters: 12,394
+  Lightweight Model FLOPs: 24,788
+
+  Ensemble Stacking Total Parameters: 75,204
+  Ensemble Stacking Total FLOPs: 150,408
+
+[Training MobileNetV4 Model]
+
+[1m 1/25[0m [37m━━━━━━━━━━━━━━━━━━━━[0m [1m6:59[0m 17s/step - accuracy: 0.5703 - auc: 0.5310 - loss: 1.2721
+[1m 3/25[0m [32m━━[0m[37m━━━━━━━━━━━━━━━━━━[0m [1m0s[0m 27ms/step - accuracy: 0.5729 - auc: 0.5892 - loss: 1.1471 
+[1m 6/25[0m [32m━━━━[0m[37m━━━━━━━━━━━━━━━━[0m [1m0s[0m 24ms/step - accuracy: 0.6094 - auc: 0.6484 - loss: 0.9837
+[1m 8/25[0m [32m━━━━━━[0m[37m━━━━━━━━━━━━━━[0m [1m0s[0m 25ms/step - accuracy: 0.6309 - auc: 0.6791 - loss: 0.9357
+[1m11/25[0m [32m━━━━━━━━[0m[37m━━━━━━━━━━━━[0m [1m0s[0m 23ms/step - accuracy: 0.6662 - auc: 0.7246 - loss: 0.8485
+[1m13/25[0m [32m━━━━━━━━━━[0m[37m━━━━━━━━━━[0m [1m0s[0m 24ms/step - accuracy: 0.6803 - auc: 0.7413 - loss: 0.8138
+[1m15/25[0m [32m━━━━━━━━━━━━[0m[37m━━━━━━━━[0m [1m0s[0m 25ms/step - accuracy: 0.6953 - auc: 0.7602 - loss: 0.7696
+[1m17/25[0m [32m━━━━━━━━━━━━━[0m[37m━━━━━━━[0m [1m0s[0m 25ms/step - accuracy: 0.7100 - auc: 0.7768 - loss: 0.7362
+[1m19/25[0m [32m━━━━━━━━━━━━━━━[0m[37m━━━━━[0m [1m0s[0m 26ms/step - accuracy: 0.7196 - auc: 0.7865 - loss: 0.7138
+[1m21/25[0m [32m━━━━━━━━━━━━━━━━[0m[37m━━━━[0m [1m0s[0m 26ms/step - accuracy: 0.7258 - auc: 0.7938 - loss: 0.6982
+[1m23/25[0m [32m━━━━━━━━━━━━━━━━━━[0m[37m━━[0m [1m0s[0m 26ms/step - accuracy: 0.7323 - auc: 0.8014 - loss: 0.6794
+[1m25/25[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m0s[0m 26ms/step - accuracy: 0.7387 - auc: 0.8086 - loss: 0.6658
+[1m25/25[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m20s[0m 121ms/step - accuracy: 0.7387 - auc: 0.8086 - loss: 0.6658 - val_accuracy: 0.5813 - val_auc: 0.6237 - val_loss: 1.3333 - learning_rate: 0.0012
+Restoring model weights from the end of the best epoch: 1.
+
+✓ MobileNetV4 training completed in 20.58 seconds
+
+[Training Lightweight Model]
+
+[1m 1/25[0m [37m━━━━━━━━━━━━━━━━━━━━[0m [1m5:55[0m 15s/step - accuracy: 0.4531 - auc: 0.4589 - loss: 1.3899
+[1m 4/25[0m [32m━━━[0m[37m━━━━━━━━━━━━━━━━━[0m [1m0s[0m 19ms/step - accuracy: 0.4785 - auc: 0.4872 - loss: 1.2562 
+[1m 7/25[0m [32m━━━━━[0m[37m━━━━━━━━━━━━━━━[0m [1m0s[0m 19ms/step - accuracy: 0.5234 - auc: 0.5320 - loss: 1.1489
+[1m10/25[0m [32m━━━━━━━━[0m[37m━━━━━━━━━━━━[0m [1m0s[0m 18ms/step - accuracy: 0.5641 - auc: 0.5898 - loss: 1.0358
+[1m13/25[0m [32m━━━━━━━━━━[0m[37m━━━━━━━━━━[0m [1m0s[0m 19ms/step - accuracy: 0.5841 - auc: 0.6151 - loss: 0.9933
+[1m17/25[0m [32m━━━━━━━━━━━━━[0m[37m━━━━━━━[0m [1m0s[0m 18ms/step - accuracy: 0.6117 - auc: 0.6588 - loss: 0.9170
+[1m20/25[0m [32m━━━━━━━━━━━━━━━━[0m[37m━━━━[0m [1m0s[0m 18ms/step - accuracy: 0.6277 - auc: 0.6805 - loss: 0.8758
+[1m23/25[0m [32m━━━━━━━━━━━━━━━━━━[0m[37m━━[0m [1m0s[0m 18ms/step - accuracy: 0.6420 - auc: 0.6942 - loss: 0.8453
+[1m25/25[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m17s[0m 99ms/step - accuracy: 0.6531 - auc: 0.7057 - loss: 0.8239 - val_accuracy: 0.7800 - val_auc: 0.8151 - val_loss: 0.6151 - learning_rate: 0.0015
+Restoring model weights from the end of the best epoch: 1.
+
+✓ Lightweight training completed in 17.36 seconds
+
+[Training Meta-Learner]
+  Meta-Learner Validation Accuracy: 0.78875
+
+✓ Ensemble Stacking training completed in 41.82 seconds
+API dataset not available
+  Sample 156: True=1, Predicted=0, Confidence=0.5530
+  Sample 145: True=1, Predicted=1, Confidence=0.8491
+  Sample 434: True=1, Predicted=1, Confidence=0.9175

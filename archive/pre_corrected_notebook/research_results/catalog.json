@@ -1,0 +1,112 @@
+{
+  "identity": {
+    "brand": "AMSEC",
+    "full_name": "Android Malware Security Framework",
+    "subtitle": "An Explainable, Lightweight Hybrid Deep Learning Framework for Android Malware Detection",
+    "researcher": "Abdullahi Umar Diso",
+    "student_id": "KASU/PHD/19/CSC/007",
+    "institution": "Kaduna State University",
+    "faculty": "Faculty of Computing",
+    "department": "Department of Informatics",
+    "supervisors": [
+      {"name": "Dr Muhammad Aminu Ahmad", "role": "Chairman"},
+      {"name": "Dr Mohammed Ibrahim", "role": "Member"},
+      {"name": "Dr Ahmad Abubakar Aliyu", "role": "Member"}
+    ],
+    "designation": "PhD Research Prototype"
+  },
+  "contributions": [
+    {"id": "hybrid_features", "title": "Hybrid feature engineering", "text": "Network-flow numeric features with variance filtering before MI–GA selection."},
+    {"id": "mi_ga", "title": "MI–GA feature selection", "text": "Mutual information pre-filter followed by a genetic algorithm with random-forest fitness."},
+    {"id": "lightweight_ensemble", "title": "Lightweight ensemble learning", "text": "MobileNetV4-style and lightweight Conv1D base learners stacked by logistic regression."},
+    {"id": "imbalance", "title": "Class imbalance handling", "text": "Comparative SMOTE, ADASYN and hybrid cleaning strategies across notebook experiments."},
+    {"id": "xai", "title": "Model interpretability", "text": "Gradient×input relevance in the notebook; meta-learner coefficients and local sensitivity in this console."},
+    {"id": "efficiency", "title": "Computational efficiency", "text": "Reported parameter and FLOP estimates for lightweight stacks versus the CNN–BiLSTM benchmark."},
+    {"id": "prototype", "title": "Prototype integration", "text": "Local Streamlit console with schema-validated inference from a versioned artifact bundle."}
+  ],
+  "pipeline_stages": [
+    {"id": "acquire", "label": "Data Acquisition", "local_status": "implemented", "note": "NF-UQ-NIDS flows for the final ensemble; API used only in separate benchmarks."},
+    {"id": "preprocess", "label": "Preprocessing", "local_status": "implemented", "note": "Numeric cast, RobustScaler, Yeo–Johnson."},
+    {"id": "select", "label": "MI–GA Feature Selection", "local_status": "implemented", "note": "Local retrain logged 19 named features; notebook kept 5 unnamed."},
+    {"id": "balance", "label": "Class Imbalance Handling", "local_status": "implemented", "note": "Local serving model uses SMOTE-ENN on the training fold only."},
+    {"id": "bases", "label": "Lightweight Base Learners", "local_status": "implemented", "note": "MobileNetV4-style + lightweight Conv1D."},
+    {"id": "meta", "label": "Stacking Meta-Learner", "local_status": "implemented", "note": "Logistic regression on four class probabilities."},
+    {"id": "detect", "label": "Detection", "local_status": "implemented", "note": "Schema-validated single and batch scoring."},
+    {"id": "explain", "label": "Explainability", "local_status": "partial", "note": "Notebook LRP JSON unavailable; local sensitivity and meta coefficients available."}
+  ],
+  "experiments": [
+    {
+      "id": "notebook_cell4_stack_smoteenn",
+      "name": "Notebook final ensemble — SMOTE-ENN stack",
+      "source": "original_executed_notebook",
+      "source_label": "Original executed notebook",
+      "notebook": "Final phd-Experiment-android-malware.ipynb",
+      "cell": 4,
+      "dataset": "NF-UQ-NIDS-v2 (first 150000 rows)",
+      "modality": "network_flow_only",
+      "architecture": "Ensemble stacking (MobileNetV4-style + Lightweight Conv1D + LogisticRegression)",
+      "feature_selection": "Variance → MI → GA (5 features; names not logged)",
+      "resampling": "SMOTE-ENN (applied before split in notebook)",
+      "protocol": "Resample full matrix then stratified 15% test / 12% of remainder as validation",
+      "verification_status": "transcribed_from_notebook_outputs",
+      "weights_available": false,
+      "equivalent_to_local_retrain": false,
+      "metrics": {
+        "accuracy": 0.97789,
+        "precision": 0.97795,
+        "recall": 0.97789,
+        "f1": 0.97789,
+        "balanced_accuracy": 0.97775,
+        "mcc": 0.95582,
+        "roc_auc": 0.99767,
+        "parameters": 75004,
+        "flops": 150008,
+        "flops_definition": "2 × parameter count (notebook estimate)",
+        "training_seconds": 326.63078,
+        "inference_seconds_reported": 7.15040,
+        "selected_features": 5,
+        "dataset_rows_used": 150000
+      },
+      "label_counts_before_resampling": {"normal": 49414, "attack": 100586},
+      "split_after_resampling": {"train": 134640, "validation": 18360, "test": 27000},
+      "artifacts": {
+        "confusion_matrix": "unavailable",
+        "roc_curve": "unavailable",
+        "pr_curve": "unavailable",
+        "training_history": "unavailable",
+        "feature_names": "unavailable",
+        "lrp": "unavailable"
+      }
+    },
+    {
+      "id": "local_retrain_cell4_stack_smoteenn",
+      "name": "Local retrain — leakage-corrected SMOTE-ENN stack",
+      "source": "local_retraining",
+      "source_label": "Local retraining",
+      "notebook": "Procedure adapted from Final phd-Experiment-android-malware.ipynb cell 4",
+      "dataset": "NF-UQ-NIDS-Dataset.csv (first 150000 rows)",
+      "modality": "network_flow_only",
+      "architecture": "PyTorch MobileNetV4-style + Lightweight Conv1D + LogisticRegression",
+      "feature_selection": "Variance → MI → GA (19 named features)",
+      "resampling": "SMOTE-ENN on training fold only",
+      "protocol": "Stratified 70/15/15 split before selection, scaling and resampling",
+      "verification_status": "verified_saved_model_evaluation",
+      "weights_available": true,
+      "equivalent_to_local_retrain": true,
+      "equivalent_to_notebook": false,
+      "metrics_path": "artifacts/local_evaluation.json",
+      "manifest_path": "artifacts/model_manifest.json",
+      "artifacts": {
+        "confusion_matrix": "available",
+        "roc_curve": "unavailable",
+        "pr_curve": "unavailable",
+        "training_history": "available_loss_only",
+        "feature_names": "available",
+        "lrp": "unavailable",
+        "meta_coefficients": "available",
+        "ga_fitness": "available",
+        "mi_ranking": "available"
+      }
+    }
+  ]
+}

@@ -1,0 +1,2910 @@
+{
+  "source": {
+    "notebook": "notebooks/Final_phd-Experiment-android-malware_CORRECTED.ipynb",
+    "sha256": "9e4724f7af4a8438bf7aea02b8768cc1579a50afc0be935b1f24b08581a0e8fa",
+    "note": "Saved outputs of the authoritative notebook. Historical \u2014 not re-executed by AMSEC."
+  },
+  "experiments": {
+    "cell02_lightweight16": {
+      "cell": 2,
+      "execution_count": 1,
+      "has_source": true,
+      "n_outputs": 148,
+      "tables": {
+        "results_16": {
+          "description": "16-configuration results, ranked by weighted F1",
+          "columns": [
+            "method",
+            "model_type",
+            "accuracy",
+            "precision",
+            "recall",
+            "f1_score",
+            "balanced_accuracy",
+            "mcc",
+            "roc_auc",
+            "parameters",
+            "flops",
+            "training_time",
+            "inference_time",
+            "rank"
+          ],
+          "rows": [
+            {
+              "method": "SMOTE-ENN",
+              "model_type": "MobileNetV4+Attention",
+              "accuracy": 0.97059,
+              "precision": 0.97076,
+              "recall": 0.97059,
+              "f1_score": 0.97058,
+              "balanced_accuracy": 0.97039,
+              "mcc": 0.94132,
+              "roc_auc": 0.99787,
+              "parameters": 87990,
+              "flops": 175980,
+              "training_time": 195.86988,
+              "inference_time": 3.57949,
+              "rank": 1,
+              "entry": 6
+            },
+            {
+              "method": "SMOTE-ENN",
+              "model_type": "MobileNetV4",
+              "accuracy": 0.969,
+              "precision": 0.96905,
+              "recall": 0.969,
+              "f1_score": 0.969,
+              "balanced_accuracy": 0.96909,
+              "mcc": 0.93803,
+              "roc_auc": 0.99804,
+              "parameters": 62710,
+              "flops": 125420,
+              "training_time": 157.41778,
+              "inference_time": 2.86387,
+              "rank": 2,
+              "entry": 5
+            },
+            {
+              "method": "SMOTE",
+              "model_type": "MobileNetV4+Attention",
+              "accuracy": 0.95974,
+              "precision": 0.96037,
+              "recall": 0.95974,
+              "f1_score": 0.95973,
+              "balanced_accuracy": 0.95974,
+              "mcc": 0.92012,
+              "roc_auc": 0.99376,
+              "parameters": 87990,
+              "flops": 175980,
+              "training_time": 200.42817,
+              "inference_time": 3.89693,
+              "rank": 3,
+              "entry": 2
+            },
+            {
+              "method": "SMOTE-Tomek",
+              "model_type": "MobileNetV4+Attention",
+              "accuracy": 0.95919,
+              "precision": 0.95957,
+              "recall": 0.95919,
+              "f1_score": 0.95918,
+              "balanced_accuracy": 0.95918,
+              "mcc": 0.91875,
+              "roc_auc": 0.9943,
+              "parameters": 87990,
+              "flops": 175980,
+              "training_time": 196.0537,
+              "inference_time": 3.56238,
+              "rank": 4,
+              "entry": 8
+            },
+            {
+              "method": "SMOTE-Tomek",
+              "model_type": "MobileNetV4",
+              "accuracy": 0.95774,
+              "precision": 0.95805,
+              "recall": 0.95774,
+              "f1_score": 0.95773,
+              "balanced_accuracy": 0.95774,
+              "mcc": 0.91579,
+              "roc_auc": 0.99425,
+              "parameters": 62710,
+              "flops": 125420,
+              "training_time": 157.92627,
+              "inference_time": 2.90336,
+              "rank": 5,
+              "entry": 7
+            },
+            {
+              "method": "SMOTE-NCR",
+              "model_type": "MobileNetV4",
+              "accuracy": 0.95744,
+              "precision": 0.95784,
+              "recall": 0.95744,
+              "f1_score": 0.95744,
+              "balanced_accuracy": 0.95745,
+              "mcc": 0.91529,
+              "roc_auc": 0.99416,
+              "parameters": 62710,
+              "flops": 125420,
+              "training_time": 159.55819,
+              "inference_time": 2.93993,
+              "rank": 6,
+              "entry": 9
+            },
+            {
+              "method": "SMOTE",
+              "model_type": "MobileNetV4",
+              "accuracy": 0.95596,
+              "precision": 0.95633,
+              "recall": 0.95596,
+              "f1_score": 0.95595,
+              "balanced_accuracy": 0.95598,
+              "mcc": 0.9123,
+              "roc_auc": 0.99389,
+              "parameters": 62710,
+              "flops": 125420,
+              "training_time": 160.52052,
+              "inference_time": 3.49594,
+              "rank": 7,
+              "entry": 1
+            },
+            {
+              "method": "SMOTE-NCR",
+              "model_type": "MobileNetV4+Attention",
+              "accuracy": 0.95422,
+              "precision": 0.95459,
+              "recall": 0.95422,
+              "f1_score": 0.95421,
+              "balanced_accuracy": 0.95423,
+              "mcc": 0.90881,
+              "roc_auc": 0.99404,
+              "parameters": 87990,
+              "flops": 175980,
+              "training_time": 195.51422,
+              "inference_time": 3.63553,
+              "rank": 8,
+              "entry": 10
+            },
+            {
+              "method": "ADASYN-ENN",
+              "model_type": "MobileNetV4",
+              "accuracy": 0.95051,
+              "precision": 0.9519,
+              "recall": 0.95051,
+              "f1_score": 0.95065,
+              "balanced_accuracy": 0.95295,
+              "mcc": 0.90082,
+              "roc_auc": 0.98849,
+              "parameters": 62710,
+              "flops": 125420,
+              "training_time": 149.91403,
+              "inference_time": 3.32552,
+              "rank": 9,
+              "entry": 11
+            },
+            {
+              "method": "ADASYN-ENN",
+              "model_type": "MobileNetV4+Attention",
+              "accuracy": 0.95002,
+              "precision": 0.95147,
+              "recall": 0.95002,
+              "f1_score": 0.95016,
+              "balanced_accuracy": 0.95253,
+              "mcc": 0.89989,
+              "roc_auc": 0.98799,
+              "parameters": 87990,
+              "flops": 175980,
+              "training_time": 181.60029,
+              "inference_time": 3.58664,
+              "rank": 10,
+              "entry": 12
+            },
+            {
+              "method": "ADASYN-Tomek",
+              "model_type": "MobileNetV4",
+              "accuracy": 0.94437,
+              "precision": 0.94497,
+              "recall": 0.94437,
+              "f1_score": 0.94435,
+              "balanced_accuracy": 0.94439,
+              "mcc": 0.88934,
+              "roc_auc": 0.98319,
+              "parameters": 62710,
+              "flops": 125420,
+              "training_time": 159.43845,
+              "inference_time": 2.92343,
+              "rank": 11,
+              "entry": 13
+            },
+            {
+              "method": "ADASYN",
+              "model_type": "MobileNetV4",
+              "accuracy": 0.94381,
+              "precision": 0.94439,
+              "recall": 0.94381,
+              "f1_score": 0.94379,
+              "balanced_accuracy": 0.94372,
+              "mcc": 0.88819,
+              "roc_auc": 0.98417,
+              "parameters": 62710,
+              "flops": 125420,
+              "training_time": 162.34127,
+              "inference_time": 3.02387,
+              "rank": 12,
+              "entry": 3
+            },
+            {
+              "method": "ADASYN-Tomek",
+              "model_type": "MobileNetV4+Attention",
+              "accuracy": 0.94374,
+              "precision": 0.944,
+              "recall": 0.94374,
+              "f1_score": 0.94373,
+              "balanced_accuracy": 0.94373,
+              "mcc": 0.88774,
+              "roc_auc": 0.98307,
+              "parameters": 87990,
+              "flops": 175980,
+              "training_time": 193.84276,
+              "inference_time": 3.62671,
+              "rank": 13,
+              "entry": 14
+            },
+            {
+              "method": "ADASYN",
+              "model_type": "MobileNetV4+Attention",
+              "accuracy": 0.94356,
+              "precision": 0.94404,
+              "recall": 0.94356,
+              "f1_score": 0.94354,
+              "balanced_accuracy": 0.94349,
+              "mcc": 0.88758,
+              "roc_auc": 0.98318,
+              "parameters": 87990,
+              "flops": 175980,
+              "training_time": 201.14995,
+              "inference_time": 3.49459,
+              "rank": 14,
+              "entry": 4
+            },
+            {
+              "method": "ADASYN-NCR",
+              "model_type": "MobileNetV4",
+              "accuracy": 0.94319,
+              "precision": 0.94384,
+              "recall": 0.94319,
+              "f1_score": 0.94316,
+              "balanced_accuracy": 0.94318,
+              "mcc": 0.88703,
+              "roc_auc": 0.98223,
+              "parameters": 62710,
+              "flops": 125420,
+              "training_time": 158.71283,
+              "inference_time": 2.90493,
+              "rank": 15,
+              "entry": 15
+            },
+            {
+              "method": "ADASYN-NCR",
+              "model_type": "MobileNetV4+Attention",
+              "accuracy": 0.94085,
+              "precision": 0.94115,
+              "recall": 0.94085,
+              "f1_score": 0.94084,
+              "balanced_accuracy": 0.94085,
+              "mcc": 0.882,
+              "roc_auc": 0.98226,
+              "parameters": 87990,
+              "flops": 175980,
+              "training_time": 193.53589,
+              "inference_time": 3.54457,
+              "rank": 16,
+              "entry": 16
+            }
+          ],
+          "entry_mapping": "entry = position in the notebook loop, matched via the per-config log (config name + printed F1)"
+        }
+      },
+      "figures": [
+        {
+          "file": "cell_02_img_1.png",
+          "context": "  Gen 30: Fitness=0.9715, Features=5\n\u2713 GA Complete! Selected 5 from 41 features\n  Reduction: 87.8%\n[2.3] Final selected features: 5"
+        },
+        {
+          "file": "cell_02_img_2.png",
+          "context": "Inference Time (s)      3.33     0.34      2.86      3.90\n================================================================================\nPHASE 6: PERFORMANCE COMPARISON VISUALIZATIONS\n================================================================================"
+        },
+        {
+          "file": "cell_02_img_3.png",
+          "context": "PHASE 6: PERFORMANCE COMPARISON VISUALIZATIONS\n================================================================================\n[IMAGE 2]\n\u2713 All confusion matrices saved"
+        },
+        {
+          "file": "cell_02_img_4.png",
+          "context": "[IMAGE 2]\n\u2713 All confusion matrices saved\n[IMAGE 3]\n\u2713 Performance ranking saved"
+        },
+        {
+          "file": "cell_02_img_5.png",
+          "context": "[IMAGE 3]\n\u2713 Performance ranking saved\n[IMAGE 4]\n\u2713 Computational efficiency plots saved"
+        },
+        {
+          "file": "cell_02_img_6.png",
+          "context": "  Sample 13886: True=1, Predicted=1, Confidence=1.0000\n  Sample 2016: True=1, Predicted=1, Confidence=1.0000\n  Sample 22335: True=1, Predicted=1, Confidence=1.0000\n[9.2] Visualizing LRP explanations..."
+        },
+        {
+          "file": "cell_02_img_7.png",
+          "context": "  Sample 2016: True=1, Predicted=1, Confidence=1.0000\n  Sample 22335: True=1, Predicted=1, Confidence=1.0000\n[9.2] Visualizing LRP explanations...\n[IMAGE 6]"
+        },
+        {
+          "file": "cell_02_img_8.png",
+          "context": "         ADASYN MobileNetV4+Attention   0.94356    0.94404 0.94356   0.94354       0.94349 0.88758  0.98318       87990 175980          201.14995             3.49459    14\n     ADASYN-NCR           MobileNetV4   0.94319    0.94384 0.94319   0.94316       0.94318 0.88703  0.98223       62710 125420          158.71283             2.90493    15\n     ADASYN-NCR MobileNetV4+Attention   0.94085    0.94115 0.94085   0.94084       0.94085 0.88200  0.98226       87990 175980          193.53589             3.54457    16\n================================================================================"
+        }
+      ],
+      "feature_selection": {
+        "checkpoints": [
+          {
+            "generation": 5,
+            "best_fitness": 0.9624,
+            "n_features": 13
+          },
+          {
+            "generation": 10,
+            "best_fitness": 0.9683,
+            "n_features": 9
+          },
+          {
+            "generation": 15,
+            "best_fitness": 0.9683,
+            "n_features": 9
+          },
+          {
+            "generation": 20,
+            "best_fitness": 0.9715,
+            "n_features": 5
+          },
+          {
+            "generation": 25,
+            "best_fitness": 0.9715,
+            "n_features": 5
+          },
+          {
+            "generation": 30,
+            "best_fitness": 0.9715,
+            "n_features": 5
+          }
+        ],
+        "selected": 5,
+        "candidates": 41,
+        "after_variance_threshold": 41,
+        "nids_shape": [
+          150000,
+          45
+        ],
+        "label_counts": {
+          "normal": 49414,
+          "attack": 100586
+        }
+      },
+      "config_log": [
+        {
+          "entry": 1,
+          "of": 16,
+          "config": "SMOTE + GA + MobileNetV4",
+          "samples_after_sampling": 201172,
+          "class_counts_after_sampling": {
+            "0": 100586,
+            "1": 100586
+          },
+          "train_samples": 134640,
+          "n_features": 5,
+          "val_samples": 18360,
+          "test_samples": 27000,
+          "accuracy": 0.95596,
+          "f1_score": 0.95595,
+          "roc_auc": 0.99389
+        },
+        {
+          "entry": 2,
+          "of": 16,
+          "config": "SMOTE + GA + MobileNetV4+Attention",
+          "samples_after_sampling": 201172,
+          "class_counts_after_sampling": {
+            "0": 100586,
+            "1": 100586
+          },
+          "train_samples": 134640,
+          "n_features": 5,
+          "val_samples": 18360,
+          "test_samples": 27000,
+          "accuracy": 0.95974,
+          "f1_score": 0.95973,
+          "roc_auc": 0.99376
+        },
+        {
+          "entry": 3,
+          "of": 16,
+          "config": "ADASYN + GA + MobileNetV4",
+          "samples_after_sampling": 202084,
+          "class_counts_after_sampling": {
+            "0": 101498,
+            "1": 100586
+          },
+          "train_samples": 134640,
+          "n_features": 5,
+          "val_samples": 18360,
+          "test_samples": 27000,
+          "accuracy": 0.94381,
+          "f1_score": 0.94379,
+          "roc_auc": 0.98417
+        },
+        {
+          "entry": 4,
+          "of": 16,
+          "config": "ADASYN + GA + MobileNetV4+Attention",
+          "samples_after_sampling": 202084,
+          "class_counts_after_sampling": {
+            "0": 101498,
+            "1": 100586
+          },
+          "train_samples": 134640,
+          "n_features": 5,
+          "val_samples": 18360,
+          "test_samples": 27000,
+          "accuracy": 0.94356,
+          "f1_score": 0.94354,
+          "roc_auc": 0.98318
+        },
+        {
+          "entry": 5,
+          "of": 16,
+          "config": "SMOTE-ENN + GA + MobileNetV4",
+          "samples_after_sampling": 191389,
+          "class_counts_after_sampling": {
+            "0": 93744,
+            "1": 97645
+          },
+          "train_samples": 134640,
+          "n_features": 5,
+          "val_samples": 18360,
+          "test_samples": 27000,
+          "accuracy": 0.969,
+          "f1_score": 0.969,
+          "roc_auc": 0.99804
+        },
+        {
+          "entry": 6,
+          "of": 16,
+          "config": "SMOTE-ENN + GA + MobileNetV4+Attention",
+          "samples_after_sampling": 191389,
+          "class_counts_after_sampling": {
+            "0": 93744,
+            "1": 97645
+          },
+          "train_samples": 134640,
+          "n_features": 5,
+          "val_samples": 18360,
+          "test_samples": 27000,
+          "accuracy": 0.97059,
+          "f1_score": 0.97058,
+          "roc_auc": 0.99787
+        },
+        {
+          "entry": 7,
+          "of": 16,
+          "config": "SMOTE-Tomek + GA + MobileNetV4",
+          "samples_after_sampling": 200606,
+          "class_counts_after_sampling": {
+            "0": 100303,
+            "1": 100303
+          },
+          "train_samples": 134640,
+          "n_features": 5,
+          "val_samples": 18360,
+          "test_samples": 27000,
+          "accuracy": 0.95774,
+          "f1_score": 0.95773,
+          "roc_auc": 0.99425
+        },
+        {
+          "entry": 8,
+          "of": 16,
+          "config": "SMOTE-Tomek + GA + MobileNetV4+Attention",
+          "samples_after_sampling": 200606,
+          "class_counts_after_sampling": {
+            "0": 100303,
+            "1": 100303
+          },
+          "train_samples": 134640,
+          "n_features": 5,
+          "val_samples": 18360,
+          "test_samples": 27000,
+          "accuracy": 0.95919,
+          "f1_score": 0.95918,
+          "roc_auc": 0.9943
+        },
+        {
+          "entry": 9,
+          "of": 16,
+          "config": "SMOTE-NCR + GA + MobileNetV4",
+          "samples_after_sampling": 201172,
+          "class_counts_after_sampling": {
+            "0": 100586,
+            "1": 100586
+          },
+          "train_samples": 134640,
+          "n_features": 5,
+          "val_samples": 18360,
+          "test_samples": 27000,
+          "accuracy": 0.95744,
+          "f1_score": 0.95744,
+          "roc_auc": 0.99416
+        },
+        {
+          "entry": 10,
+          "of": 16,
+          "config": "SMOTE-NCR + GA + MobileNetV4+Attention",
+          "samples_after_sampling": 201172,
+          "class_counts_after_sampling": {
+            "0": 100586,
+            "1": 100586
+          },
+          "train_samples": 134640,
+          "n_features": 5,
+          "val_samples": 18360,
+          "test_samples": 27000,
+          "accuracy": 0.95422,
+          "f1_score": 0.95421,
+          "roc_auc": 0.99404
+        },
+        {
+          "entry": 11,
+          "of": 16,
+          "config": "ADASYN-ENN + GA + MobileNetV4",
+          "samples_after_sampling": 176601,
+          "class_counts_after_sampling": {
+            "0": 76015,
+            "1": 100586
+          },
+          "train_samples": 132096,
+          "n_features": 5,
+          "val_samples": 18014,
+          "test_samples": 26491,
+          "accuracy": 0.95051,
+          "f1_score": 0.95065,
+          "roc_auc": 0.98849
+        },
+        {
+          "entry": 12,
+          "of": 16,
+          "config": "ADASYN-ENN + GA + MobileNetV4+Attention",
+          "samples_after_sampling": 176601,
+          "class_counts_after_sampling": {
+            "0": 76015,
+            "1": 100586
+          },
+          "train_samples": 132096,
+          "n_features": 5,
+          "val_samples": 18014,
+          "test_samples": 26491,
+          "accuracy": 0.95002,
+          "f1_score": 0.95016,
+          "roc_auc": 0.98799
+        },
+        {
+          "entry": 13,
+          "of": 16,
+          "config": "ADASYN-Tomek + GA + MobileNetV4",
+          "samples_after_sampling": 201140,
+          "class_counts_after_sampling": {
+            "0": 100554,
+            "1": 100586
+          },
+          "train_samples": 134640,
+          "n_features": 5,
+          "val_samples": 18360,
+          "test_samples": 27000,
+          "accuracy": 0.94437,
+          "f1_score": 0.94435,
+          "roc_auc": 0.98319
+        },
+        {
+          "entry": 14,
+          "of": 16,
+          "config": "ADASYN-Tomek + GA + MobileNetV4+Attention",
+          "samples_after_sampling": 201140,
+          "class_counts_after_sampling": {
+            "0": 100554,
+            "1": 100586
+          },
+          "train_samples": 134640,
+          "n_features": 5,
+          "val_samples": 18360,
+          "test_samples": 27000,
+          "accuracy": 0.94374,
+          "f1_score": 0.94373,
+          "roc_auc": 0.98307
+        },
+        {
+          "entry": 15,
+          "of": 16,
+          "config": "ADASYN-NCR + GA + MobileNetV4",
+          "samples_after_sampling": 201172,
+          "class_counts_after_sampling": {
+            "0": 100586,
+            "1": 100586
+          },
+          "train_samples": 134640,
+          "n_features": 5,
+          "val_samples": 18360,
+          "test_samples": 27000,
+          "accuracy": 0.94319,
+          "f1_score": 0.94316,
+          "roc_auc": 0.98223
+        },
+        {
+          "entry": 16,
+          "of": 16,
+          "config": "ADASYN-NCR + GA + MobileNetV4+Attention",
+          "samples_after_sampling": 201172,
+          "class_counts_after_sampling": {
+            "0": 100586,
+            "1": 100586
+          },
+          "train_samples": 134640,
+          "n_features": 5,
+          "val_samples": 18360,
+          "test_samples": 27000,
+          "accuracy": 0.94085,
+          "f1_score": 0.94084,
+          "roc_auc": 0.98226
+        }
+      ]
+    },
+    "cell04_stacking9": {
+      "cell": 4,
+      "execution_count": 2,
+      "has_source": true,
+      "n_outputs": 34,
+      "tables": {
+        "results_9": {
+          "description": "9-entry stacking results, ranked by weighted F1",
+          "columns": [
+            "config",
+            "method",
+            "accuracy",
+            "precision",
+            "recall",
+            "f1_score",
+            "balanced_accuracy",
+            "mcc",
+            "roc_auc",
+            "parameters",
+            "flops",
+            "training_time",
+            "inference_time",
+            "rank"
+          ],
+          "rows": [
+            {
+              "config": "SMOTE-ENN_GA_Ensemble_Stacking",
+              "method": "SMOTE-ENN",
+              "accuracy": 0.97789,
+              "precision": 0.97795,
+              "recall": 0.97789,
+              "f1_score": 0.97789,
+              "balanced_accuracy": 0.97775,
+              "mcc": 0.95582,
+              "roc_auc": 0.99767,
+              "parameters": 75004,
+              "flops": 150008,
+              "training_time": 326.63078,
+              "inference_time": 7.1504,
+              "rank": 1,
+              "entry": 3
+            },
+            {
+              "config": "SMOTE-Tomek_GA_Ensemble_Stacking",
+              "method": "SMOTE-Tomek",
+              "accuracy": 0.95911,
+              "precision": 0.95957,
+              "recall": 0.95911,
+              "f1_score": 0.9591,
+              "balanced_accuracy": 0.95912,
+              "mcc": 0.91869,
+              "roc_auc": 0.99434,
+              "parameters": 75004,
+              "flops": 150008,
+              "training_time": 325.78655,
+              "inference_time": 7.27906,
+              "rank": 2,
+              "entry": 4
+            },
+            {
+              "config": "SMOTE_GA_Ensemble_Stacking",
+              "method": "SMOTE",
+              "accuracy": 0.95596,
+              "precision": 0.95632,
+              "recall": 0.95596,
+              "f1_score": 0.95596,
+              "balanced_accuracy": 0.95598,
+              "mcc": 0.91228,
+              "roc_auc": 0.99405,
+              "parameters": 75004,
+              "flops": 150008,
+              "training_time": 338.36946,
+              "inference_time": 7.31661,
+              "rank": 3,
+              "entry": 1
+            },
+            {
+              "config": "SMOTE-NCR_GA_Ensemble_Stacking",
+              "method": "SMOTE-NCR",
+              "accuracy": 0.95452,
+              "precision": 0.955,
+              "recall": 0.95452,
+              "f1_score": 0.95451,
+              "balanced_accuracy": 0.95453,
+              "mcc": 0.90952,
+              "roc_auc": 0.9942,
+              "parameters": 75004,
+              "flops": 150008,
+              "training_time": 325.35444,
+              "inference_time": 7.05743,
+              "rank": 4,
+              "entry": 5
+            },
+            {
+              "config": "SMOTE_GA_Ensemble_Stacking",
+              "method": "SMOTE",
+              "accuracy": 0.95422,
+              "precision": 0.95464,
+              "recall": 0.95422,
+              "f1_score": 0.95421,
+              "balanced_accuracy": 0.95424,
+              "mcc": 0.90887,
+              "roc_auc": 0.99434,
+              "parameters": 75004,
+              "flops": 150008,
+              "training_time": 302.41267,
+              "inference_time": 6.93089,
+              "rank": 5,
+              "entry": 9
+            },
+            {
+              "config": "ADASYN-ENN_GA_Ensemble_Stacking",
+              "method": "ADASYN-ENN",
+              "accuracy": 0.94979,
+              "precision": 0.95096,
+              "recall": 0.94979,
+              "f1_score": 0.94992,
+              "balanced_accuracy": 0.95189,
+              "mcc": 0.89911,
+              "roc_auc": 0.98804,
+              "parameters": 75004,
+              "flops": 150008,
+              "training_time": 305.29466,
+              "inference_time": 7.93577,
+              "rank": 6,
+              "entry": 6
+            },
+            {
+              "config": "ADASYN-Tomek_GA_Ensemble_Stacking",
+              "method": "ADASYN-Tomek",
+              "accuracy": 0.94381,
+              "precision": 0.94432,
+              "recall": 0.94381,
+              "f1_score": 0.9438,
+              "balanced_accuracy": 0.94382,
+              "mcc": 0.88814,
+              "roc_auc": 0.98236,
+              "parameters": 75004,
+              "flops": 150008,
+              "training_time": 319.14057,
+              "inference_time": 7.06259,
+              "rank": 7,
+              "entry": 7
+            },
+            {
+              "config": "ADASYN_GA_Ensemble_Stacking",
+              "method": "ADASYN",
+              "accuracy": 0.94274,
+              "precision": 0.94317,
+              "recall": 0.94274,
+              "f1_score": 0.94272,
+              "balanced_accuracy": 0.94267,
+              "mcc": 0.8859,
+              "roc_auc": 0.98236,
+              "parameters": 75004,
+              "flops": 150008,
+              "training_time": 331.05232,
+              "inference_time": 7.24147,
+              "rank": 8,
+              "entry": 2
+            },
+            {
+              "config": "ADASYN-NCR_GA_Ensemble_Stacking",
+              "method": "ADASYN-NCR",
+              "accuracy": 0.94107,
+              "precision": 0.94136,
+              "recall": 0.94107,
+              "f1_score": 0.94106,
+              "balanced_accuracy": 0.94108,
+              "mcc": 0.88243,
+              "roc_auc": 0.98185,
+              "parameters": 75004,
+              "flops": 150008,
+              "training_time": 308.03004,
+              "inference_time": 7.00252,
+              "rank": 9,
+              "entry": 8
+            }
+          ],
+          "entry_mapping": "entry = position in the notebook loop, matched via the per-config log (config name + printed F1)"
+        }
+      },
+      "figures": [
+        {
+          "file": "cell_04_img_1.png",
+          "context": "  Gen 30: Fitness=0.9715, Features=5\n\u2713 GA Complete! Selected 5 from 41 features\n  Reduction: 87.8%\n[2.3] Final selected features: 5"
+        },
+        {
+          "file": "cell_04_img_2.png",
+          "context": "Inference Time (s)      7.22  0.30      6.93      7.94\n================================================================================\nPHASE 6: PERFORMANCE COMPARISON VISUALIZATIONS\n================================================================================"
+        },
+        {
+          "file": "cell_04_img_3.png",
+          "context": "PHASE 6: PERFORMANCE COMPARISON VISUALIZATIONS\n================================================================================\n[IMAGE 2]\n\u2713 All confusion matrices saved"
+        },
+        {
+          "file": "cell_04_img_4.png",
+          "context": "[IMAGE 2]\n\u2713 All confusion matrices saved\n[IMAGE 3]\n\u2713 Performance ranking saved"
+        },
+        {
+          "file": "cell_04_img_5.png",
+          "context": "[IMAGE 3]\n\u2713 Performance ranking saved\n[IMAGE 4]\n\u2713 Computational efficiency plots saved"
+        },
+        {
+          "file": "cell_04_img_6.png",
+          "context": "  Sample 5602: True=1, Predicted=1, Confidence=0.7752\n  Sample 28029: True=0, Predicted=0, Confidence=0.9893\n  Sample 21071: True=0, Predicted=0, Confidence=0.9898\n[9.2] Visualizing LRP explanations..."
+        },
+        {
+          "file": "cell_04_img_7.png",
+          "context": "  Sample 28029: True=0, Predicted=0, Confidence=0.9893\n  Sample 21071: True=0, Predicted=0, Confidence=0.9898\n[9.2] Visualizing LRP explanations...\n[IMAGE 6]"
+        },
+        {
+          "file": "cell_04_img_8.png",
+          "context": "ADASYN-Tomek_GA_Ensemble_Stacking    ADASYN-Tomek   0.94381    0.94432 0.94381   0.94380       0.94382 0.88814  0.98236       75004 150008          319.14057             7.06259     7\n      ADASYN_GA_Ensemble_Stacking          ADASYN   0.94274    0.94317 0.94274   0.94272       0.94267 0.88590  0.98236       75004 150008          331.05232             7.24147     8\n  ADASYN-NCR_GA_Ensemble_Stacking      ADASYN-NCR   0.94107    0.94136 0.94107   0.94106       0.94108 0.88243  0.98185       75004 150008          308.03004             7.00252     9\n================================================================================"
+        }
+      ],
+      "feature_selection": {
+        "checkpoints": [
+          {
+            "generation": 5,
+            "best_fitness": 0.9624,
+            "n_features": 13
+          },
+          {
+            "generation": 10,
+            "best_fitness": 0.9683,
+            "n_features": 9
+          },
+          {
+            "generation": 15,
+            "best_fitness": 0.9683,
+            "n_features": 9
+          },
+          {
+            "generation": 20,
+            "best_fitness": 0.9715,
+            "n_features": 5
+          },
+          {
+            "generation": 25,
+            "best_fitness": 0.9715,
+            "n_features": 5
+          },
+          {
+            "generation": 30,
+            "best_fitness": 0.9715,
+            "n_features": 5
+          }
+        ],
+        "selected": 5,
+        "candidates": 41,
+        "after_variance_threshold": 41,
+        "nids_shape": [
+          150000,
+          45
+        ],
+        "label_counts": {
+          "normal": 49414,
+          "attack": 100586
+        }
+      },
+      "config_log": [
+        {
+          "entry": 1,
+          "of": 9,
+          "config": "SMOTE_GA_Ensemble_Stacking",
+          "samples_after_sampling": 201172,
+          "class_counts_after_sampling": {
+            "0": 100586,
+            "1": 100586
+          },
+          "train_samples": 134640,
+          "n_features": 5,
+          "val_samples": 18360,
+          "test_samples": 27000,
+          "accuracy": 0.95596,
+          "f1_score": 0.95596,
+          "roc_auc": 0.99405
+        },
+        {
+          "entry": 2,
+          "of": 9,
+          "config": "ADASYN_GA_Ensemble_Stacking",
+          "samples_after_sampling": 202084,
+          "class_counts_after_sampling": {
+            "0": 101498,
+            "1": 100586
+          },
+          "train_samples": 134640,
+          "n_features": 5,
+          "val_samples": 18360,
+          "test_samples": 27000,
+          "accuracy": 0.94274,
+          "f1_score": 0.94272,
+          "roc_auc": 0.98236
+        },
+        {
+          "entry": 3,
+          "of": 9,
+          "config": "SMOTE-ENN_GA_Ensemble_Stacking",
+          "samples_after_sampling": 191389,
+          "class_counts_after_sampling": {
+            "0": 93744,
+            "1": 97645
+          },
+          "train_samples": 134640,
+          "n_features": 5,
+          "val_samples": 18360,
+          "test_samples": 27000,
+          "accuracy": 0.97789,
+          "f1_score": 0.97789,
+          "roc_auc": 0.99767
+        },
+        {
+          "entry": 4,
+          "of": 9,
+          "config": "SMOTE-Tomek_GA_Ensemble_Stacking",
+          "samples_after_sampling": 200606,
+          "class_counts_after_sampling": {
+            "0": 100303,
+            "1": 100303
+          },
+          "train_samples": 134640,
+          "n_features": 5,
+          "val_samples": 18360,
+          "test_samples": 27000,
+          "accuracy": 0.95911,
+          "f1_score": 0.9591,
+          "roc_auc": 0.99434
+        },
+        {
+          "entry": 5,
+          "of": 9,
+          "config": "SMOTE-NCR_GA_Ensemble_Stacking",
+          "samples_after_sampling": 201172,
+          "class_counts_after_sampling": {
+            "0": 100586,
+            "1": 100586
+          },
+          "train_samples": 134640,
+          "n_features": 5,
+          "val_samples": 18360,
+          "test_samples": 27000,
+          "accuracy": 0.95452,
+          "f1_score": 0.95451,
+          "roc_auc": 0.9942
+        },
+        {
+          "entry": 6,
+          "of": 9,
+          "config": "ADASYN-ENN_GA_Ensemble_Stacking",
+          "samples_after_sampling": 176601,
+          "class_counts_after_sampling": {
+            "0": 76015,
+            "1": 100586
+          },
+          "train_samples": 132096,
+          "n_features": 5,
+          "val_samples": 18014,
+          "test_samples": 26491,
+          "accuracy": 0.94979,
+          "f1_score": 0.94992,
+          "roc_auc": 0.98804
+        },
+        {
+          "entry": 7,
+          "of": 9,
+          "config": "ADASYN-Tomek_GA_Ensemble_Stacking",
+          "samples_after_sampling": 201140,
+          "class_counts_after_sampling": {
+            "0": 100554,
+            "1": 100586
+          },
+          "train_samples": 134640,
+          "n_features": 5,
+          "val_samples": 18360,
+          "test_samples": 27000,
+          "accuracy": 0.94381,
+          "f1_score": 0.9438,
+          "roc_auc": 0.98236
+        },
+        {
+          "entry": 8,
+          "of": 9,
+          "config": "ADASYN-NCR_GA_Ensemble_Stacking",
+          "samples_after_sampling": 201172,
+          "class_counts_after_sampling": {
+            "0": 100586,
+            "1": 100586
+          },
+          "train_samples": 134640,
+          "n_features": 5,
+          "val_samples": 18360,
+          "test_samples": 27000,
+          "accuracy": 0.94107,
+          "f1_score": 0.94106,
+          "roc_auc": 0.98185
+        },
+        {
+          "entry": 9,
+          "of": 9,
+          "config": "SMOTE_GA_Ensemble_Stacking",
+          "samples_after_sampling": 201172,
+          "class_counts_after_sampling": {
+            "0": 100586,
+            "1": 100586
+          },
+          "train_samples": 134640,
+          "n_features": 5,
+          "val_samples": 18360,
+          "test_samples": 27000,
+          "accuracy": 0.95422,
+          "f1_score": 0.95421,
+          "roc_auc": 0.99434
+        }
+      ]
+    },
+    "cell06_trimsec_v1": {
+      "cell": 6,
+      "execution_count": 6,
+      "has_source": true,
+      "n_outputs": 29,
+      "tables": {
+        "api_results": {
+          "description": "API-sequence evaluation",
+          "columns": [
+            "method",
+            "accuracy",
+            "precision",
+            "recall",
+            "f1_score",
+            "roc_auc",
+            "mcc",
+            "parameters",
+            "flops_m",
+            "inference_ms",
+            "throughput"
+          ],
+          "rows": [
+            {
+              "method": "None",
+              "accuracy": 1.0,
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1_score": 1.0,
+              "roc_auc": 1.0,
+              "mcc": 1.0,
+              "parameters": 21487,
+              "flops_m": 0.09,
+              "inference_ms": 1.69,
+              "throughput": 592.03
+            },
+            {
+              "method": "SMOTE",
+              "accuracy": 1.0,
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1_score": 1.0,
+              "roc_auc": 1.0,
+              "mcc": 1.0,
+              "parameters": 21487,
+              "flops_m": 0.09,
+              "inference_ms": 1.64,
+              "throughput": 610.41
+            },
+            {
+              "method": "ADASYN",
+              "accuracy": 1.0,
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1_score": 1.0,
+              "roc_auc": 1.0,
+              "mcc": 1.0,
+              "parameters": 21487,
+              "flops_m": 0.09,
+              "inference_ms": 1.66,
+              "throughput": 603.09
+            },
+            {
+              "method": "SMOTE-ENN",
+              "accuracy": 1.0,
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1_score": 1.0,
+              "roc_auc": 1.0,
+              "mcc": 1.0,
+              "parameters": 21487,
+              "flops_m": 0.09,
+              "inference_ms": 1.66,
+              "throughput": 601.65
+            },
+            {
+              "method": "SMOTE-Tomek",
+              "accuracy": 1.0,
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1_score": 1.0,
+              "roc_auc": 1.0,
+              "mcc": 1.0,
+              "parameters": 21487,
+              "flops_m": 0.09,
+              "inference_ms": 1.66,
+              "throughput": 603.34
+            },
+            {
+              "method": "SMOTE-NCR",
+              "accuracy": 1.0,
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1_score": 1.0,
+              "roc_auc": 1.0,
+              "mcc": 1.0,
+              "parameters": 21487,
+              "flops_m": 0.09,
+              "inference_ms": 1.69,
+              "throughput": 593.14
+            },
+            {
+              "method": "ADASYN-ENN",
+              "accuracy": 1.0,
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1_score": 1.0,
+              "roc_auc": 1.0,
+              "mcc": 1.0,
+              "parameters": 21487,
+              "flops_m": 0.09,
+              "inference_ms": 1.66,
+              "throughput": 600.98
+            },
+            {
+              "method": "ADASYN-Tomek",
+              "accuracy": 1.0,
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1_score": 1.0,
+              "roc_auc": 1.0,
+              "mcc": 1.0,
+              "parameters": 21487,
+              "flops_m": 0.09,
+              "inference_ms": 1.64,
+              "throughput": 610.6
+            },
+            {
+              "method": "ADASYN-NCR",
+              "accuracy": 1.0,
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1_score": 1.0,
+              "roc_auc": 1.0,
+              "mcc": 1.0,
+              "parameters": 21487,
+              "flops_m": 0.09,
+              "inference_ms": 1.66,
+              "throughput": 602.42
+            }
+          ]
+        },
+        "nids_results": {
+          "description": "NF-UQ-NIDS-v2 evaluation",
+          "columns": [
+            "method",
+            "accuracy",
+            "precision",
+            "recall",
+            "f1_score",
+            "roc_auc",
+            "mcc"
+          ],
+          "rows": [
+            {
+              "method": "None",
+              "accuracy": 1.0,
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1_score": 1.0,
+              "roc_auc": 1.0,
+              "mcc": 1.0
+            },
+            {
+              "method": "SMOTE",
+              "accuracy": 1.0,
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1_score": 1.0,
+              "roc_auc": 1.0,
+              "mcc": 1.0
+            },
+            {
+              "method": "ADASYN",
+              "accuracy": 1.0,
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1_score": 1.0,
+              "roc_auc": 1.0,
+              "mcc": 1.0
+            },
+            {
+              "method": "SMOTE-ENN",
+              "accuracy": 1.0,
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1_score": 1.0,
+              "roc_auc": 1.0,
+              "mcc": 1.0
+            },
+            {
+              "method": "SMOTE-Tomek",
+              "accuracy": 1.0,
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1_score": 1.0,
+              "roc_auc": 1.0,
+              "mcc": 1.0
+            },
+            {
+              "method": "SMOTE-NCR",
+              "accuracy": 1.0,
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1_score": 1.0,
+              "roc_auc": 1.0,
+              "mcc": 1.0
+            },
+            {
+              "method": "ADASYN-ENN",
+              "accuracy": 1.0,
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1_score": 1.0,
+              "roc_auc": 1.0,
+              "mcc": 1.0
+            },
+            {
+              "method": "ADASYN-Tomek",
+              "accuracy": 1.0,
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1_score": 1.0,
+              "roc_auc": 1.0,
+              "mcc": 1.0
+            },
+            {
+              "method": "ADASYN-NCR",
+              "accuracy": 1.0,
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1_score": 1.0,
+              "roc_auc": 1.0,
+              "mcc": 1.0
+            }
+          ]
+        }
+      },
+      "figures": [
+        {
+          "file": "cell_06_img_1.png",
+          "context": "  5. MAX_IP_PKT_LEN: 0.448890\nSelected features: ['Label', 'IPV4_DST_ADDR', 'IPV4_SRC_ADDR', 'LONGEST_FLOW_PKT', 'MAX_IP_PKT_LEN']\n--- Scaling (Z-score Standardization) ---\nUsing labels from NF-UQ-NIDS-v2: Normal/Benign=16535, Attack/Malware=33465"
+        },
+        {
+          "file": "cell_06_img_2.png",
+          "context": "Results saved to CSV files\n================================================================================\nSTEP 13: GENERATING VISUALIZATIONS\n================================================================================"
+        },
+        {
+          "file": "cell_06_img_3.png",
+          "context": "================================================================================\nSTEP 13: GENERATING VISUALIZATIONS\n================================================================================\n[IMAGE 2]"
+        },
+        {
+          "file": "cell_06_img_4.png",
+          "context": "STEP 13: GENERATING VISUALIZATIONS\n================================================================================\n[IMAGE 2]\n[IMAGE 3]"
+        },
+        {
+          "file": "cell_06_img_5.png",
+          "context": "================================================================================\n[IMAGE 2]\n[IMAGE 3]\n[IMAGE 4]"
+        },
+        {
+          "file": "cell_06_img_6.png",
+          "context": "[IMAGE 2]\n[IMAGE 3]\n[IMAGE 4]\n[IMAGE 5]"
+        },
+        {
+          "file": "cell_06_img_7.png",
+          "context": "[IMAGE 3]\n[IMAGE 4]\n[IMAGE 5]\n[IMAGE 6]"
+        },
+        {
+          "file": "cell_06_img_8.png",
+          "context": "[IMAGE 4]\n[IMAGE 5]\n[IMAGE 6]\n[IMAGE 7]"
+        }
+      ]
+    },
+    "cell07_orphan": {
+      "cell": 7,
+      "execution_count": 7,
+      "has_source": false,
+      "n_outputs": 29,
+      "tables": {
+        "api_results": {
+          "description": "API-sequence evaluation",
+          "columns": [
+            "method",
+            "accuracy",
+            "precision",
+            "recall",
+            "f1_score",
+            "roc_auc",
+            "mcc",
+            "parameters",
+            "flops_m",
+            "inference_ms",
+            "throughput"
+          ],
+          "rows": [
+            {
+              "method": "None",
+              "accuracy": 1.0,
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1_score": 1.0,
+              "roc_auc": 1.0,
+              "mcc": 1.0,
+              "parameters": 75643,
+              "flops_m": 0.3,
+              "inference_ms": 1.72,
+              "throughput": 581.52
+            },
+            {
+              "method": "SMOTE",
+              "accuracy": 0.9994,
+              "precision": 0.9991,
+              "recall": 1.0,
+              "f1_score": 0.9995,
+              "roc_auc": 1.0,
+              "mcc": 0.9986,
+              "parameters": 75643,
+              "flops_m": 0.3,
+              "inference_ms": 1.67,
+              "throughput": 600.41
+            },
+            {
+              "method": "ADASYN",
+              "accuracy": 1.0,
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1_score": 1.0,
+              "roc_auc": 1.0,
+              "mcc": 1.0,
+              "parameters": 75643,
+              "flops_m": 0.3,
+              "inference_ms": 1.65,
+              "throughput": 605.4
+            },
+            {
+              "method": "SMOTE-ENN",
+              "accuracy": 0.9998,
+              "precision": 1.0,
+              "recall": 0.9998,
+              "f1_score": 0.9999,
+              "roc_auc": 1.0,
+              "mcc": 0.9997,
+              "parameters": 75643,
+              "flops_m": 0.3,
+              "inference_ms": 1.67,
+              "throughput": 598.15
+            },
+            {
+              "method": "SMOTE-Tomek",
+              "accuracy": 0.9997,
+              "precision": 0.9995,
+              "recall": 1.0,
+              "f1_score": 0.9998,
+              "roc_auc": 1.0,
+              "mcc": 0.9993,
+              "parameters": 75643,
+              "flops_m": 0.3,
+              "inference_ms": 1.63,
+              "throughput": 612.1
+            },
+            {
+              "method": "SMOTE-NCR",
+              "accuracy": 0.9998,
+              "precision": 0.9998,
+              "recall": 1.0,
+              "f1_score": 0.9999,
+              "roc_auc": 1.0,
+              "mcc": 0.9997,
+              "parameters": 75643,
+              "flops_m": 0.3,
+              "inference_ms": 1.68,
+              "throughput": 594.28
+            },
+            {
+              "method": "ADASYN-ENN",
+              "accuracy": 1.0,
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1_score": 1.0,
+              "roc_auc": 1.0,
+              "mcc": 1.0,
+              "parameters": 75643,
+              "flops_m": 0.3,
+              "inference_ms": 1.65,
+              "throughput": 604.28
+            },
+            {
+              "method": "ADASYN-Tomek",
+              "accuracy": 0.9998,
+              "precision": 0.9998,
+              "recall": 1.0,
+              "f1_score": 0.9999,
+              "roc_auc": 1.0,
+              "mcc": 0.9997,
+              "parameters": 75643,
+              "flops_m": 0.3,
+              "inference_ms": 1.71,
+              "throughput": 586.01
+            },
+            {
+              "method": "ADASYN-NCR",
+              "accuracy": 0.9998,
+              "precision": 0.9998,
+              "recall": 1.0,
+              "f1_score": 0.9999,
+              "roc_auc": 1.0,
+              "mcc": 0.9997,
+              "parameters": 75643,
+              "flops_m": 0.3,
+              "inference_ms": 1.67,
+              "throughput": 597.13
+            }
+          ]
+        },
+        "nids_results": {
+          "description": "NF-UQ-NIDS-v2 evaluation",
+          "columns": [
+            "method",
+            "accuracy",
+            "precision",
+            "recall",
+            "f1_score",
+            "roc_auc",
+            "mcc"
+          ],
+          "rows": [
+            {
+              "method": "None",
+              "accuracy": 1.0,
+              "precision": 1.0,
+              "recall": 0.9999,
+              "f1_score": 1.0,
+              "roc_auc": 1.0,
+              "mcc": 0.9999
+            },
+            {
+              "method": "SMOTE",
+              "accuracy": 0.9998,
+              "precision": 0.9997,
+              "recall": 1.0,
+              "f1_score": 0.9999,
+              "roc_auc": 1.0,
+              "mcc": 0.9996
+            },
+            {
+              "method": "ADASYN",
+              "accuracy": 0.9999,
+              "precision": 1.0,
+              "recall": 0.9999,
+              "f1_score": 0.9999,
+              "roc_auc": 1.0,
+              "mcc": 0.9998
+            },
+            {
+              "method": "SMOTE-ENN",
+              "accuracy": 0.9999,
+              "precision": 1.0,
+              "recall": 0.9999,
+              "f1_score": 0.9999,
+              "roc_auc": 1.0,
+              "mcc": 0.9998
+            },
+            {
+              "method": "SMOTE-Tomek",
+              "accuracy": 0.9999,
+              "precision": 0.9999,
+              "recall": 1.0,
+              "f1_score": 0.9999,
+              "roc_auc": 1.0,
+              "mcc": 0.9998
+            },
+            {
+              "method": "SMOTE-NCR",
+              "accuracy": 1.0,
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1_score": 1.0,
+              "roc_auc": 1.0,
+              "mcc": 0.9999
+            },
+            {
+              "method": "ADASYN-ENN",
+              "accuracy": 1.0,
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1_score": 1.0,
+              "roc_auc": 1.0,
+              "mcc": 1.0
+            },
+            {
+              "method": "ADASYN-Tomek",
+              "accuracy": 1.0,
+              "precision": 0.9999,
+              "recall": 1.0,
+              "f1_score": 1.0,
+              "roc_auc": 1.0,
+              "mcc": 0.9999
+            },
+            {
+              "method": "ADASYN-NCR",
+              "accuracy": 1.0,
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1_score": 1.0,
+              "roc_auc": 1.0,
+              "mcc": 0.9999
+            }
+          ]
+        }
+      },
+      "figures": [
+        {
+          "file": "cell_07_img_1.png",
+          "context": "  8. MAX_TTL: 0.384239\nSelected features: ['Label', 'IPV4_DST_ADDR', 'IPV4_SRC_ADDR', 'LONGEST_FLOW_PKT', 'MAX_IP_PKT_LEN', 'IN_BYTES', 'SRC_TO_DST_AVG_THROUGHPUT', 'MAX_TTL']\n--- Scaling (Z-score Standardization) ---\nUsing labels from NF-UQ-NIDS-v2: Normal/Benign=16535, Attack/Malware=33465"
+        },
+        {
+          "file": "cell_07_img_2.png",
+          "context": "Results saved to CSV files\n================================================================================\nSTEP 13: GENERATING VISUALIZATIONS\n================================================================================"
+        },
+        {
+          "file": "cell_07_img_3.png",
+          "context": "================================================================================\nSTEP 13: GENERATING VISUALIZATIONS\n================================================================================\n[IMAGE 2]"
+        },
+        {
+          "file": "cell_07_img_4.png",
+          "context": "STEP 13: GENERATING VISUALIZATIONS\n================================================================================\n[IMAGE 2]\n[IMAGE 3]"
+        },
+        {
+          "file": "cell_07_img_5.png",
+          "context": "================================================================================\n[IMAGE 2]\n[IMAGE 3]\n[IMAGE 4]"
+        },
+        {
+          "file": "cell_07_img_6.png",
+          "context": "[IMAGE 2]\n[IMAGE 3]\n[IMAGE 4]\n[IMAGE 5]"
+        },
+        {
+          "file": "cell_07_img_7.png",
+          "context": "[IMAGE 3]\n[IMAGE 4]\n[IMAGE 5]\n[IMAGE 6]"
+        },
+        {
+          "file": "cell_07_img_8.png",
+          "context": "[IMAGE 4]\n[IMAGE 5]\n[IMAGE 6]\n[IMAGE 7]"
+        }
+      ]
+    },
+    "cell09_trimsec_v2": {
+      "cell": 9,
+      "execution_count": 10,
+      "has_source": true,
+      "n_outputs": 31,
+      "tables": {
+        "api_results": {
+          "description": "API-sequence evaluation",
+          "columns": [
+            "method",
+            "accuracy",
+            "precision",
+            "recall",
+            "f1_score",
+            "roc_auc",
+            "mcc",
+            "parameters",
+            "flops_m",
+            "inference_ms",
+            "throughput"
+          ],
+          "rows": [
+            {
+              "method": "SMOTE-ENN",
+              "accuracy": 1.0,
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1_score": 1.0,
+              "roc_auc": 1.0,
+              "mcc": 1.0,
+              "parameters": 322947,
+              "flops_m": 1.29,
+              "inference_ms": 1.71,
+              "throughput": 584.23
+            },
+            {
+              "method": "SMOTE-NCR",
+              "accuracy": 1.0,
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1_score": 1.0,
+              "roc_auc": 1.0,
+              "mcc": 1.0,
+              "parameters": 322947,
+              "flops_m": 1.29,
+              "inference_ms": 1.72,
+              "throughput": 580.44
+            },
+            {
+              "method": "None",
+              "accuracy": 0.9998,
+              "precision": 0.9998,
+              "recall": 1.0,
+              "f1_score": 0.9999,
+              "roc_auc": 1.0,
+              "mcc": 0.9997,
+              "parameters": 322947,
+              "flops_m": 1.29,
+              "inference_ms": 1.7,
+              "throughput": 589.04
+            },
+            {
+              "method": "ADASYN-ENN",
+              "accuracy": 0.9998,
+              "precision": 0.9998,
+              "recall": 1.0,
+              "f1_score": 0.9999,
+              "roc_auc": 1.0,
+              "mcc": 0.9997,
+              "parameters": 322947,
+              "flops_m": 1.29,
+              "inference_ms": 1.75,
+              "throughput": 572.69
+            },
+            {
+              "method": "ADASYN-NCR",
+              "accuracy": 0.9998,
+              "precision": 0.9998,
+              "recall": 1.0,
+              "f1_score": 0.9999,
+              "roc_auc": 1.0,
+              "mcc": 0.9997,
+              "parameters": 322947,
+              "flops_m": 1.29,
+              "inference_ms": 1.67,
+              "throughput": 599.28
+            },
+            {
+              "method": "SMOTE",
+              "accuracy": 0.9997,
+              "precision": 0.9995,
+              "recall": 1.0,
+              "f1_score": 0.9998,
+              "roc_auc": 0.9995,
+              "mcc": 0.9993,
+              "parameters": 322947,
+              "flops_m": 1.29,
+              "inference_ms": 1.7,
+              "throughput": 587.72
+            },
+            {
+              "method": "ADASYN",
+              "accuracy": 0.9997,
+              "precision": 0.9995,
+              "recall": 1.0,
+              "f1_score": 0.9998,
+              "roc_auc": 1.0,
+              "mcc": 0.9993,
+              "parameters": 322947,
+              "flops_m": 1.29,
+              "inference_ms": 1.72,
+              "throughput": 582.97
+            },
+            {
+              "method": "SMOTE-Tomek",
+              "accuracy": 0.9997,
+              "precision": 0.9995,
+              "recall": 1.0,
+              "f1_score": 0.9998,
+              "roc_auc": 1.0,
+              "mcc": 0.9993,
+              "parameters": 322947,
+              "flops_m": 1.29,
+              "inference_ms": 1.7,
+              "throughput": 587.53
+            },
+            {
+              "method": "ADASYN-Tomek",
+              "accuracy": 0.9997,
+              "precision": 0.9995,
+              "recall": 1.0,
+              "f1_score": 0.9998,
+              "roc_auc": 0.9995,
+              "mcc": 0.9993,
+              "parameters": 322947,
+              "flops_m": 1.29,
+              "inference_ms": 1.62,
+              "throughput": 615.46
+            }
+          ]
+        },
+        "nids_results": {
+          "description": "NF-UQ-NIDS-v2 evaluation",
+          "columns": [
+            "method",
+            "accuracy",
+            "precision",
+            "recall",
+            "f1_score",
+            "roc_auc",
+            "mcc"
+          ],
+          "rows": [
+            {
+              "method": "SMOTE-ENN",
+              "accuracy": 0.9999,
+              "precision": 1.0,
+              "recall": 0.9999,
+              "f1_score": 0.9999,
+              "roc_auc": 1.0,
+              "mcc": 0.9998
+            },
+            {
+              "method": "SMOTE-NCR",
+              "accuracy": 1.0,
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1_score": 1.0,
+              "roc_auc": 1.0,
+              "mcc": 1.0
+            },
+            {
+              "method": "None",
+              "accuracy": 1.0,
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1_score": 1.0,
+              "roc_auc": 1.0,
+              "mcc": 0.9999
+            },
+            {
+              "method": "ADASYN-ENN",
+              "accuracy": 1.0,
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1_score": 1.0,
+              "roc_auc": 1.0,
+              "mcc": 0.9999
+            },
+            {
+              "method": "ADASYN-NCR",
+              "accuracy": 1.0,
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1_score": 1.0,
+              "roc_auc": 1.0,
+              "mcc": 0.9999
+            },
+            {
+              "method": "SMOTE",
+              "accuracy": 1.0,
+              "precision": 0.9999,
+              "recall": 1.0,
+              "f1_score": 1.0,
+              "roc_auc": 0.9999,
+              "mcc": 0.9999
+            },
+            {
+              "method": "ADASYN",
+              "accuracy": 1.0,
+              "precision": 0.9999,
+              "recall": 1.0,
+              "f1_score": 1.0,
+              "roc_auc": 1.0,
+              "mcc": 0.9999
+            },
+            {
+              "method": "SMOTE-Tomek",
+              "accuracy": 1.0,
+              "precision": 0.9999,
+              "recall": 1.0,
+              "f1_score": 1.0,
+              "roc_auc": 1.0,
+              "mcc": 0.9999
+            },
+            {
+              "method": "ADASYN-Tomek",
+              "accuracy": 1.0,
+              "precision": 0.9999,
+              "recall": 1.0,
+              "f1_score": 1.0,
+              "roc_auc": 0.9999,
+              "mcc": 0.9999
+            }
+          ]
+        }
+      },
+      "figures": [
+        {
+          "file": "cell_09_img_1.png",
+          "context": "  20. MIN_IP_PKT_LEN: 0.186647\nSelected features: ['Label', 'IPV4_DST_ADDR', 'IPV4_SRC_ADDR', 'LONGEST_FLOW_PKT', 'MAX_IP_PKT_LEN', 'IN_BYTES', 'SRC_TO_DST_AVG_THROUGHPUT', 'MIN_TTL', 'MAX_TTL', 'Dataset', 'L4_DST_PORT', 'L7_PROTO', 'SHORTEST_FLOW_PKT', 'OUT_BYTES', 'DST_TO_SRC_AVG_THROUGHPUT', 'DURATION_IN', 'FLOW_DURATION_MILLISECONDS', 'TCP_WIN_MAX_IN', 'IN_PKTS', 'MIN_IP_PKT_LEN']\n--- Scaling (Z-score Standardization) ---\nUsing labels from NF-UQ-NIDS-v2: Normal/Benign=165203, Attack/Malware=334795"
+        },
+        {
+          "file": "cell_09_img_2.png",
+          "context": "Results saved to CSV files\n================================================================================\nSTEP 13: GENERATING VISUALIZATIONS\n================================================================================"
+        },
+        {
+          "file": "cell_09_img_3.png",
+          "context": "================================================================================\nSTEP 13: GENERATING VISUALIZATIONS\n================================================================================\n[IMAGE 2]"
+        },
+        {
+          "file": "cell_09_img_4.png",
+          "context": "STEP 13: GENERATING VISUALIZATIONS\n================================================================================\n[IMAGE 2]\n[IMAGE 3]"
+        },
+        {
+          "file": "cell_09_img_5.png",
+          "context": "================================================================================\n[IMAGE 2]\n[IMAGE 3]\n[IMAGE 4]"
+        },
+        {
+          "file": "cell_09_img_6.png",
+          "context": "[IMAGE 2]\n[IMAGE 3]\n[IMAGE 4]\n[IMAGE 5]"
+        },
+        {
+          "file": "cell_09_img_7.png",
+          "context": "[IMAGE 4]\n[IMAGE 5]\n[IMAGE 6]\nGenerating confusion matrices for EVERY sampling method..."
+        },
+        {
+          "file": "cell_09_img_8.png",
+          "context": "[IMAGE 5]\n[IMAGE 6]\nGenerating confusion matrices for EVERY sampling method...\n[IMAGE 7]"
+        },
+        {
+          "file": "cell_09_img_9.png",
+          "context": "[IMAGE 6]\nGenerating confusion matrices for EVERY sampling method...\n[IMAGE 7]\n[IMAGE 8]"
+        }
+      ]
+    },
+    "cell11_cnnbilstm_v1": {
+      "cell": 11,
+      "execution_count": 1,
+      "has_source": true,
+      "n_outputs": 31,
+      "tables": {
+        "comparison": {
+          "description": "No balancing vs balancing (test split)",
+          "columns": [
+            "method",
+            "train_benign",
+            "train_malware",
+            "accuracy",
+            "precision",
+            "recall",
+            "f1_score",
+            "roc_auc",
+            "mcc"
+          ],
+          "rows": [
+            {
+              "method": "No Balancing",
+              "train_benign": 755,
+              "train_malware": 29958,
+              "accuracy": 0.97873,
+              "precision": 0.99715,
+              "recall": 0.980997,
+              "f1_score": 0.989008,
+              "roc_auc": 0.973454,
+              "mcc": 0.684424
+            },
+            {
+              "method": "SMOTE",
+              "train_benign": 29958,
+              "train_malware": 29958,
+              "accuracy": 0.988149,
+              "precision": 0.989805,
+              "recall": 0.998131,
+              "f1_score": 0.993951,
+              "roc_auc": 0.962458,
+              "mcc": 0.720462
+            },
+            {
+              "method": "ADASYN",
+              "train_benign": 29965,
+              "train_malware": 29958,
+              "accuracy": 0.989365,
+              "precision": 0.991638,
+              "recall": 0.997508,
+              "f1_score": 0.994564,
+              "roc_auc": 0.966561,
+              "mcc": 0.756915
+            },
+            {
+              "method": "SMOTE+ENN",
+              "train_benign": 29224,
+              "train_malware": 28838,
+              "accuracy": 0.025068,
+              "precision": 1.0,
+              "recall": 0.000467,
+              "f1_score": 0.000934,
+              "roc_auc": 0.850627,
+              "mcc": 0.003392
+            },
+            {
+              "method": "SMOTE+Tomek",
+              "train_benign": 29957,
+              "train_malware": 29957,
+              "accuracy": 0.977211,
+              "precision": 0.978042,
+              "recall": 0.999065,
+              "f1_score": 0.988442,
+              "roc_auc": 0.903797,
+              "mcc": 0.283219
+            },
+            {
+              "method": "SMOTE+NCR",
+              "train_benign": 29958,
+              "train_malware": 29149,
+              "accuracy": 0.979793,
+              "precision": 0.98369,
+              "recall": 0.995794,
+              "f1_score": 0.989705,
+              "roc_auc": 0.852528,
+              "mcc": 0.474154
+            },
+            {
+              "method": "ADASYN+ENN",
+              "train_benign": 28866,
+              "train_malware": 28829,
+              "accuracy": 0.025524,
+              "precision": 1.0,
+              "recall": 0.000935,
+              "f1_score": 0.001867,
+              "roc_auc": 0.859096,
+              "mcc": 0.004798
+            },
+            {
+              "method": "ADASYN+Tomek",
+              "train_benign": 29965,
+              "train_malware": 29965,
+              "accuracy": 0.987238,
+              "precision": 0.988286,
+              "recall": 0.998754,
+              "f1_score": 0.993492,
+              "roc_auc": 0.966703,
+              "mcc": 0.691622
+            },
+            {
+              "method": "ADASYN+NCR",
+              "train_benign": 27992,
+              "train_malware": 29958,
+              "accuracy": 0.975235,
+              "precision": 0.975673,
+              "recall": 0.999533,
+              "f1_score": 0.987459,
+              "roc_auc": 0.825524,
+              "mcc": 0.066801
+            }
+          ]
+        }
+      },
+      "figures": [
+        {
+          "file": "cell_11_img_1.png",
+          "context": "  5. t_75: 0.029292\n  6. t_1: 0.029005\n  7. t_2: 0.028137\n  8. t_76: 0.028127"
+        },
+        {
+          "file": "cell_11_img_2.png",
+          "context": "  ADASYN+ENN         28866          28829       0.025524        1.000000     0.000935 0.001867  0.859096  0.004798\nADASYN+Tomek         29965          29965       0.987238        0.988286     0.998754 0.993492  0.966703  0.691622\n  ADASYN+NCR         27992          29958       0.975235        0.975673     0.999533 0.987459  0.825524  0.066801\nGenerating Visualizations..."
+        },
+        {
+          "file": "cell_11_img_3.png",
+          "context": "ADASYN+Tomek         29965          29965       0.987238        0.988286     0.998754 0.993492  0.966703  0.691622\n  ADASYN+NCR         27992          29958       0.975235        0.975673     0.999533 0.987459  0.825524  0.066801\nGenerating Visualizations...\n[IMAGE 2]"
+        },
+        {
+          "file": "cell_11_img_4.png",
+          "context": "  ADASYN+NCR         27992          29958       0.975235        0.975673     0.999533 0.987459  0.825524  0.066801\nGenerating Visualizations...\n[IMAGE 2]\n[IMAGE 3]"
+        },
+        {
+          "file": "cell_11_img_5.png",
+          "context": "Generating Visualizations...\n[IMAGE 2]\n[IMAGE 3]\n[IMAGE 4]"
+        },
+        {
+          "file": "cell_11_img_6.png",
+          "context": "[IMAGE 2]\n[IMAGE 3]\n[IMAGE 4]\n[IMAGE 5]"
+        },
+        {
+          "file": "cell_11_img_7.png",
+          "context": "[IMAGE 3]\n[IMAGE 4]\n[IMAGE 5]\n[IMAGE 6]"
+        },
+        {
+          "file": "cell_11_img_8.png",
+          "context": "[IMAGE 4]\n[IMAGE 5]\n[IMAGE 6]\n[IMAGE 7]"
+        },
+        {
+          "file": "cell_11_img_9.png",
+          "context": "[IMAGE 5]\n[IMAGE 6]\n[IMAGE 7]\n[IMAGE 8]"
+        },
+        {
+          "file": "cell_11_img_10.png",
+          "context": "[IMAGE 6]\n[IMAGE 7]\n[IMAGE 8]\n[IMAGE 9]"
+        }
+      ]
+    },
+    "cell13_cnnbilstm_v2": {
+      "cell": 13,
+      "execution_count": 2,
+      "has_source": true,
+      "n_outputs": 31,
+      "tables": {
+        "comparison": {
+          "description": "No balancing vs balancing (test split)",
+          "columns": [
+            "method",
+            "train_benign",
+            "train_malware",
+            "accuracy",
+            "precision",
+            "recall",
+            "f1_score",
+            "roc_auc",
+            "mcc"
+          ],
+          "rows": [
+            {
+              "method": "No Balancing",
+              "train_benign": 755,
+              "train_malware": 29958,
+              "accuracy": 0.941659,
+              "precision": 0.996872,
+              "recall": 0.943146,
+              "f1_score": 0.969265,
+              "roc_auc": 0.967247,
+              "mcc": 0.479472
+            },
+            {
+              "method": "SMOTE",
+              "train_benign": 29958,
+              "train_malware": 29958,
+              "accuracy": 0.987542,
+              "precision": 0.990102,
+              "recall": 0.997196,
+              "f1_score": 0.993637,
+              "roc_auc": 0.925781,
+              "mcc": 0.709042
+            },
+            {
+              "method": "ADASYN",
+              "train_benign": 29805,
+              "train_malware": 29958,
+              "accuracy": 0.97797,
+              "precision": 0.978059,
+              "recall": 0.999844,
+              "f1_score": 0.988832,
+              "roc_auc": 0.92262,
+              "mcc": 0.320439
+            },
+            {
+              "method": "SMOTE+ENN",
+              "train_benign": 26719,
+              "train_malware": 28275,
+              "accuracy": 0.025372,
+              "precision": 1.0,
+              "recall": 0.000779,
+              "f1_score": 0.001556,
+              "roc_auc": 0.679077,
+              "mcc": 0.00438
+            },
+            {
+              "method": "SMOTE+Tomek",
+              "train_benign": 29943,
+              "train_malware": 29943,
+              "accuracy": 0.975235,
+              "precision": 0.975384,
+              "recall": 0.999844,
+              "f1_score": 0.987463,
+              "roc_auc": 0.765716,
+              "mcc": -0.001958
+            },
+            {
+              "method": "SMOTE+NCR",
+              "train_benign": 29958,
+              "train_malware": 28808,
+              "accuracy": 0.97402,
+              "precision": 0.975354,
+              "recall": 0.998598,
+              "f1_score": 0.986839,
+              "roc_auc": 0.703773,
+              "mcc": -0.005878
+            },
+            {
+              "method": "ADASYN+ENN",
+              "train_benign": 26752,
+              "train_malware": 28232,
+              "accuracy": 0.024916,
+              "precision": 1.0,
+              "recall": 0.000312,
+              "f1_score": 0.000623,
+              "roc_auc": 0.651047,
+              "mcc": 0.002769
+            },
+            {
+              "method": "ADASYN+Tomek",
+              "train_benign": 29950,
+              "train_malware": 29950,
+              "accuracy": 0.975235,
+              "precision": 0.975384,
+              "recall": 0.999844,
+              "f1_score": 0.987463,
+              "roc_auc": 0.743126,
+              "mcc": -0.001958
+            },
+            {
+              "method": "ADASYN+NCR",
+              "train_benign": 29805,
+              "train_malware": 28731,
+              "accuracy": 0.97478,
+              "precision": 0.975372,
+              "recall": 0.999377,
+              "f1_score": 0.987229,
+              "roc_auc": 0.688199,
+              "mcc": -0.003917
+            }
+          ]
+        }
+      },
+      "figures": [
+        {
+          "file": "cell_13_img_1.png",
+          "context": "  2. t_82: 0.035183\n  3. t_90: 0.030504\n  4. t_92: 0.030159\n  5. t_75: 0.029292"
+        },
+        {
+          "file": "cell_13_img_2.png",
+          "context": "  ADASYN+ENN         26752          28232       0.024916        1.000000     0.000312 0.000623  0.651047  0.002769\nADASYN+Tomek         29950          29950       0.975235        0.975384     0.999844 0.987463  0.743126 -0.001958\n  ADASYN+NCR         29805          28731       0.974780        0.975372     0.999377 0.987229  0.688199 -0.003917\nGenerating Visualizations..."
+        },
+        {
+          "file": "cell_13_img_3.png",
+          "context": "ADASYN+Tomek         29950          29950       0.975235        0.975384     0.999844 0.987463  0.743126 -0.001958\n  ADASYN+NCR         29805          28731       0.974780        0.975372     0.999377 0.987229  0.688199 -0.003917\nGenerating Visualizations...\n[IMAGE 2]"
+        },
+        {
+          "file": "cell_13_img_4.png",
+          "context": "  ADASYN+NCR         29805          28731       0.974780        0.975372     0.999377 0.987229  0.688199 -0.003917\nGenerating Visualizations...\n[IMAGE 2]\n[IMAGE 3]"
+        },
+        {
+          "file": "cell_13_img_5.png",
+          "context": "Generating Visualizations...\n[IMAGE 2]\n[IMAGE 3]\n[IMAGE 4]"
+        },
+        {
+          "file": "cell_13_img_6.png",
+          "context": "[IMAGE 2]\n[IMAGE 3]\n[IMAGE 4]\n[IMAGE 5]"
+        },
+        {
+          "file": "cell_13_img_7.png",
+          "context": "[IMAGE 3]\n[IMAGE 4]\n[IMAGE 5]\n[IMAGE 6]"
+        },
+        {
+          "file": "cell_13_img_8.png",
+          "context": "[IMAGE 4]\n[IMAGE 5]\n[IMAGE 6]\n[IMAGE 7]"
+        },
+        {
+          "file": "cell_13_img_9.png",
+          "context": "[IMAGE 5]\n[IMAGE 6]\n[IMAGE 7]\n[IMAGE 8]"
+        },
+        {
+          "file": "cell_13_img_10.png",
+          "context": "[IMAGE 6]\n[IMAGE 7]\n[IMAGE 8]\n[IMAGE 9]"
+        }
+      ]
+    },
+    "cell15_cnnbilstm_v3": {
+      "cell": 15,
+      "execution_count": 3,
+      "has_source": true,
+      "n_outputs": 31,
+      "tables": {
+        "comparison": {
+          "description": "Ranked by test F1",
+          "columns": [
+            "rank",
+            "method",
+            "train_benign",
+            "train_malware",
+            "accuracy",
+            "precision",
+            "recall",
+            "f1_score",
+            "roc_auc",
+            "mcc"
+          ],
+          "rows": [
+            {
+              "rank": 1,
+              "method": "SMOTE",
+              "train_benign": 29958,
+              "train_malware": 29958,
+              "accuracy": 0.987542,
+              "precision": 0.990102,
+              "recall": 0.997196,
+              "f1_score": 0.993637,
+              "roc_auc": 0.925781,
+              "mcc": 0.709042
+            },
+            {
+              "rank": 2,
+              "method": "ADASYN",
+              "train_benign": 29805,
+              "train_malware": 29958,
+              "accuracy": 0.97797,
+              "precision": 0.978059,
+              "recall": 0.999844,
+              "f1_score": 0.988832,
+              "roc_auc": 0.92262,
+              "mcc": 0.320439
+            },
+            {
+              "rank": 3,
+              "method": "SMOTE+Tomek",
+              "train_benign": 29943,
+              "train_malware": 29943,
+              "accuracy": 0.975235,
+              "precision": 0.975384,
+              "recall": 0.999844,
+              "f1_score": 0.987463,
+              "roc_auc": 0.765716,
+              "mcc": -0.001958
+            },
+            {
+              "rank": 4,
+              "method": "ADASYN+Tomek",
+              "train_benign": 29950,
+              "train_malware": 29950,
+              "accuracy": 0.975235,
+              "precision": 0.975384,
+              "recall": 0.999844,
+              "f1_score": 0.987463,
+              "roc_auc": 0.743126,
+              "mcc": -0.001958
+            },
+            {
+              "rank": 5,
+              "method": "ADASYN+NCR",
+              "train_benign": 29805,
+              "train_malware": 28731,
+              "accuracy": 0.97478,
+              "precision": 0.975372,
+              "recall": 0.999377,
+              "f1_score": 0.987229,
+              "roc_auc": 0.688199,
+              "mcc": -0.003917
+            },
+            {
+              "rank": 6,
+              "method": "SMOTE+NCR",
+              "train_benign": 29958,
+              "train_malware": 28808,
+              "accuracy": 0.97402,
+              "precision": 0.975354,
+              "recall": 0.998598,
+              "f1_score": 0.986839,
+              "roc_auc": 0.703773,
+              "mcc": -0.005878
+            },
+            {
+              "rank": 7,
+              "method": "No Balancing",
+              "train_benign": 755,
+              "train_malware": 29958,
+              "accuracy": 0.941659,
+              "precision": 0.996872,
+              "recall": 0.943146,
+              "f1_score": 0.969265,
+              "roc_auc": 0.967247,
+              "mcc": 0.479472
+            },
+            {
+              "rank": 8,
+              "method": "SMOTE+ENN",
+              "train_benign": 26719,
+              "train_malware": 28275,
+              "accuracy": 0.025372,
+              "precision": 1.0,
+              "recall": 0.000779,
+              "f1_score": 0.001556,
+              "roc_auc": 0.679077,
+              "mcc": 0.00438
+            },
+            {
+              "rank": 9,
+              "method": "ADASYN+ENN",
+              "train_benign": 26752,
+              "train_malware": 28232,
+              "accuracy": 0.024916,
+              "precision": 1.0,
+              "recall": 0.000312,
+              "f1_score": 0.000623,
+              "roc_auc": 0.651047,
+              "mcc": 0.002769
+            }
+          ]
+        }
+      },
+      "figures": [
+        {
+          "file": "cell_15_img_1.png",
+          "context": "  2. t_82: 0.035183\n  3. t_90: 0.030504\n  4. t_92: 0.030159\n  5. t_75: 0.029292"
+        },
+        {
+          "file": "cell_15_img_2.png",
+          "context": "    8    SMOTE+ENN         26719          28275       0.025372        1.000000     0.000779 0.001556  0.679077  0.004380\n    9   ADASYN+ENN         26752          28232       0.024916        1.000000     0.000312 0.000623  0.651047  0.002769\n\u2713 Ranked comparison table saved to: balancing_methods_comparison_ranked.csv\nGenerating Visualizations..."
+        },
+        {
+          "file": "cell_15_img_3.png",
+          "context": "    9   ADASYN+ENN         26752          28232       0.024916        1.000000     0.000312 0.000623  0.651047  0.002769\n\u2713 Ranked comparison table saved to: balancing_methods_comparison_ranked.csv\nGenerating Visualizations...\n[IMAGE 2]"
+        },
+        {
+          "file": "cell_15_img_4.png",
+          "context": "\u2713 Ranked comparison table saved to: balancing_methods_comparison_ranked.csv\nGenerating Visualizations...\n[IMAGE 2]\n[IMAGE 3]"
+        },
+        {
+          "file": "cell_15_img_5.png",
+          "context": "Generating Visualizations...\n[IMAGE 2]\n[IMAGE 3]\n[IMAGE 4]"
+        },
+        {
+          "file": "cell_15_img_6.png",
+          "context": "[IMAGE 2]\n[IMAGE 3]\n[IMAGE 4]\n[IMAGE 5]"
+        },
+        {
+          "file": "cell_15_img_7.png",
+          "context": "[IMAGE 3]\n[IMAGE 4]\n[IMAGE 5]\n[IMAGE 6]"
+        },
+        {
+          "file": "cell_15_img_8.png",
+          "context": "[IMAGE 4]\n[IMAGE 5]\n[IMAGE 6]\n[IMAGE 7]"
+        },
+        {
+          "file": "cell_15_img_9.png",
+          "context": "[IMAGE 5]\n[IMAGE 6]\n[IMAGE 7]\n[IMAGE 8]"
+        },
+        {
+          "file": "cell_15_img_10.png",
+          "context": "[IMAGE 6]\n[IMAGE 7]\n[IMAGE 8]\n[IMAGE 9]"
+        }
+      ]
+    },
+    "cell17_cnnbilstm_v4": {
+      "cell": 17,
+      "execution_count": 4,
+      "has_source": true,
+      "n_outputs": 32,
+      "tables": {
+        "comparison": {
+          "description": "Ranked by test F1",
+          "columns": [
+            "rank",
+            "method",
+            "train_benign",
+            "train_malware",
+            "accuracy",
+            "precision",
+            "recall",
+            "f1_score",
+            "roc_auc",
+            "mcc",
+            "specificity",
+            "fpr",
+            "fnr",
+            "balanced_accuracy"
+          ],
+          "rows": [
+            {
+              "rank": 1,
+              "method": "SMOTE",
+              "train_benign": 29958,
+              "train_malware": 29958,
+              "accuracy": 0.9875,
+              "precision": 0.9901,
+              "recall": 0.9972,
+              "f1_score": 0.9936,
+              "roc_auc": 0.9258,
+              "mcc": 0.709,
+              "specificity": 0.6049,
+              "fpr": 0.3951,
+              "fnr": 0.0028,
+              "balanced_accuracy": 0.8011
+            },
+            {
+              "rank": 2,
+              "method": "ADASYN",
+              "train_benign": 29805,
+              "train_malware": 29958,
+              "accuracy": 0.978,
+              "precision": 0.9781,
+              "recall": 0.9998,
+              "f1_score": 0.9888,
+              "roc_auc": 0.9226,
+              "mcc": 0.3204,
+              "specificity": 0.1111,
+              "fpr": 0.8889,
+              "fnr": 0.0002,
+              "balanced_accuracy": 0.5555
+            },
+            {
+              "rank": 3,
+              "method": "SMOTE+Tomek",
+              "train_benign": 29943,
+              "train_malware": 29943,
+              "accuracy": 0.9752,
+              "precision": 0.9754,
+              "recall": 0.9998,
+              "f1_score": 0.9875,
+              "roc_auc": 0.7657,
+              "mcc": -0.002,
+              "specificity": 0.0,
+              "fpr": 1.0,
+              "fnr": 0.0002,
+              "balanced_accuracy": 0.4999
+            },
+            {
+              "rank": 4,
+              "method": "ADASYN+Tomek",
+              "train_benign": 29950,
+              "train_malware": 29950,
+              "accuracy": 0.9752,
+              "precision": 0.9754,
+              "recall": 0.9998,
+              "f1_score": 0.9875,
+              "roc_auc": 0.7431,
+              "mcc": -0.002,
+              "specificity": 0.0,
+              "fpr": 1.0,
+              "fnr": 0.0002,
+              "balanced_accuracy": 0.4999
+            },
+            {
+              "rank": 5,
+              "method": "ADASYN+NCR",
+              "train_benign": 29805,
+              "train_malware": 28731,
+              "accuracy": 0.9748,
+              "precision": 0.9754,
+              "recall": 0.9994,
+              "f1_score": 0.9872,
+              "roc_auc": 0.6882,
+              "mcc": -0.0039,
+              "specificity": 0.0,
+              "fpr": 1.0,
+              "fnr": 0.0006,
+              "balanced_accuracy": 0.4997
+            },
+            {
+              "rank": 6,
+              "method": "SMOTE+NCR",
+              "train_benign": 29958,
+              "train_malware": 28808,
+              "accuracy": 0.974,
+              "precision": 0.9754,
+              "recall": 0.9986,
+              "f1_score": 0.9868,
+              "roc_auc": 0.7038,
+              "mcc": -0.0059,
+              "specificity": 0.0,
+              "fpr": 1.0,
+              "fnr": 0.0014,
+              "balanced_accuracy": 0.4993
+            },
+            {
+              "rank": 7,
+              "method": "No Balancing",
+              "train_benign": 755,
+              "train_malware": 29958,
+              "accuracy": 0.9417,
+              "precision": 0.9969,
+              "recall": 0.9431,
+              "f1_score": 0.9693,
+              "roc_auc": 0.9672,
+              "mcc": 0.4795,
+              "specificity": 0.8827,
+              "fpr": 0.1173,
+              "fnr": 0.0569,
+              "balanced_accuracy": 0.9129
+            },
+            {
+              "rank": 8,
+              "method": "SMOTE+ENN",
+              "train_benign": 26719,
+              "train_malware": 28275,
+              "accuracy": 0.0254,
+              "precision": 1.0,
+              "recall": 0.0008,
+              "f1_score": 0.0016,
+              "roc_auc": 0.6791,
+              "mcc": 0.0044,
+              "specificity": 1.0,
+              "fpr": 0.0,
+              "fnr": 0.9992,
+              "balanced_accuracy": 0.5004
+            },
+            {
+              "rank": 9,
+              "method": "ADASYN+ENN",
+              "train_benign": 26752,
+              "train_malware": 28232,
+              "accuracy": 0.0249,
+              "precision": 1.0,
+              "recall": 0.0003,
+              "f1_score": 0.0006,
+              "roc_auc": 0.651,
+              "mcc": 0.0028,
+              "specificity": 1.0,
+              "fpr": 0.0,
+              "fnr": 0.9997,
+              "balanced_accuracy": 0.5002
+            }
+          ]
+        }
+      },
+      "figures": [
+        {
+          "file": "cell_17_img_1.png",
+          "context": "  2. t_82: 0.035183\n  3. t_90: 0.030504\n  4. t_92: 0.030159\n  5. t_75: 0.029292"
+        },
+        {
+          "file": "cell_17_img_2.png",
+          "context": "    8    SMOTE+ENN         26719          28275         0.0254          1.0000       0.0008   0.0016    0.6791    0.0044            1.0000    0.0000    0.9992                  0.5004\n    9   ADASYN+ENN         26752          28232         0.0249          1.0000       0.0003   0.0006    0.6510    0.0028            1.0000    0.0000    0.9997                  0.5002\n\u2713 Ranked comparison table saved to: balancing_methods_comparison_ranked.csv\nGenerating Visualizations..."
+        },
+        {
+          "file": "cell_17_img_3.png",
+          "context": "    9   ADASYN+ENN         26752          28232         0.0249          1.0000       0.0003   0.0006    0.6510    0.0028            1.0000    0.0000    0.9997                  0.5002\n\u2713 Ranked comparison table saved to: balancing_methods_comparison_ranked.csv\nGenerating Visualizations...\n[IMAGE 2]"
+        },
+        {
+          "file": "cell_17_img_4.png",
+          "context": "\u2713 Ranked comparison table saved to: balancing_methods_comparison_ranked.csv\nGenerating Visualizations...\n[IMAGE 2]\n[IMAGE 3]"
+        },
+        {
+          "file": "cell_17_img_5.png",
+          "context": "Generating Visualizations...\n[IMAGE 2]\n[IMAGE 3]\n[IMAGE 4]"
+        },
+        {
+          "file": "cell_17_img_6.png",
+          "context": "[IMAGE 2]\n[IMAGE 3]\n[IMAGE 4]\n[IMAGE 5]"
+        },
+        {
+          "file": "cell_17_img_7.png",
+          "context": "[IMAGE 3]\n[IMAGE 4]\n[IMAGE 5]\n[IMAGE 6]"
+        },
+        {
+          "file": "cell_17_img_8.png",
+          "context": "[IMAGE 4]\n[IMAGE 5]\n[IMAGE 6]\n[IMAGE 7]"
+        },
+        {
+          "file": "cell_17_img_9.png",
+          "context": "[IMAGE 5]\n[IMAGE 6]\n[IMAGE 7]\n[IMAGE 8]"
+        },
+        {
+          "file": "cell_17_img_10.png",
+          "context": "[IMAGE 6]\n[IMAGE 7]\n[IMAGE 8]\n[IMAGE 9]"
+        },
+        {
+          "file": "cell_17_img_11.png",
+          "context": "[IMAGE 7]\n[IMAGE 8]\n[IMAGE 9]\n[IMAGE 10]"
+        }
+      ]
+    },
+    "cell19_cnnbilstm_v5": {
+      "cell": 19,
+      "execution_count": 1,
+      "has_source": true,
+      "n_outputs": 33,
+      "tables": {
+        "comparison": {
+          "description": "Ranked by test F1",
+          "columns": [
+            "rank",
+            "method",
+            "train_benign",
+            "train_malware",
+            "accuracy",
+            "precision",
+            "recall",
+            "f1_score",
+            "roc_auc",
+            "mcc",
+            "specificity",
+            "fpr",
+            "fnr",
+            "balanced_accuracy",
+            "parameters",
+            "flops_m",
+            "inference_ms",
+            "throughput"
+          ],
+          "rows": [
+            {
+              "rank": 1,
+              "method": "SMOTE",
+              "train_benign": 29958,
+              "train_malware": 29958,
+              "accuracy": 0.9875,
+              "precision": 0.9898,
+              "recall": 0.9975,
+              "f1_score": 0.9936,
+              "roc_auc": 0.9308,
+              "mcc": 0.707,
+              "specificity": 0.5926,
+              "fpr": 0.4074,
+              "fnr": 0.0025,
+              "balanced_accuracy": 0.7951,
+              "parameters": 22407,
+              "flops_m": 0.1606,
+              "inference_ms": 0.0435,
+              "throughput": 22997.0297
+            },
+            {
+              "rank": 2,
+              "method": "ADASYN",
+              "train_benign": 29805,
+              "train_malware": 29958,
+              "accuracy": 0.9813,
+              "precision": 0.9827,
+              "recall": 0.9984,
+              "f1_score": 0.9905,
+              "roc_auc": 0.9596,
+              "mcc": 0.4947,
+              "specificity": 0.3025,
+              "fpr": 0.6975,
+              "fnr": 0.0016,
+              "balanced_accuracy": 0.6505,
+              "parameters": 22407,
+              "flops_m": 0.1606,
+              "inference_ms": 0.0422,
+              "throughput": 23710.9338
+            },
+            {
+              "rank": 3,
+              "method": "SMOTE+Tomek",
+              "train_benign": 29943,
+              "train_malware": 29943,
+              "accuracy": 0.9751,
+              "precision": 0.9754,
+              "recall": 0.9997,
+              "f1_score": 0.9874,
+              "roc_auc": 0.7306,
+              "mcc": -0.0028,
+              "specificity": 0.0,
+              "fpr": 1.0,
+              "fnr": 0.0003,
+              "balanced_accuracy": 0.4998,
+              "parameters": 22407,
+              "flops_m": 0.1606,
+              "inference_ms": 0.0403,
+              "throughput": 24811.8501
+            },
+            {
+              "rank": 4,
+              "method": "SMOTE+NCR",
+              "train_benign": 29958,
+              "train_malware": 28808,
+              "accuracy": 0.9751,
+              "precision": 0.9754,
+              "recall": 0.9997,
+              "f1_score": 0.9874,
+              "roc_auc": 0.6666,
+              "mcc": -0.0028,
+              "specificity": 0.0,
+              "fpr": 1.0,
+              "fnr": 0.0003,
+              "balanced_accuracy": 0.4998,
+              "parameters": 22407,
+              "flops_m": 0.1606,
+              "inference_ms": 0.0442,
+              "throughput": 22605.0302
+            },
+            {
+              "rank": 5,
+              "method": "ADASYN+Tomek",
+              "train_benign": 29950,
+              "train_malware": 29950,
+              "accuracy": 0.9749,
+              "precision": 0.9754,
+              "recall": 0.9995,
+              "f1_score": 0.9873,
+              "roc_auc": 0.6986,
+              "mcc": -0.0034,
+              "specificity": 0.0,
+              "fpr": 1.0,
+              "fnr": 0.0005,
+              "balanced_accuracy": 0.4998,
+              "parameters": 22407,
+              "flops_m": 0.1606,
+              "inference_ms": 0.0423,
+              "throughput": 23652.5848
+            },
+            {
+              "rank": 6,
+              "method": "ADASYN+NCR",
+              "train_benign": 29805,
+              "train_malware": 28731,
+              "accuracy": 0.9748,
+              "precision": 0.9754,
+              "recall": 0.9994,
+              "f1_score": 0.9872,
+              "roc_auc": 0.7159,
+              "mcc": -0.0039,
+              "specificity": 0.0,
+              "fpr": 1.0,
+              "fnr": 0.0006,
+              "balanced_accuracy": 0.4997,
+              "parameters": 22407,
+              "flops_m": 0.1606,
+              "inference_ms": 0.047,
+              "throughput": 21280.6782
+            },
+            {
+              "rank": 7,
+              "method": "No Balancing",
+              "train_benign": 755,
+              "train_malware": 29958,
+              "accuracy": 0.9057,
+              "precision": 0.9978,
+              "recall": 0.9053,
+              "f1_score": 0.9493,
+              "roc_auc": 0.9682,
+              "mcc": 0.4007,
+              "specificity": 0.9198,
+              "fpr": 0.0802,
+              "fnr": 0.0947,
+              "balanced_accuracy": 0.9125,
+              "parameters": 22407,
+              "flops_m": 0.1606,
+              "inference_ms": 0.0568,
+              "throughput": 17596.9902
+            },
+            {
+              "rank": 8,
+              "method": "SMOTE+ENN",
+              "train_benign": 26719,
+              "train_malware": 28275,
+              "accuracy": 0.0246,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1_score": 0.0,
+              "roc_auc": 0.6961,
+              "mcc": 0.0,
+              "specificity": 1.0,
+              "fpr": 0.0,
+              "fnr": 1.0,
+              "balanced_accuracy": 0.5,
+              "parameters": 22407,
+              "flops_m": 0.1606,
+              "inference_ms": 0.0647,
+              "throughput": 15450.7019
+            },
+            {
+              "rank": 9,
+              "method": "ADASYN+ENN",
+              "train_benign": 26752,
+              "train_malware": 28232,
+              "accuracy": 0.0246,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1_score": 0.0,
+              "roc_auc": 0.6966,
+              "mcc": 0.0,
+              "specificity": 1.0,
+              "fpr": 0.0,
+              "fnr": 1.0,
+              "balanced_accuracy": 0.5,
+              "parameters": 22407,
+              "flops_m": 0.1606,
+              "inference_ms": 0.0414,
+              "throughput": 24149.8462
+            }
+          ]
+        }
+      },
+      "figures": [
+        {
+          "file": "cell_19_img_1.png",
+          "context": " 2. t_82: 0.035183\n 3. t_90: 0.030504\n 4. t_92: 0.030159\n 5. t_75: 0.029292"
+        },
+        {
+          "file": "cell_19_img_2.png",
+          "context": "    8    SMOTE+ENN         26719          28275         0.0246          0.0000       0.0000   0.0000    0.6961    0.0000            1.0000    0.0000    1.0000                  0.5000       22407   0.1606        0.0647      15450.7019\n    9   ADASYN+ENN         26752          28232         0.0246          0.0000       0.0000   0.0000    0.6966    0.0000            1.0000    0.0000    1.0000                  0.5000       22407   0.1606        0.0414      24149.8462\n\u2713 Ranked comparison table saved to: balancing_methods_comparison_ranked.csv\nGenerating Visualizations..."
+        },
+        {
+          "file": "cell_19_img_3.png",
+          "context": "    9   ADASYN+ENN         26752          28232         0.0246          0.0000       0.0000   0.0000    0.6966    0.0000            1.0000    0.0000    1.0000                  0.5000       22407   0.1606        0.0414      24149.8462\n\u2713 Ranked comparison table saved to: balancing_methods_comparison_ranked.csv\nGenerating Visualizations...\n[IMAGE 2]"
+        },
+        {
+          "file": "cell_19_img_4.png",
+          "context": "\u2713 Ranked comparison table saved to: balancing_methods_comparison_ranked.csv\nGenerating Visualizations...\n[IMAGE 2]\n[IMAGE 3]"
+        },
+        {
+          "file": "cell_19_img_5.png",
+          "context": "Generating Visualizations...\n[IMAGE 2]\n[IMAGE 3]\n[IMAGE 4]"
+        },
+        {
+          "file": "cell_19_img_6.png",
+          "context": "[IMAGE 2]\n[IMAGE 3]\n[IMAGE 4]\n[IMAGE 5]"
+        },
+        {
+          "file": "cell_19_img_7.png",
+          "context": "[IMAGE 3]\n[IMAGE 4]\n[IMAGE 5]\n[IMAGE 6]"
+        },
+        {
+          "file": "cell_19_img_8.png",
+          "context": "[IMAGE 4]\n[IMAGE 5]\n[IMAGE 6]\n[IMAGE 7]"
+        },
+        {
+          "file": "cell_19_img_9.png",
+          "context": "[IMAGE 5]\n[IMAGE 6]\n[IMAGE 7]\n[IMAGE 8]"
+        },
+        {
+          "file": "cell_19_img_10.png",
+          "context": "[IMAGE 6]\n[IMAGE 7]\n[IMAGE 8]\n[IMAGE 9]"
+        },
+        {
+          "file": "cell_19_img_11.png",
+          "context": "[IMAGE 7]\n[IMAGE 8]\n[IMAGE 9]\n[IMAGE 10]"
+        },
+        {
+          "file": "cell_19_img_12.png",
+          "context": "[IMAGE 8]\n[IMAGE 9]\n[IMAGE 10]\n[IMAGE 11]"
+        }
+      ]
+    },
+    "cell22_dual_dataset": {
+      "cell": 22,
+      "execution_count": 2,
+      "has_source": true,
+      "n_outputs": 0,
+      "tables": {},
+      "figures": []
+    }
+  },
+  "non_experiment_cells": {
+    "0": "Kaggle boilerplate (lists /kaggle/input). No experiment.",
+    "1": "Empty.",
+    "3": "Empty.",
+    "5": "Empty.",
+    "8": "Empty.",
+    "10": "Empty.",
+    "12": "Empty.",
+    "14": "Empty.",
+    "16": "Empty.",
+    "18": "Empty.",
+    "20": "Empty.",
+    "21": "Empty."
+  }
+}

@@ -1,0 +1,32 @@
+{
+  "run": "run_0003",
+  "entries": {
+    "3": {
+      "accuracy": 0.8418,
+      "balanced_accuracy": 0.84191,
+      "f1_attack": 0.87806,
+      "f1_weighted": 0.8447,
+      "mcc": 0.65909,
+      "roc_auc": 0.91406,
+      "warnings": 1
+    }
+  },
+  "preprocessing_parity": {
+    "rows": 150000,
+    "max_abs_diff": 0.0,
+    "identical": true,
+    "warnings": [
+      "PROTOCOL: 14 value(s) outside the training dtype range (int8).",
+      "IN_PKTS: 4 value(s) outside the training dtype range (int16).",
+      "DURATION_IN: 5 value(s) outside the training dtype range (int16).",
+      "DURATION_OUT: 1 value(s) outside the training dtype range (int16).",
+      "RETRANSMITTED_IN_PKTS: 7 value(s) outside the training dtype range (int8)."
+    ]
+  },
+  "holdout": {
+    "first_row": 150001,
+    "rows": 5000,
+    "normal": 1616,
+    "attack": 3384
+  }
+}

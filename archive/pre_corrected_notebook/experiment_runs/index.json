@@ -1,0 +1,28 @@
+{
+  "runs": [
+    {
+      "run_id": "run_0001",
+      "status": "completed",
+      "family": "ensemble_stacking",
+      "protocol": "leakage_controlled",
+      "sampling_method": "SMOTE",
+      "model_variant": "ensemble",
+      "smoke": true,
+      "accuracy": 0.8683333333333333,
+      "f1": 0.871029322267516,
+      "roc_auc": 0.953329062145779
+    },
+    {
+      "run_id": "run_0002",
+      "status": "completed",
+      "family": "ensemble_stacking",
+      "protocol": "leakage_controlled",
+      "sampling_method": "SMOTE",
+      "model_variant": "ensemble",
+      "smoke": true,
+      "accuracy": 0.7633333333333333,
+      "f1": 0.7668530435197102,
+      "roc_auc": 0.8808831501650978
+    }
+  ]
+}

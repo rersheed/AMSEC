@@ -1,0 +1,30 @@
+{
+  "seed": 42,
+  "api_rows_full": 43876,
+  "api_rows_used": 1200,
+  "nids_rows_loaded": 50000,
+  "unique_nids_rows_paired": 1200,
+  "selected_features": [
+    "LONGEST_FLOW_PKT",
+    "MAX_IP_PKT_LEN",
+    "MAX_TTL",
+    "MIN_TTL",
+    "SRC_TO_DST_AVG_THROUGHPUT"
+  ],
+  "sequence_length": 80,
+  "vocab_size": 188,
+  "epochs": 3,
+  "batch_size": 512,
+  "methods": [
+    "no_balancing",
+    "smote",
+    "adasyn",
+    "smote_enn",
+    "smote_tomek",
+    "smote_ncr",
+    "adasyn_enn",
+    "adasyn_tomek",
+    "adasyn_ncr"
+  ],
+  "pairing": "one randomly selected NIDS row per API row, conditioned on the shared binary label"
+}
