@@ -1,0 +1,107 @@
+[
+  {
+    "entry": 1,
+    "config": "SMOTE_GA_Ensemble_Stacking",
+    "sampling_method": "SMOTE",
+    "model_type": "Ensemble_Stacking",
+    "accuracy": 0.9642592592592593,
+    "precision": 0.964860989874341,
+    "recall": 0.9642592592592593,
+    "f1_score": 0.9642486275196074,
+    "balanced_accuracy": 0.9642844697212267,
+    "mcc": 0.9291217221062176,
+    "roc_auc": 0.9937220355891238,
+    "parameters": 75020,
+    "flops": 150040,
+    "training_time": 943.1126415729523,
+    "inference_time": 6.0273520946502686,
+    "train_samples": 134640,
+    "val_samples": 18360,
+    "test_samples": 27000,
+    "samples_after_sampling": 201172,
+    "class_counts_after_sampling": {
+      "0": 100586,
+      "1": 100586
+    },
+    "confusion_matrix": [
+      [
+        13241,
+        240
+      ],
+      [
+        725,
+        12794
+      ]
+    ]
+  },
+  {
+    "entry": 2,
+    "config": "ADASYN_GA_Ensemble_Stacking",
+    "sampling_method": "ADASYN",
+    "model_type": "Ensemble_Stacking",
+    "accuracy": 0.951925925925926,
+    "precision": 0.953059630172554,
+    "recall": 0.951925925925926,
+    "f1_score": 0.9518982651585264,
+    "balanced_accuracy": 0.9519738246052425,
+    "mcc": 0.9049891214198355,
+    "roc_auc": 0.982540119035564,
+    "parameters": 75020,
+    "flops": 150040,
+    "training_time": 602.2984261512756,
+    "inference_time": 5.870856285095215,
+    "train_samples": 134640,
+    "val_samples": 18360,
+    "test_samples": 27000,
+    "samples_after_sampling": 200804,
+    "class_counts_after_sampling": {
+      "0": 100218,
+      "1": 100586
+    },
+    "confusion_matrix": [
+      [
+        13162,
+        312
+      ],
+      [
+        986,
+        12540
+      ]
+    ]
+  },
+  {
+    "entry": 3,
+    "config": "SMOTE-ENN_GA_Ensemble_Stacking",
+    "sampling_method": "SMOTE-ENN",
+    "model_type": "Ensemble_Stacking",
+    "accuracy": 0.9831481481481481,
+    "precision": 0.9832204704499677,
+    "recall": 0.9831481481481481,
+    "f1_score": 0.9831493504420933,
+    "balanced_accuracy": 0.9832496572451408,
+    "mcc": 0.9663614098005109,
+    "roc_auc": 0.9986215638890871,
+    "parameters": 75020,
+    "flops": 150040,
+    "training_time": 2019.5913121700287,
+    "inference_time": 7.027438163757324,
+    "train_samples": 134640,
+    "val_samples": 18360,
+    "test_samples": 27000,
+    "samples_after_sampling": 190974,
+    "class_counts_after_sampling": {
+      "0": 93875,
+      "1": 97099
+    },
+    "confusion_matrix": [
+      [
+        13111,
+        147
+      ],
+      [
+        308,
+        13434
+      ]
+    ]
+  }
+]
