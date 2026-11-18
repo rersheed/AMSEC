@@ -103,5 +103,40 @@
         13434
       ]
     ]
+  },
+  {
+    "entry": 4,
+    "config": "SMOTE-Tomek_GA_Ensemble_Stacking",
+    "sampling_method": "SMOTE-Tomek",
+    "model_type": "Ensemble_Stacking",
+    "accuracy": 0.9684444444444444,
+    "precision": 0.9690774788499206,
+    "recall": 0.9684444444444444,
+    "f1_score": 0.9684337058128455,
+    "balanced_accuracy": 0.9684417222154562,
+    "mcc": 0.9375215363278802,
+    "roc_auc": 0.9948100520118853,
+    "parameters": 75020,
+    "flops": 150040,
+    "training_time": 1294.3136749267578,
+    "inference_time": 41.87505912780762,
+    "train_samples": 134640,
+    "val_samples": 18360,
+    "test_samples": 27000,
+    "samples_after_sampling": 200484,
+    "class_counts_after_sampling": {
+      "0": 100242,
+      "1": 100242
+    },
+    "confusion_matrix": [
+      [
+        13324,
+        178
+      ],
+      [
+        674,
+        12824
+      ]
+    ]
   }
 ]

@@ -16,6 +16,9 @@ NOTEBOOK_NAME = "Final_phd-Experiment-android-malware_CORRECTED.ipynb"
 NOTEBOOK_PATH = ROOT / "notebooks" / NOTEBOOK_NAME
 NOTEBOOK_SHA256 = "9e4724f7af4a8438bf7aea02b8768cc1579a50afc0be935b1f24b08581a0e8fa"
 NOTEBOOK_KERNEL = {"name": "python3", "language_version": "3.12.13", "tensorflow": "2.20.0 (printed by cells 2 and 4)"}
+# Library versions with which the cell-2/4 GA reproduces the notebook's printed checkpoints exactly
+# (verified 2026-11-18 with scripts/diagnose_ga_environment.py: sklearn 1.2.2 and 1.6.1 match; 1.9.1 does not).
+REPRODUCIBLE_PINS = {"sklearn": "1.6.1", "imblearn": "0.13.0"}
 DATA_DIR = Path(os.environ.get("AMSEC_DATA_DIR", ROOT / "others files that can help"))
 HISTORICAL_JSON = ROOT / "research_results" / "corrected_notebook_historical.json"
 FIGURES_DIR = ROOT / "research_results" / "notebook_figures"

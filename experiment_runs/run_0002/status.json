@@ -1,5 +1,13 @@
 {
-  "status": "running",
+  "status": "stopped",
   "started_at": "2026-11-18T14:22:42+00:00",
-  "updated_at": "2026-11-18T14:22:42+00:00"
+  "updated_at": "2026-11-18T14:22:42+00:00",
+  "finished_at": "2026-11-18T16:09:26+00:00",
+  "entries_completed": [
+    1,
+    2,
+    3,
+    4
+  ],
+  "reason": "Stopped deliberately after GA divergence was traced to scikit-learn 1.9.1 (GA selected 7 features vs the notebook 5). Kept as evidence of library-version sensitivity; superseded by a run in the pinned notebook-compatible environment."
 }

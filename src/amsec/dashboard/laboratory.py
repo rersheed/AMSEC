@@ -38,6 +38,15 @@ def render_laboratory() -> None:
                  "Install `requirements-experiments.txt` (Python 3.11) — AMSEC never substitutes a PyTorch look-alike.")
         return
 
+    import imblearn
+    import sklearn
+
+    from amsec.notebook.provenance import REPRODUCIBLE_PINS
+
+    if (sklearn.__version__, imblearn.__version__) != (REPRODUCIBLE_PINS["sklearn"], REPRODUCIBLE_PINS["imblearn"]):
+        st.warning(f"This environment has scikit-learn {sklearn.__version__} / imbalanced-learn {imblearn.__version__}. "
+                   f"The notebook's GA feature selection reproduces exactly only with scikit-learn {REPRODUCIBLE_PINS['sklearn']} "
+                   f"(imbalanced-learn {REPRODUCIBLE_PINS['imblearn']}); runs here may select different features.")
     with st.expander("Notebook hyperparameters and sampler semantics", expanded=False):
         if exp_id == "cell22_dual_dataset":
             st.json(NOTEBOOK_HYPERPARAMETERS)

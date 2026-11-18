@@ -1,0 +1,8 @@
+{
+  "phase": "train",
+  "method": "adasyn_ncr",
+  "epoch": 3,
+  "epochs": 3,
+  "val_acc": 0.8333333333333334,
+  "at": "2026-11-18T16:43:06+00:00"
+}

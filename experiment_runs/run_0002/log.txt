@@ -19,3 +19,13 @@ Config 2/9: ADASYN_GA_Ensemble_Stacking
 Config 3/9: SMOTE-ENN_GA_Ensemble_Stacking
   After SMOTE-ENN: 190974 samples  Normal=93875, Attack=97099
   Training: (134640, 7), Validation: (18360, 7), Test: (27000, 7)
+  ✓ SMOTE-ENN_GA_Ensemble_Stacking  Accuracy: 0.98315, F1: 0.98315, ROC-AUC: 0.99862
+
+Config 4/9: SMOTE-Tomek_GA_Ensemble_Stacking
+  After SMOTE-Tomek: 200484 samples  Normal=100242, Attack=100242
+  Training: (134640, 7), Validation: (18360, 7), Test: (27000, 7)
+  ✓ SMOTE-Tomek_GA_Ensemble_Stacking  Accuracy: 0.96844, F1: 0.96843, ROC-AUC: 0.99481
+
+Config 5/9: SMOTE-NCR_GA_Ensemble_Stacking
+  After SMOTE-NCR: 201172 samples  Normal=100586, Attack=100586
+  Training: (134640, 7), Validation: (18360, 7), Test: (27000, 7)

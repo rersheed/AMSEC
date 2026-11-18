@@ -1,0 +1,25 @@
+# GA environment diagnosis (scripts/diagnose_ga_environment.py) — 2026-11-18
+# Notebook (cells 2 and 4): Gen5 0.9624/13, Gen10 0.9683/9, Gen15 0.9683/9, Gen20 0.9715/5, Gen25 0.9715/5, Gen30 0.9715/5; selected 5 of 41
+
+## numpy 2.1.3 / sklearn 1.9.1 (5 generations)
+GA history: [0.9449, 0.9485, 0.9558, 0.9565, 0.9606] (Gen5 13 features) — full run_0002 ended 0.9702 with 7 features
+
+## numpy 1.26.4 / sklearn 1.2.2 and 1.6.1 (5 generations)
+{'numpy': '1.26.4', 'pandas': '2.2.3', 'sklearn': '1.2.2', 'python': '3.11.9'}
+GA history: [0.9458, 0.948, 0.9551, 0.96, 0.9624] selected: [1, 7, 8, 9, 13, 15, 16, 24, 28, 34, 35, 39, 40] (314s)
+{'numpy': '1.26.4', 'pandas': '2.2.3', 'sklearn': '1.6.1', 'python': '3.11.9'}
+GA history: [0.9458, 0.948, 0.9551, 0.96, 0.9624] selected: [1, 7, 8, 9, 13, 15, 16, 24, 28, 34, 35, 39, 40] (316s)
+
+## numpy 2.1.3 / sklearn 1.6.1 (30 generations)
+
+{'numpy': '2.1.3', 'pandas': '2.2.3', 'sklearn': '1.6.1', 'python': '3.11.9'}
+  Gen 5: Fitness=0.9624, Features=13
+  Gen 10: Fitness=0.9683, Features=9
+  Gen 15: Fitness=0.9683, Features=9
+  Gen 20: Fitness=0.9715, Features=5
+  Gen 25: Fitness=0.9715, Features=5
+  Gen 30: Fitness=0.9715, Features=5
+✓ GA Complete! Selected 5 from 41 features
+GA history: [np.float64(0.9458), np.float64(0.948), np.float64(0.9551), np.float64(0.96), np.float64(0.9624), np.float64(0.9639), np.float64(0.9645), np.float64(0.9645), np.float64(0.9667), np.float64(0.9683), np.float64(0.9683), np.float64(0.9683), np.float64(0.9683), np.float64(0.9683), np.float64(0.9683), np.float64(0.9683), np.float64(0.9694), np.float64(0.9702), np.float64(0.9702), np.float64(0.9715), np.float64(0.9715), np.float64(0.9715), np.float64(0.9715), np.float64(0.9715), np.float64(0.9715), np.float64(0.9715), np.float64(0.9715), np.float64(0.9715), np.float64(0.9715), np.float64(0.9715)] selected: [1, 14, 16, 17, 29] (1331s)
+
+[exited with code 0]

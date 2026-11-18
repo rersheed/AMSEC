@@ -1,0 +1,120 @@
+==========================================================================================
+CORRECTED TRIM-SEC DUAL-DATASET CNN-BiLSTM BENCHMARK
+==========================================================================================
+CPU threads: 3
+
+[1/7] Loading API dataset (all rows)...
+API full rows: 43876 API rows used in rerun: 1200 sequence columns: 100 using: 80
+API labels used: {np.int64(0): np.int64(200), np.int64(1): np.int64(1000)}
+
+[2/7] Loading NIDS sample using notebook design (first 50,000 rows)...
+NIDS sampled rows: 50000 numeric features: 41
+NIDS labels: {np.int64(0): np.int64(16535), np.int64(1): np.int64(33465)}
+
+[3/7] Building label-matched cross-dataset pairs...
+Paired samples: 1200
+Unique NIDS rows paired: 1200
+Paired class counts: {np.int64(0): np.int64(200), np.int64(1): np.int64(1000)}
+Splits: 840 180 180
+Top NIDS features:
+  1. LONGEST_FLOW_PKT: 0.267984
+  2. MAX_IP_PKT_LEN: 0.266878
+  3. MAX_TTL: 0.260681
+  4. MIN_TTL: 0.252930
+  5. SRC_TO_DST_AVG_THROUGHPUT: 0.252537
+API vocabulary size: 188
+
+==========================================================================================
+RUNNING no_balancing
+==========================================================================================
+  train distribution: benign=140, malware=700
+  epoch 1: train_acc=0.5940 val_acc=0.8444
+  epoch 2: train_acc=0.7988 val_acc=0.8333
+  epoch 3: train_acc=0.8274 val_acc=0.8333
+RESULT no_balancing: acc=0.8333 f1=0.9085 auc=0.8469 bal_acc=0.5133
+
+==========================================================================================
+RUNNING smote
+==========================================================================================
+  train distribution: benign=700, malware=700
+  epoch 1: train_acc=0.5021 val_acc=0.8333
+  epoch 2: train_acc=0.6414 val_acc=0.8333
+  epoch 3: train_acc=0.6550 val_acc=0.8333
+RESULT smote: acc=0.8333 f1=0.9091 auc=0.8698 bal_acc=0.5000
+
+==========================================================================================
+RUNNING adasyn
+==========================================================================================
+  train distribution: benign=711, malware=700
+  epoch 1: train_acc=0.4458 val_acc=0.8333
+  epoch 2: train_acc=0.5854 val_acc=0.8333
+  epoch 3: train_acc=0.5868 val_acc=0.8333
+RESULT adasyn: acc=0.8333 f1=0.9091 auc=0.8658 bal_acc=0.5000
+
+==========================================================================================
+RUNNING smote_enn
+==========================================================================================
+  train distribution: benign=551, malware=640
+  epoch 1: train_acc=0.4198 val_acc=0.1667
+  epoch 2: train_acc=0.5668 val_acc=0.8333
+  epoch 3: train_acc=0.6029 val_acc=0.8333
+RESULT smote_enn: acc=0.8333 f1=0.9091 auc=0.7580 bal_acc=0.5000
+
+==========================================================================================
+RUNNING smote_tomek
+==========================================================================================
+  train distribution: benign=697, malware=697
+  epoch 1: train_acc=0.4684 val_acc=0.8333
+  epoch 2: train_acc=0.6478 val_acc=0.8333
+  epoch 3: train_acc=0.6549 val_acc=0.8333
+RESULT smote_tomek: acc=0.8333 f1=0.9091 auc=0.8929 bal_acc=0.5000
+
+==========================================================================================
+RUNNING smote_ncr
+==========================================================================================
+  train distribution: benign=700, malware=659
+  epoch 1: train_acc=0.5107 val_acc=0.8333
+  epoch 2: train_acc=0.6402 val_acc=0.8333
+  epoch 3: train_acc=0.6887 val_acc=0.8333
+RESULT smote_ncr: acc=0.8389 f1=0.9119 auc=0.8898 bal_acc=0.5167
+
+==========================================================================================
+RUNNING adasyn_enn
+==========================================================================================
+  train distribution: benign=492, malware=644
+  epoch 1: train_acc=0.4085 val_acc=0.1667
+  epoch 2: train_acc=0.4507 val_acc=0.1667
+  epoch 3: train_acc=0.4815 val_acc=0.1667
+RESULT adasyn_enn: acc=0.1667 f1=0.0000 auc=0.3247 bal_acc=0.5000
+
+==========================================================================================
+RUNNING adasyn_tomek
+==========================================================================================
+  train distribution: benign=708, malware=708
+  epoch 1: train_acc=0.4654 val_acc=0.8333
+  epoch 2: train_acc=0.5897 val_acc=0.8333
+  epoch 3: train_acc=0.6017 val_acc=0.8333
+RESULT adasyn_tomek: acc=0.8389 f1=0.9119 auc=0.8753 bal_acc=0.5167
+
+==========================================================================================
+RUNNING adasyn_ncr
+==========================================================================================
+  train distribution: benign=522, malware=700
+  epoch 1: train_acc=0.5376 val_acc=0.8333
+  epoch 2: train_acc=0.6465 val_acc=0.8333
+  epoch 3: train_acc=0.6514 val_acc=0.8333
+RESULT adasyn_ncr: acc=0.8333 f1=0.9091 auc=0.8240 bal_acc=0.5000
+
+========================================================================================================================
+FINAL RESULTS
+========================================================================================================================
+ rank       method  train_samples  test_samples  accuracy  precision  recall  f1_score  roc_auc  balanced_accuracy     mcc  specificity     fpr     fnr  parameters  training_seconds
+    1    smote_ncr           1359           180   0.83889    0.83799 1.00000   0.91185  0.88978            0.51667 0.16713      0.03333 0.96667 0.00000     1099075          13.95298
+    2 adasyn_tomek           1416           180   0.83889    0.83799 1.00000   0.91185  0.87533            0.51667 0.16713      0.03333 0.96667 0.00000     1099075          14.18236
+    3        smote           1400           180   0.83333    0.83333 1.00000   0.90909  0.86978            0.50000 0.00000      0.00000 1.00000 0.00000     1099075          13.86522
+    4       adasyn           1411           180   0.83333    0.83333 1.00000   0.90909  0.86578            0.50000 0.00000      0.00000 1.00000 0.00000     1099075          15.99926
+    5    smote_enn           1191           180   0.83333    0.83333 1.00000   0.90909  0.75800            0.50000 0.00000      0.00000 1.00000 0.00000     1099075          12.37343
+    6  smote_tomek           1394           180   0.83333    0.83333 1.00000   0.90909  0.89289            0.50000 0.00000      0.00000 1.00000 0.00000     1099075          13.95650
+    7   adasyn_ncr           1222           180   0.83333    0.83333 1.00000   0.90909  0.82400            0.50000 0.00000      0.00000 1.00000 0.00000     1099075          12.16981
+    8 no_balancing            840           180   0.83333    0.83708 0.99333   0.90854  0.84689            0.51333 0.09481      0.03333 0.96667 0.00667     1099075           9.61915
+    9   adasyn_enn           1136           180   0.16667    0.00000 0.00000   0.00000  0.32467            0.50000 0.00000      1.00000 0.00000 1.00000     1099075          11.69052
