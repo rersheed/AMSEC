@@ -21,7 +21,7 @@ CSS = """
 .stApp { background: radial-gradient(1200px 600px at 10% -10%, #12284a 0%, #07111f 45%, #050b14 100%) !important; color:#e8edf5 !important; }
 [data-testid="stSidebar"] { background:#080d18 !important; border-right:1px solid rgba(58,123,253,0.18) !important; }
 [data-testid="stMetric"] { background:#0b1220 !important; border:1px solid rgba(58,123,253,0.22) !important; border-radius:12px !important; padding:0.85rem 1rem !important; }
-[data-testid="stMetricLabel"] { font-family:Syne,sans-serif !important; letter-spacing:0.06em !important; text-transform:uppercase !important; color:#6d7f9e !important; font-size:0.68rem !important; }
+[data-testid="stMetricLabel"] { font-family:Syne,sans-serif !important; letter-spacing:0.06em !important; text-transform:uppercase !important; color:#a9b8d3 !important; font-size:0.68rem !important; }
 [data-testid="stMetricValue"] { font-family:Syne,sans-serif !important; color:#00e5cc !important; }
 .stTabs [data-baseweb="tab-list"] { background:#0b1220; border-radius:12px; border:1px solid rgba(58,123,253,0.18); padding:4px; }
 .stTabs [aria-selected="true"] { background:linear-gradient(135deg,#3a7bfd,#00e5cc) !important; color:#fff !important; }
@@ -33,9 +33,9 @@ CSS = """
 .amsec-card { background:#0b1220; border:1px solid rgba(58,123,253,0.18); border-top:3px solid #3a7bfd; border-radius:14px; padding:0.95rem 1rem; height:100%; }
 .amsec-card h4 { font-family:Syne,sans-serif; margin:0 0 0.35rem; color:#e8edf5; font-size:0.95rem; }
 .amsec-card p { font-family:DM Mono,monospace; color:#8a9bbf; font-size:0.72rem; margin:0; line-height:1.55; }
-.amsec-source { font-family:DM Mono,monospace; font-size:0.62rem; color:#4a5878; margin-top:0.45rem; }
+.amsec-source { font-family:DM Mono,monospace; font-size:0.62rem; color:#9bb0d0; margin-top:0.45rem; }
 .amsec-kpi { background:#0b1220; border:1px solid rgba(58,123,253,0.18); border-radius:14px; padding:0.9rem 1rem; border-top:3px solid var(--accent,#00e5cc); }
-.amsec-kpi .label { font-family:Syne,sans-serif; font-size:0.58rem; letter-spacing:0.08em; text-transform:uppercase; color:#6d7f9e; }
+.amsec-kpi .label { font-family:Syne,sans-serif; font-size:0.58rem; letter-spacing:0.08em; text-transform:uppercase; color:#a9b8d3; }
 .amsec-kpi .value { font-family:Syne,sans-serif; font-size:1.35rem; font-weight:800; color:var(--accent,#00e5cc); margin-top:0.2rem; }
 .amsec-kpi .src { font-family:DM Mono,monospace; font-size:0.58rem; color:#8a9bbf; margin-top:0.25rem; }
 .amsec-pipe { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:0.55rem; }

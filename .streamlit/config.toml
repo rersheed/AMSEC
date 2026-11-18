@@ -8,11 +8,13 @@ maxUploadSize = 200
 gatherUsageStats = false
 
 [theme]
-base = "light"
-primaryColor = "#0B3D5C"
-backgroundColor = "#F7F9FB"
-secondaryBackgroundColor = "#E8EEF3"
-textColor = "#102A3C"
+# Dark theme to match the custom CSS (src/amsec/dashboard/theme.py paints a dark background;
+# a light base theme rendered native text dark-on-dark).
+base = "dark"
+primaryColor = "#3987e5"
+backgroundColor = "#07111f"
+secondaryBackgroundColor = "#0b1220"
+textColor = "#e8edf5"
 font = "sans serif"
 
 [client]
