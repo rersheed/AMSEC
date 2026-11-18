@@ -1,5 +1,7 @@
 {
-  "phase": "feature_selection",
-  "message": "Phase 2 \u2014 VarianceThreshold \u2192 MI \u2192 GA",
-  "at": "2026-11-18T14:22:45+00:00"
+  "phase": "config",
+  "entry": 1,
+  "total": 9,
+  "config": "SMOTE_GA_Ensemble_Stacking",
+  "at": "2026-11-18T14:42:25+00:00"
 }

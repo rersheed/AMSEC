@@ -4,3 +4,8 @@ PHASE 1: DATA LOADING
   Label distribution: Normal=49414, Attack=100586
   API dataset treated as unavailable (as in the historical notebook run).
   After variance threshold: 41 features
+[2.3] Final selected features: 7 → ['L4_DST_PORT', 'FLOW_DURATION_MILLISECONDS', 'MIN_TTL', 'LONGEST_FLOW_PKT', 'MAX_IP_PKT_LEN', 'SRC_TO_DST_SECOND_BYTES', 'NUM_PKTS_UP_TO_128_BYTES']
+
+Config 1/9: SMOTE_GA_Ensemble_Stacking
+  After SMOTE: 201172 samples  Normal=100586, Attack=100586
+  Training: (134640, 7), Validation: (18360, 7), Test: (27000, 7)
