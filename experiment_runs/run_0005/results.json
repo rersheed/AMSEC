@@ -138,5 +138,40 @@
         12914
       ]
     ]
+  },
+  {
+    "entry": 5,
+    "config": "SMOTE-NCR_GA_Ensemble_Stacking",
+    "sampling_method": "SMOTE-NCR",
+    "model_type": "Ensemble_Stacking",
+    "accuracy": 0.9610740740740741,
+    "precision": 0.961083305710929,
+    "recall": 0.9610740740740741,
+    "f1_score": 0.9610737841822387,
+    "balanced_accuracy": 0.961071689273257,
+    "mcc": 0.9221571136182236,
+    "roc_auc": 0.9946534894490202,
+    "parameters": 75004,
+    "flops": 150008,
+    "training_time": 746.7030045986176,
+    "inference_time": 9.017462491989136,
+    "train_samples": 134640,
+    "val_samples": 18360,
+    "test_samples": 27000,
+    "samples_after_sampling": 201172,
+    "class_counts_after_sampling": {
+      "0": 100586,
+      "1": 100586
+    },
+    "confusion_matrix": [
+      [
+        12930,
+        556
+      ],
+      [
+        495,
+        13019
+      ]
+    ]
   }
 ]
