@@ -1,0 +1,142 @@
+[
+  {
+    "entry": 1,
+    "config": "SMOTE_GA_Ensemble_Stacking",
+    "sampling_method": "SMOTE",
+    "model_type": "Ensemble_Stacking",
+    "accuracy": 0.9608148148148148,
+    "precision": 0.9608974845334163,
+    "recall": 0.9608148148148148,
+    "f1_score": 0.960813440876492,
+    "balanced_accuracy": 0.9608241199314529,
+    "mcc": 0.9217128759502987,
+    "roc_auc": 0.9937721467859806,
+    "parameters": 75004,
+    "flops": 150008,
+    "training_time": 572.1152296066284,
+    "inference_time": 6.273848056793213,
+    "train_samples": 134640,
+    "val_samples": 18360,
+    "test_samples": 27000,
+    "samples_after_sampling": 201172,
+    "class_counts_after_sampling": {
+      "0": 100586,
+      "1": 100586
+    },
+    "confusion_matrix": [
+      [
+        13042,
+        439
+      ],
+      [
+        619,
+        12900
+      ]
+    ]
+  },
+  {
+    "entry": 2,
+    "config": "ADASYN_GA_Ensemble_Stacking",
+    "sampling_method": "ADASYN",
+    "model_type": "Ensemble_Stacking",
+    "accuracy": 0.9417777777777778,
+    "precision": 0.9422943050549122,
+    "recall": 0.9417777777777778,
+    "f1_score": 0.9417575359601149,
+    "balanced_accuracy": 0.9417250482293886,
+    "mcc": 0.8840647808615002,
+    "roc_auc": 0.9824126690573205,
+    "parameters": 75004,
+    "flops": 150008,
+    "training_time": 587.085476398468,
+    "inference_time": 6.493084192276001,
+    "train_samples": 134640,
+    "val_samples": 18360,
+    "test_samples": 27000,
+    "samples_after_sampling": 201771,
+    "class_counts_after_sampling": {
+      "0": 101185,
+      "1": 100586
+    },
+    "confusion_matrix": [
+      [
+        12987,
+        554
+      ],
+      [
+        1018,
+        12441
+      ]
+    ]
+  },
+  {
+    "entry": 3,
+    "config": "SMOTE-ENN_GA_Ensemble_Stacking",
+    "sampling_method": "SMOTE-ENN",
+    "model_type": "Ensemble_Stacking",
+    "accuracy": 0.9802962962962963,
+    "precision": 0.9802967151001102,
+    "recall": 0.9802962962962963,
+    "f1_score": 0.9802964196007551,
+    "balanced_accuracy": 0.9802936082439184,
+    "mcc": 0.960575193981014,
+    "roc_auc": 0.9988449960653848,
+    "parameters": 75004,
+    "flops": 150008,
+    "training_time": 749.7392656803131,
+    "inference_time": 14.072098731994629,
+    "train_samples": 134640,
+    "val_samples": 18360,
+    "test_samples": 27000,
+    "samples_after_sampling": 189710,
+    "class_counts_after_sampling": {
+      "0": 92904,
+      "1": 96806
+    },
+    "confusion_matrix": [
+      [
+        12949,
+        262
+      ],
+      [
+        270,
+        13519
+      ]
+    ]
+  },
+  {
+    "entry": 4,
+    "config": "SMOTE-Tomek_GA_Ensemble_Stacking",
+    "sampling_method": "SMOTE-Tomek",
+    "model_type": "Ensemble_Stacking",
+    "accuracy": 0.9626666666666667,
+    "precision": 0.9627349559362133,
+    "recall": 0.9626666666666667,
+    "f1_score": 0.9626652892258148,
+    "balanced_accuracy": 0.9626666666666667,
+    "mcc": 0.925401620083204,
+    "roc_auc": 0.9943261262002744,
+    "parameters": 75004,
+    "flops": 150008,
+    "training_time": 768.6414453983307,
+    "inference_time": 13.163131713867188,
+    "train_samples": 134640,
+    "val_samples": 18360,
+    "test_samples": 27000,
+    "samples_after_sampling": 200604,
+    "class_counts_after_sampling": {
+      "0": 100302,
+      "1": 100302
+    },
+    "confusion_matrix": [
+      [
+        13078,
+        422
+      ],
+      [
+        586,
+        12914
+      ]
+    ]
+  }
+]
