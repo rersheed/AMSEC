@@ -1,0 +1,62 @@
+[
+  {
+    "sample_idx": 7213,
+    "true_label": 0,
+    "predicted_label": 0,
+    "prediction_proba": 0.9891127752180932,
+    "relevance_scores": [
+      0.04455104097723961,
+      0.17313137650489807,
+      0.7077801823616028,
+      0.06851217895746231,
+      0.005551991984248161
+    ],
+    "feature_names": [
+      "L4_DST_PORT",
+      "MIN_TTL",
+      "LONGEST_FLOW_PKT",
+      "SHORTEST_FLOW_PKT",
+      "NUM_PKTS_128_TO_256_BYTES"
+    ]
+  },
+  {
+    "sample_idx": 11510,
+    "true_label": 0,
+    "predicted_label": 0,
+    "prediction_proba": 0.9872515383794483,
+    "relevance_scores": [
+      0.1050138846039772,
+      0.13802197575569153,
+      0.2723923921585083,
+      0.4762156307697296,
+      0.008353019133210182
+    ],
+    "feature_names": [
+      "L4_DST_PORT",
+      "MIN_TTL",
+      "LONGEST_FLOW_PKT",
+      "SHORTEST_FLOW_PKT",
+      "NUM_PKTS_128_TO_256_BYTES"
+    ]
+  },
+  {
+    "sample_idx": 22708,
+    "true_label": 0,
+    "predicted_label": 0,
+    "prediction_proba": 0.5819643507083737,
+    "relevance_scores": [
+      0.2548820972442627,
+      0.03227703645825386,
+      0.5386573672294617,
+      0.06700272113084793,
+      0.10718049854040146
+    ],
+    "feature_names": [
+      "L4_DST_PORT",
+      "MIN_TTL",
+      "LONGEST_FLOW_PKT",
+      "SHORTEST_FLOW_PKT",
+      "NUM_PKTS_128_TO_256_BYTES"
+    ]
+  }
+]

@@ -1,0 +1,98 @@
+{
+  "run": "run_0005",
+  "entries": {
+    "1": {
+      "accuracy": 0.9579,
+      "balanced_accuracy": 0.95998,
+      "f1_attack": 0.96825,
+      "f1_weighted": 0.95821,
+      "mcc": 0.90672,
+      "roc_auc": 0.9939,
+      "warnings": 0
+    },
+    "2": {
+      "accuracy": 0.94152,
+      "balanced_accuracy": 0.9502,
+      "f1_attack": 0.95514,
+      "f1_weighted": 0.94235,
+      "mcc": 0.87521,
+      "roc_auc": 0.99187,
+      "warnings": 0
+    },
+    "3": {
+      "accuracy": 0.95712,
+      "balanced_accuracy": 0.96156,
+      "f1_attack": 0.96751,
+      "f1_weighted": 0.95752,
+      "mcc": 0.90607,
+      "roc_auc": 0.99015,
+      "warnings": 0
+    },
+    "4": {
+      "accuracy": 0.96096,
+      "balanced_accuracy": 0.96306,
+      "f1_attack": 0.97058,
+      "f1_weighted": 0.96123,
+      "mcc": 0.91341,
+      "roc_auc": 0.99421,
+      "warnings": 0
+    },
+    "5": {
+      "accuracy": 0.96104,
+      "balanced_accuracy": 0.96093,
+      "f1_attack": 0.97077,
+      "f1_weighted": 0.96123,
+      "mcc": 0.9128,
+      "roc_auc": 0.99419,
+      "warnings": 0
+    },
+    "6": {
+      "accuracy": 0.94798,
+      "balanced_accuracy": 0.9548,
+      "f1_attack": 0.96031,
+      "f1_weighted": 0.94861,
+      "mcc": 0.88772,
+      "roc_auc": 0.99234,
+      "warnings": 0
+    },
+    "7": {
+      "accuracy": 0.94356,
+      "balanced_accuracy": 0.95179,
+      "f1_attack": 0.95677,
+      "f1_weighted": 0.94433,
+      "mcc": 0.87923,
+      "roc_auc": 0.99245,
+      "warnings": 0
+    },
+    "8": {
+      "accuracy": 0.94268,
+      "balanced_accuracy": 0.95125,
+      "f1_attack": 0.95605,
+      "f1_weighted": 0.94348,
+      "mcc": 0.87759,
+      "roc_auc": 0.99156,
+      "warnings": 0
+    },
+    "9": {
+      "accuracy": 0.95276,
+      "balanced_accuracy": 0.95816,
+      "f1_attack": 0.9641,
+      "f1_weighted": 0.95326,
+      "mcc": 0.89715,
+      "roc_auc": 0.99419,
+      "warnings": 0
+    }
+  },
+  "preprocessing_parity": {
+    "rows": 150000,
+    "max_abs_diff": 0.0,
+    "identical": true,
+    "warnings": []
+  },
+  "holdout": {
+    "first_row": 150001,
+    "rows": 50000,
+    "normal": 16351,
+    "attack": 33649
+  }
+}

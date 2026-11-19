@@ -1,0 +1,116 @@
+# Resampling-count diagnosis (scripts/diagnose_resampling_environment.py) — 2026-11-19
+# Input: phase-3 matrix of run_0005 (GA-selected L4_DST_PORT, MIN_TTL, LONGEST_FLOW_PKT, SHORTEST_FLOW_PKT, NUM_PKTS_128_TO_256_BYTES);
+# 150,000 rows -> 17,825 unique rows (tie-heavy nearest-neighbour searches).
+
+## Saved matrix, imblearn sweep
+
+{'sklearn': '1.2.2', 'imblearn': '0.10.1', 'numpy': '1.26.4'}
+SMOTE         notebook= 201172 here= 201172 MATCH
+ADASYN        notebook= 202084 here= 201771 DIFF
+SMOTE-ENN     notebook= 191389 here= 189710 DIFF
+SMOTE-Tomek   notebook= 200606 here= 200604 DIFF
+SMOTE-NCR     notebook= 201172 here= 201172 MATCH
+ADASYN-ENN    notebook= 176601 here= 178065 DIFF
+ADASYN-Tomek  notebook= 201140 here= 200818 DIFF
+ADASYN-NCR    notebook= 201172 here= 201172 MATCH
+
+{'sklearn': '1.2.2', 'imblearn': '0.11.0', 'numpy': '1.26.4'}
+SMOTE         notebook= 201172 here= 201172 MATCH
+ADASYN        notebook= 202084 here= 201771 DIFF
+SMOTE-ENN     notebook= 191389 here= 189710 DIFF
+SMOTE-Tomek   notebook= 200606 here= 200604 DIFF
+SMOTE-NCR     notebook= 201172 here= 201172 MATCH
+ADASYN-ENN    notebook= 176601 here= 178065 DIFF
+ADASYN-Tomek  notebook= 201140 here= 200818 DIFF
+ADASYN-NCR    notebook= 201172 here= 201172 MATCH
+
+{'sklearn': '1.2.2', 'imblearn': '0.12.4', 'numpy': '1.26.4'}
+SMOTE         notebook= 201172 here= 201172 MATCH
+ADASYN        notebook= 202084 here= 201771 DIFF
+SMOTE-ENN     notebook= 191389 here= 189710 DIFF
+SMOTE-Tomek   notebook= 200606 here= 200604 DIFF
+SMOTE-NCR     notebook= 201172 here= 201172 MATCH
+ADASYN-ENN    notebook= 176601 here= 178065 DIFF
+ADASYN-Tomek  notebook= 201140 here= 200818 DIFF
+ADASYN-NCR    notebook= 201172 here= 201172 MATCH
+
+{'sklearn': '1.6.1', 'imblearn': '0.13.0', 'numpy': '2.1.3'}
+SMOTE         notebook= 201172 here= 201172 MATCH
+ADASYN        notebook= 202084 here= 201771 DIFF
+SMOTE-ENN     notebook= 191389 here= 189710 DIFF
+SMOTE-Tomek   notebook= 200606 here= 200604 DIFF
+SMOTE-NCR     notebook= 201172 here= 201172 MATCH
+ADASYN-ENN    notebook= 176601 here= 178065 DIFF
+ADASYN-Tomek  notebook= 201140 here= 200818 DIFF
+ADASYN-NCR    notebook= 201172 here= 201172 MATCH
+
+[exited with code 0]
+## Matrix rebuilt from CSV in each environment (tests SciPy/sklearn PowerTransformer)
+
+{'sklearn': '1.2.2', 'imblearn': '0.12.4', 'numpy': '1.26.4', 'scipy': '1.11.4'}
+lambdas: [-1.2048959831, 0.8977846596, -0.4725897612, -0.4194118184, -2.0796968928] unique rows: 17825
+SMOTE         notebook= 201172 here= 201172 MATCH
+ADASYN        notebook= 202084 here= 201771 DIFF
+SMOTE-ENN     notebook= 191389 here= 189710 DIFF
+SMOTE-Tomek   notebook= 200606 here= 200604 DIFF
+SMOTE-NCR     notebook= 201172 here= 201172 MATCH
+ADASYN-ENN    notebook= 176601 here= 178065 DIFF
+ADASYN-Tomek  notebook= 201140 here= 200818 DIFF
+ADASYN-NCR    notebook= 201172 here= 201172 MATCH
+
+ERROR: THESE PACKAGES DO NOT MATCH THE HASHES FROM THE REQUIREMENTS FILE. If you have updated the package versions, please update the hashes. Otherwise, examine the package contents carefully; someone may have tampered with them.
+    unknown package:
+        Expected sha256 5713f62f781eebd8d597eb3f88b8bf9274e79eeabf63afb4a737abc6c84ad37b
+             Got        e3abf9f692eae1ef4c430526968a1146db1899f6d3a8f5bf3548a16051d1f0ce
+
+
+{'sklearn': '1.2.2', 'imblearn': '0.12.4', 'numpy': '1.26.4', 'scipy': '1.11.4'}
+lambdas: [-1.2048959831, 0.8977846596, -0.4725897612, -0.4194118184, -2.0796968928] unique rows: 17825
+SMOTE         notebook= 201172 here= 201172 MATCH
+ADASYN        notebook= 202084 here= 201771 DIFF
+SMOTE-ENN     notebook= 191389 here= 189710 DIFF
+SMOTE-Tomek   notebook= 200606 here= 200604 DIFF
+SMOTE-NCR     notebook= 201172 here= 201172 MATCH
+ADASYN-ENN    notebook= 176601 here= 178065 DIFF
+ADASYN-Tomek  notebook= 201140 here= 200818 DIFF
+ADASYN-NCR    notebook= 201172 here= 201172 MATCH
+
+
+{'sklearn': '1.6.1', 'imblearn': '0.13.0', 'numpy': '2.1.3', 'scipy': '1.15.3'}
+lambdas: [-1.2048959831, 0.8977846596, -0.4725897612, -0.4194118184, -2.0796968928] unique rows: 17825
+SMOTE         notebook= 201172 here= 201172 MATCH
+ADASYN        notebook= 202084 here= 201771 DIFF
+SMOTE-ENN     notebook= 191389 here= 189710 DIFF
+SMOTE-Tomek   notebook= 200606 here= 200604 DIFF
+SMOTE-NCR     notebook= 201172 here= 201172 MATCH
+ADASYN-ENN    notebook= 176601 here= 178065 DIFF
+ADASYN-Tomek  notebook= 201140 here= 200818 DIFF
+ADASYN-NCR    notebook= 201172 here= 201172 MATCH
+
+
+[exited with code 0]
+## Pinned project env (sklearn 1.6.1 / imblearn 0.13.0 / numpy 2.1.3 / scipy 1.17.1): identical lambdas and counts (see run_0005 log).
+
+## Conclusion
+Counts are invariant on Windows across sklearn 1.2.2/1.6.1, imblearn 0.10.1-0.13.0, scipy 1.11.4/1.15.3/1.17.1, numpy 1.26.4/2.1.3.
+SMOTE, SMOTE-NCR and ADASYN-NCR match the notebook; ADASYN, SMOTE-ENN, SMOTE-Tomek, ADASYN-ENN, ADASYN-Tomek do not.
+Untested remaining causes: OS/platform (Kaggle Linux) and differences between Kaggle's NF-UQ-NIDS-v2.csv and the local Excel-resaved copy.
+
+## Linux (WSL2 Ubuntu, kernel 6.18; Python 3.14; numpy 2.5.5 / sklearn 1.9.1 / imblearn 0.14.2 / scipy 1.18.1 / pandas 2.3.3)
+{'sklearn': '1.9.1', 'imblearn': '0.14.2', 'numpy': '2.5.5', 'scipy': '1.18.1'}
+lambdas: [-1.204896022, 0.8977846474, -0.4725897397, -0.4194118154, -2.0796968627] unique rows: 17829
+SMOTE         notebook= 201172 here= 201172 MATCH
+ADASYN        notebook= 202084 here= 201994 DIFF
+SMOTE-ENN     notebook= 191389 here= 189680 DIFF
+SMOTE-Tomek   notebook= 200606 here= 200600 DIFF
+SMOTE-NCR     notebook= 201172 here= 201172 MATCH
+ADASYN-ENN    notebook= 176601 here= 178253 DIFF
+ADASYN-Tomek  notebook= 201140 here= 201025 DIFF
+ADASYN-NCR    notebook= 201172 here= 201172 MATCH
+
+## Final conclusion (2026-11-19)
+PowerTransformer lambdas changing by ~1e-8 changes the number of unique rows (17,825 -> 17,829) and every
+neighbour-based resampler count (ADASYN, ENN, Tomek variants). These counts are chaotically sensitive to
+last-bit floating-point differences; exact reproduction would need Kaggle's binary stack AND the original
+Kaggle NF-UQ-NIDS-v2.csv (the local copy is an Excel re-save). Count-invariant samplers (SMOTE, SMOTE-NCR,
+ADASYN-NCR) reproduce exactly. Resampling-sensitive entries are reported as re-executions, not replications.
