@@ -1,2 +1,14 @@
 PHASE 1: DATA LOADING
   Using 'Label' as label column
+✓ Loaded NIDS: (150000, 45)
+  Label distribution: Normal=49414, Attack=100586
+  API dataset treated as unavailable (as in the historical notebook run).
+  After variance threshold: 41 features
+Running Improved Genetic Algorithm...
+  Population: 40, Generations: 30
+  Features: 41
+  Gen 5: Fitness=0.9624, Features=13
+  Gen 10: Fitness=0.9683, Features=9
+  Gen 15: Fitness=0.9683, Features=9
+  Gen 20: Fitness=0.9715, Features=5
+  Gen 25: Fitness=0.9715, Features=5
