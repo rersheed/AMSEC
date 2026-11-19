@@ -1,0 +1,527 @@
+[
+  {
+    "entry": 1,
+    "config": "SMOTE + GA + MobileNetV4",
+    "sampling_method": "SMOTE",
+    "model_type": "MobileNetV4",
+    "accuracy": 0.9567037037037037,
+    "precision": 0.9571715868885453,
+    "recall": 0.9567037037037037,
+    "f1_score": 0.9566936416863868,
+    "balanced_accuracy": 0.9567260843792398,
+    "mcc": 0.9138769465608414,
+    "roc_auc": 0.9944715638748834,
+    "parameters": 62710,
+    "flops": 125420,
+    "training_time": 368.9578938484192,
+    "inference_time": 2.9529144763946533,
+    "train_samples": 134640,
+    "val_samples": 18360,
+    "test_samples": 27000,
+    "samples_after_sampling": 201172,
+    "class_counts_after_sampling": {
+      "0": 100586,
+      "1": 100586
+    },
+    "confusion_matrix": [
+      [
+        13112,
+        369
+      ],
+      [
+        800,
+        12719
+      ]
+    ]
+  },
+  {
+    "entry": 2,
+    "config": "SMOTE + GA + MobileNetV4+Attention",
+    "sampling_method": "SMOTE",
+    "model_type": "MobileNetV4+Attention",
+    "accuracy": 0.9553333333333334,
+    "precision": 0.9557375398672969,
+    "recall": 0.9553333333333334,
+    "f1_score": 0.9553234787699175,
+    "balanced_accuracy": 0.9553344359689133,
+    "mcc": 0.9110708816148586,
+    "roc_auc": 0.9937518298694912,
+    "parameters": 87990,
+    "flops": 175980,
+    "training_time": 512.082451581955,
+    "inference_time": 4.406269788742065,
+    "train_samples": 134640,
+    "val_samples": 18360,
+    "test_samples": 27000,
+    "samples_after_sampling": 201172,
+    "class_counts_after_sampling": {
+      "0": 100586,
+      "1": 100586
+    },
+    "confusion_matrix": [
+      [
+        13097,
+        402
+      ],
+      [
+        804,
+        12697
+      ]
+    ]
+  },
+  {
+    "entry": 3,
+    "config": "ADASYN + GA + MobileNetV4",
+    "sampling_method": "ADASYN",
+    "model_type": "MobileNetV4",
+    "accuracy": 0.9442592592592592,
+    "precision": 0.9448843962881123,
+    "recall": 0.9442592592592592,
+    "f1_score": 0.9442357013646285,
+    "balanced_accuracy": 0.944191524923311,
+    "mcc": 0.8891345553711663,
+    "roc_auc": 0.9824735205334075,
+    "parameters": 62710,
+    "flops": 125420,
+    "training_time": 345.5828380584717,
+    "inference_time": 3.263672113418579,
+    "train_samples": 134640,
+    "val_samples": 18360,
+    "test_samples": 27000,
+    "samples_after_sampling": 201771,
+    "class_counts_after_sampling": {
+      "0": 101185,
+      "1": 100586
+    },
+    "confusion_matrix": [
+      [
+        13050,
+        498
+      ],
+      [
+        1007,
+        12445
+      ]
+    ]
+  },
+  {
+    "entry": 4,
+    "config": "ADASYN + GA + MobileNetV4+Attention",
+    "sampling_method": "ADASYN",
+    "model_type": "MobileNetV4+Attention",
+    "accuracy": 0.9434814814814815,
+    "precision": 0.9439233709461677,
+    "recall": 0.9434814814814815,
+    "f1_score": 0.9434650839163188,
+    "balanced_accuracy": 0.9434423945611395,
+    "mcc": 0.8873996869571107,
+    "roc_auc": 0.9830993352373629,
+    "parameters": 87990,
+    "flops": 175980,
+    "training_time": 511.20031929016113,
+    "inference_time": 2.791027307510376,
+    "train_samples": 134640,
+    "val_samples": 18360,
+    "test_samples": 27000,
+    "samples_after_sampling": 201771,
+    "class_counts_after_sampling": {
+      "0": 101185,
+      "1": 100586
+    },
+    "confusion_matrix": [
+      [
+        12984,
+        549
+      ],
+      [
+        977,
+        12490
+      ]
+    ]
+  },
+  {
+    "entry": 5,
+    "config": "SMOTE-ENN + GA + MobileNetV4",
+    "sampling_method": "SMOTE-ENN",
+    "model_type": "MobileNetV4",
+    "accuracy": 0.9752962962962963,
+    "precision": 0.9753225136572022,
+    "recall": 0.9752962962962963,
+    "f1_score": 0.9752978315769073,
+    "balanced_accuracy": 0.975358917338536,
+    "mcc": 0.9505996705915809,
+    "roc_auc": 0.9984158391558139,
+    "parameters": 62710,
+    "flops": 125420,
+    "training_time": 308.2731897830963,
+    "inference_time": 1.5898082256317139,
+    "train_samples": 134640,
+    "val_samples": 18360,
+    "test_samples": 27000,
+    "samples_after_sampling": 189710,
+    "class_counts_after_sampling": {
+      "0": 92904,
+      "1": 96806
+    },
+    "confusion_matrix": [
+      [
+        12923,
+        287
+      ],
+      [
+        380,
+        13410
+      ]
+    ]
+  },
+  {
+    "entry": 6,
+    "config": "SMOTE-ENN + GA + MobileNetV4+Attention",
+    "sampling_method": "SMOTE-ENN",
+    "model_type": "MobileNetV4+Attention",
+    "accuracy": 0.972,
+    "precision": 0.9720091864179635,
+    "recall": 0.972,
+    "f1_score": 0.9720009869751131,
+    "balanced_accuracy": 0.9720275074793137,
+    "mcc": 0.9439884628571406,
+    "roc_auc": 0.9982529645827016,
+    "parameters": 87990,
+    "flops": 175980,
+    "training_time": 510.99168515205383,
+    "inference_time": 5.481510877609253,
+    "train_samples": 134640,
+    "val_samples": 18360,
+    "test_samples": 27000,
+    "samples_after_sampling": 189710,
+    "class_counts_after_sampling": {
+      "0": 92904,
+      "1": 96806
+    },
+    "confusion_matrix": [
+      [
+        12875,
+        352
+      ],
+      [
+        404,
+        13369
+      ]
+    ]
+  },
+  {
+    "entry": 7,
+    "config": "SMOTE-Tomek + GA + MobileNetV4",
+    "sampling_method": "SMOTE-Tomek",
+    "model_type": "MobileNetV4",
+    "accuracy": 0.9550740740740741,
+    "precision": 0.9553418677247658,
+    "recall": 0.9550740740740741,
+    "f1_score": 0.9550678059833403,
+    "balanced_accuracy": 0.9550812352548645,
+    "mcc": 0.9104165159982884,
+    "roc_auc": 0.9935943886962565,
+    "parameters": 62710,
+    "flops": 125420,
+    "training_time": 407.9601709842682,
+    "inference_time": 1.9602200984954834,
+    "train_samples": 134640,
+    "val_samples": 18360,
+    "test_samples": 27000,
+    "samples_after_sampling": 200604,
+    "class_counts_after_sampling": {
+      "0": 100302,
+      "1": 100302
+    },
+    "confusion_matrix": [
+      [
+        13049,
+        443
+      ],
+      [
+        770,
+        12738
+      ]
+    ]
+  },
+  {
+    "entry": 8,
+    "config": "SMOTE-Tomek + GA + MobileNetV4+Attention",
+    "sampling_method": "SMOTE-Tomek",
+    "model_type": "MobileNetV4+Attention",
+    "accuracy": 0.955925925925926,
+    "precision": 0.9561785109670201,
+    "recall": 0.955925925925926,
+    "f1_score": 0.9559195420190615,
+    "balanced_accuracy": 0.9559198070785764,
+    "mcc": 0.9121038398110634,
+    "roc_auc": 0.9936804193538983,
+    "parameters": 87990,
+    "flops": 175980,
+    "training_time": 480.38641834259033,
+    "inference_time": 4.859706163406372,
+    "train_samples": 134640,
+    "val_samples": 18360,
+    "test_samples": 27000,
+    "samples_after_sampling": 200604,
+    "class_counts_after_sampling": {
+      "0": 100302,
+      "1": 100302
+    },
+    "confusion_matrix": [
+      [
+        13071,
+        436
+      ],
+      [
+        754,
+        12739
+      ]
+    ]
+  },
+  {
+    "entry": 9,
+    "config": "SMOTE-NCR + GA + MobileNetV4",
+    "sampling_method": "SMOTE-NCR",
+    "model_type": "MobileNetV4",
+    "accuracy": 0.955925925925926,
+    "precision": 0.9561954577393773,
+    "recall": 0.955925925925926,
+    "f1_score": 0.9559195396576664,
+    "balanced_accuracy": 0.9559286233380391,
+    "mcc": 0.9121215775350568,
+    "roc_auc": 0.9935707843074126,
+    "parameters": 62710,
+    "flops": 125420,
+    "training_time": 370.21755480766296,
+    "inference_time": 2.164794921875,
+    "train_samples": 134640,
+    "val_samples": 18360,
+    "test_samples": 27000,
+    "samples_after_sampling": 201172,
+    "class_counts_after_sampling": {
+      "0": 100586,
+      "1": 100586
+    },
+    "confusion_matrix": [
+      [
+        13066,
+        431
+      ],
+      [
+        759,
+        12744
+      ]
+    ]
+  },
+  {
+    "entry": 10,
+    "config": "SMOTE-NCR + GA + MobileNetV4+Attention",
+    "sampling_method": "SMOTE-NCR",
+    "model_type": "MobileNetV4+Attention",
+    "accuracy": 0.954962962962963,
+    "precision": 0.9553591284021193,
+    "recall": 0.954962962962963,
+    "f1_score": 0.9549533715943264,
+    "balanced_accuracy": 0.9549673266363634,
+    "mcc": 0.91032239086571,
+    "roc_auc": 0.9934274013507367,
+    "parameters": 87990,
+    "flops": 175980,
+    "training_time": 485.88718819618225,
+    "inference_time": 4.961076736450195,
+    "train_samples": 134640,
+    "val_samples": 18360,
+    "test_samples": 27000,
+    "samples_after_sampling": 201172,
+    "class_counts_after_sampling": {
+      "0": 100586,
+      "1": 100586
+    },
+    "confusion_matrix": [
+      [
+        13087,
+        409
+      ],
+      [
+        807,
+        12697
+      ]
+    ]
+  },
+  {
+    "entry": 11,
+    "config": "ADASYN-ENN + GA + MobileNetV4",
+    "sampling_method": "ADASYN-ENN",
+    "model_type": "MobileNetV4",
+    "accuracy": 0.9489329839011607,
+    "precision": 0.9500897824532694,
+    "recall": 0.9489329839011607,
+    "f1_score": 0.9490548787620752,
+    "balanced_accuracy": 0.9509441700413503,
+    "mcc": 0.8975909541525044,
+    "roc_auc": 0.9883991392981688,
+    "parameters": 62710,
+    "flops": 125420,
+    "training_time": 314.5306305885315,
+    "inference_time": 2.00980806350708,
+    "train_samples": 133192,
+    "val_samples": 18163,
+    "test_samples": 26710,
+    "samples_after_sampling": 178065,
+    "class_counts_after_sampling": {
+      "0": 77479,
+      "1": 100586
+    },
+    "confusion_matrix": [
+      [
+        11232,
+        390
+      ],
+      [
+        974,
+        14114
+      ]
+    ]
+  },
+  {
+    "entry": 12,
+    "config": "ADASYN-ENN + GA + MobileNetV4+Attention",
+    "sampling_method": "ADASYN-ENN",
+    "model_type": "MobileNetV4+Attention",
+    "accuracy": 0.9482965181579932,
+    "precision": 0.9495435058891246,
+    "recall": 0.9482965181579932,
+    "f1_score": 0.9484240730308189,
+    "balanced_accuracy": 0.9504203401765,
+    "mcc": 0.8964044338818971,
+    "roc_auc": 0.9887163105116246,
+    "parameters": 87990,
+    "flops": 175980,
+    "training_time": 516.9400386810303,
+    "inference_time": 3.780287265777588,
+    "train_samples": 133192,
+    "val_samples": 18163,
+    "test_samples": 26710,
+    "samples_after_sampling": 178065,
+    "class_counts_after_sampling": {
+      "0": 77479,
+      "1": 100586
+    },
+    "confusion_matrix": [
+      [
+        11236,
+        386
+      ],
+      [
+        995,
+        14093
+      ]
+    ]
+  },
+  {
+    "entry": 13,
+    "config": "ADASYN-Tomek + GA + MobileNetV4",
+    "sampling_method": "ADASYN-Tomek",
+    "model_type": "MobileNetV4",
+    "accuracy": 0.9435185185185185,
+    "precision": 0.9441233174609159,
+    "recall": 0.9435185185185185,
+    "f1_score": 0.9435008388892154,
+    "balanced_accuracy": 0.9435443134128787,
+    "mcc": 0.8876443357279777,
+    "roc_auc": 0.9832165305510387,
+    "parameters": 62710,
+    "flops": 125420,
+    "training_time": 337.492794752121,
+    "inference_time": 3.204819679260254,
+    "train_samples": 134640,
+    "val_samples": 18360,
+    "test_samples": 27000,
+    "samples_after_sampling": 200818,
+    "class_counts_after_sampling": {
+      "0": 100232,
+      "1": 100586
+    },
+    "confusion_matrix": [
+      [
+        12967,
+        514
+      ],
+      [
+        1011,
+        12508
+      ]
+    ]
+  },
+  {
+    "entry": 14,
+    "config": "ADASYN-Tomek + GA + MobileNetV4+Attention",
+    "sampling_method": "ADASYN-Tomek",
+    "model_type": "MobileNetV4+Attention",
+    "accuracy": 0.9438518518518518,
+    "precision": 0.9446369886749281,
+    "recall": 0.9438518518518518,
+    "f1_score": 0.9438290001139793,
+    "balanced_accuracy": 0.9438843251192723,
+    "mcc": 0.8884918886757208,
+    "roc_auc": 0.9829994376392428,
+    "parameters": 87990,
+    "flops": 175980,
+    "training_time": 8846.851064443588,
+    "inference_time": 7.066908359527588,
+    "train_samples": 134640,
+    "val_samples": 18360,
+    "test_samples": 27000,
+    "samples_after_sampling": 200818,
+    "class_counts_after_sampling": {
+      "0": 100232,
+      "1": 100586
+    },
+    "confusion_matrix": [
+      [
+        13004,
+        475
+      ],
+      [
+        1041,
+        12480
+      ]
+    ]
+  },
+  {
+    "entry": 15,
+    "config": "ADASYN-NCR + GA + MobileNetV4",
+    "sampling_method": "ADASYN-NCR",
+    "model_type": "MobileNetV4",
+    "accuracy": 0.9445185185185185,
+    "precision": 0.9450943467900443,
+    "recall": 0.9445185185185185,
+    "f1_score": 0.9445000183469919,
+    "balanced_accuracy": 0.94450917026584,
+    "mcc": 0.8896116129232305,
+    "roc_auc": 0.983557468827421,
+    "parameters": 62710,
+    "flops": 125420,
+    "training_time": 577.1227729320526,
+    "inference_time": 5.850656747817993,
+    "train_samples": 134640,
+    "val_samples": 18360,
+    "test_samples": 27000,
+    "samples_after_sampling": 201172,
+    "class_counts_after_sampling": {
+      "0": 100586,
+      "1": 100586
+    },
+    "confusion_matrix": [
+      [
+        13001,
+        506
+      ],
+      [
+        992,
+        12501
+      ]
+    ]
+  }
+]

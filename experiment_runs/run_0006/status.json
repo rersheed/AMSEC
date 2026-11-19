@@ -1,0 +1,24 @@
+{
+  "status": "stopped",
+  "started_at": "2026-11-19T13:59:41+00:00",
+  "updated_at": "2026-11-19T21:55:00+00:00",
+  "finished_at": "2026-11-19T18:46:10+00:00",
+  "entries_completed": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15
+  ],
+  "reason": "Interrupted: the worker process was terminated when the controlling Claude Code session ended, during config 16/16 (ADASYN-NCR + MobileNetV4+Attention). Configs 1-15 completed and are kept; post phases (best-model retrain, LRP) did not run. Not resumed because resuming would change the global RNG stream; superseded by a fresh detached full run."
+}

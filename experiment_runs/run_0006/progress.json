@@ -1,0 +1,7 @@
+{
+  "phase": "config",
+  "entry": 16,
+  "total": 16,
+  "config": "ADASYN-NCR + GA + MobileNetV4+Attention",
+  "at": "2026-11-19T18:37:50+00:00"
+}
